@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>物理海洋课堂 · Physical Oceanography Hub</title>
+<style>
+  :root {
+    --ocean-deep: #0a2a43;
+    --ocean: #0e4d6b;
+    --ocean-mid: #13769b;
+    --ocean-light: #4fb3d9;
+    --foam: #cdeef7;
+    --sand: #f5efe1;
+    --sun: #ffb347;
+    --accent: #ff7e67;
+    --ink: #16323f;
+    --muted: #5a7480;
+    --line: #d7e7ee;
+    --card: #ffffff;
+    --shadow: 0 6px 24px rgba(10, 42, 67, 0.12);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(79, 179, 217, 0.25), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(19, 118, 155, 0.18), transparent 55%),
+      linear-gradient(180deg, #eaf6fb 0%, #f3fafd 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background:
+      linear-gradient(180deg, rgba(10,42,67,0.85), rgba(19,118,155,0.85)),
+      radial-gradient(900px 400px at 10% 0%, rgba(79,179,217,0.6), transparent 60%),
+      linear-gradient(135deg, #0a2a43 0%, #13769b 100%);
+    padding: 56px 24px 64px;
+    text-align: center;
+  }
+  header.hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 80% 20%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(2px 2px at 40% 80%, rgba(255,255,255,0.35), transparent);
+    background-size: 250px 250px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero h1 {
+    margin: 0 0 10px;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .hero .sub {
+    font-size: 1rem;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+  }
+  .wave {
+    position: absolute; bottom: -1px; left: 0; right: 0; height: 50px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 50' preserveAspectRatio='none'><path d='M0,30 C180,5 360,55 540,30 C720,5 900,55 1080,30 C1260,5 1440,55 1440,30 L1440,50 L0,50 Z' fill='%23eaf6fb'/></svg>") no-repeat center bottom / 100% 100%;
+  }
+
+  /* Layout */
+  .wrap {
+    max-width: 1100px;
+    margin: -32px auto 64px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: var(--card);
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+  }
+  .tab-btn {
+    flex: 1 1 200px;
+    max-width: 260px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    padding: 14px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .tab-btn .icon {
+    font-size: 1.2rem;
+  }
+  .tab-btn:hover {
+    background: var(--foam);
+    color: var(--ocean);
+  }
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--ocean-mid), var(--ocean));
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(19, 118, 155, 0.35);
+  }
+
+  .panel { display: none; animation: fade 0.4s ease; }
+  .panel.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* Section headers */
+  .sec-head {
+    text-align: center;
+    margin: 12px 0 24px;
+  }
+  .sec-head h2 {
+    margin: 0 0 6px;
+    color: var(--ocean-deep);
+    font-size: 1.6rem;
+  }
+  .sec-head p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* Q&A */
+  .qa-grid {
+    display: grid;
+    gap: 16px;
+  }
+  .qa-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--ocean-mid);
+    transition: transform 0.2s ease;
+  }
+  .qa-card:hover { transform: translateY(-2px); }
+  .qa-card .q-num {
+    display: inline-block;
+    background: var(--ocean-mid);
+    color: #fff;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .qa-card .q-text {
+    font-weight: 600;
+    color: var(--ocean-deep);
+    display: inline;
+    vertical-align: middle;
+    font-size: 1.05rem;
+  }
+  .qa-card .toggle {
+    float: right;
+    background: var(--foam);
+    border: none;
+    color: var(--ocean);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+  }
+  .qa-card .toggle.open { transform: rotate(180deg); }
+  .qa-card .a-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding-top: 0;
+    color: var(--ink);
+  }
+  .qa-card .a-body.open {
+    max-height: 2000px;
+    padding-top: 14px;
+  }
+  .qa-card .a-body p { margin: 8px 0; }
+  .qa-card .a-body ul { margin: 6px 0 6px 22px; padding: 0; }
+  .qa-card .a-body li { margin: 4px 0; }
+  .qa-card .a-body strong { color: var(--ocean); }
+  .qa-card .a-body .label {
+    display: inline-block;
+    background: var(--foam);
+    color: var(--ocean-deep);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-right: 6px;
+    font-weight: 600;
+  }
+
+  /* Calculator */
+  .calc-card {
+    background: linear-gradient(160deg, #ffffff, #f3fafd);
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: var(--shadow);
+    border: 2px dashed var(--ocean-light);
+    margin-top: 8px;
+  }
+  .calc-card h3 {
+    margin: 0 0 4px;
+    color: var(--ocean-deep);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .calc-card .formula {
+    background: var(--ocean-deep);
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-family: "Cambria Math", "Times New Roman", serif;
+    text-align: center;
+    margin: 14px 0 18px;
+    font-size: 1.05rem;
+    overflow-x: auto;
+  }
+  .calc-card .formula .eq { color: var(--sun); font-weight: 700; }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  .field .hint { color: #98a8b0; font-weight: 400; }
+  .field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--ink);
+    background: #fff;
+    transition: border 0.2s;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--ocean-mid);
+    box-shadow: 0 0 0 3px rgba(19, 118, 155, 0.15);
+  }
+  .calc-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--ocean-mid), var(--ocean));
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(19, 118, 155, 0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-ghost {
+    background: var(--foam);
+    color: var(--ocean-deep);
+  }
+  .result {
+    margin-top: 20px;
+    padding: 18px;
+    background: linear-gradient(135deg, #fff7e6, #fff);
+    border: 1.5px solid var(--sun);
+    border-radius: 12px;
+    display: none;
+  }
+  .result.show { display: block; animation: fade 0.4s ease; }
+  .result .big {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 6px 0;
+  }
+  .result .small { color: var(--muted); font-size: 0.9rem; }
+  .result .steps {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+  .result .steps code {
+    background: var(--foam);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--ocean-deep);
+    font-family: "Consolas", monospace;
+  }
+
+  /* Placeholder slots (video / photos) */
+  .placeholder {
+    background: var(--card);
+    border: 2.5px dashed var(--ocean-light);
+    border-radius: 16px;
+    padding: 56px 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    max-width: 760px;
+    margin: 0 auto;
+    transition: all 0.25s ease;
+  }
+  .placeholder:hover {
+    border-color: var(--ocean-mid);
+    background: #fbfdff;
+  }
+  .placeholder .ph-icon {
+    font-size: 3.2rem;
+    display: block;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 2px 6px rgba(19, 118, 155, 0.25));
+  }
+  .placeholder .ph-title {
+    margin: 0 0 6px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ocean-deep);
+  }
+  .placeholder .ph-sub {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .placeholder.video-slot .ph-icon { color: var(--ocean-mid); }
+  .placeholder.photo-slot .ph-icon { color: var(--accent); }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 30px 20px 40px;
+  }
+  footer a { color: var(--ocean-mid); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.7rem; }
+    .tab-btn { font-size: 0.9rem; padding: 10px; }
+    .qa-card .toggle { float: none; margin-left: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>🌊 Physical Oceanography Hub</h1>
+  <p class="sub">物理海洋课堂 · Explore the rhythm of the sea</p>
+  <div class="wave"></div>
+</header>
+
+<div class="wrap">
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="qa" role="tab">
+      <span class="icon">📖</span> 物理海洋问答
+    </button>
+    <button class="tab-btn" data-tab="story" role="tab">
+      <span class="icon">🎭</span> 故事会
+    </button>
+    <button class="tab-btn" data-tab="ticket" role="tab">
+      <span class="icon">🎫</span> 出门票
+    </button>
+  </nav>
+
+  <!-- ============== Q&A Panel ============== -->
+  <section class="panel active" id="panel-qa">
+    <div class="sec-head">
+      <h2>📖 Physical Oceanography Q&A</h2>
+      <p>Nine questions covering heat budget, mixed layer, thermocline & water masses — answers in English.</p>
+    </div>
+
+    <div class="qa-grid" id="qaGrid"></div>
+
+    <!-- Heat Flux Calculator -->
+    <div class="sec-head" style="margin-top:36px;">
+      <h2>🧮 Seawater Heat Flux Calculator</h2>
+      <p>Interactive solver for the worked problem in Week-3 lecture (change the temperature of a water column).</p>
+    </div>
+
+    <div class="calc-card">
+      <h3>🌡️ Compute the required surface heat flux</h3>
+      <p style="margin:4px 0 0;color:var(--muted);font-size:0.9rem;">
+        Based on the lecture problem: <em>"To change the temperature by 1 °C in a column of water 100 m thick and 1 m² in cross-section, over 30 days — what heat flux is required?"</em>
+      </p>
+
+      <div class="formula">
+        Q = <span class="eq">ρ · c<sub>p</sub> · ΔT · V</span> / Δt&nbsp;&nbsp;(V = depth × area)
+      </div>
+
+      <div class="calc-grid">
+        <div class="field">
+          <label>ΔT — Temperature change <span class="hint">(°C)</span></label>
+          <input type="number" id="dT" value="1" step="0.1" />
+        </div>
+        <div class="field">
+          <label>Depth — water column thickness <span class="hint">(m)</span></label>
+          <input type="number" id="depth" value="100" step="1" />
+        </div>
+        <div class="field">
+          <label>Area — cross-section <span class="hint">(m²)</span></label>
+          <input type="number" id="area" value="1" step="0.1" />
+        </div>
+        <div class="field">
+          <label>Δt — Time period <span class="hint">(days)</span></label>
+          <input type="number" id="dt" value="30" step="1" />
+        </div>
+        <div class="field">
+          <label>ρ — Seawater density <span class="hint">(kg/m³)</span></label>
+          <input type="number" id="rho" value="1025" step="1" />
+        </div>
+        <div class="field">
+          <label>c<sub>p</sub> — Specific heat <span class="hint">(J/(kg·°C))</span></label>
+          <input type="number" id="cp" value="3850" step="1" />
+        </div>
+      </div>
+
+      <div class="calc-actions">
+        <button class="btn btn-primary" id="calcBtn">⚡ Calculate</button>
+        <button class="btn btn-ghost" id="resetBtn">↺ Reset to lecture defaults</button>
+      </div>
+
+      <div class="result" id="result">
+        <div class="small">Required surface heat flux</div>
+        <div class="big" id="fluxOut">— W/m²</div>
+        <div class="small" id="totalOut">—</div>
+        <div class="steps" id="stepsOut"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Story Panel ============== -->
+  <section class="panel" id="panel-story">
+    <div class="sec-head">
+      <h2>🎭 海洋故事会 · Ocean Story Club</h2>
+      <p>视频将在此处展示 · A story video will be shown here.</p>
+    </div>
+
+    <div class="placeholder video-slot">
+      <span class="ph-icon">🎬</span>
+      <p class="ph-title">视频占位 · Video Coming Soon</p>
+      <p class="ph-sub">此处将放置您稍后上传的故事会视频</p>
+    </div>
+  </section>
+
+  <!-- ============== Exit Ticket Panel ============== -->
+  <section class="panel" id="panel-ticket">
+    <div class="sec-head">
+      <h2>🎫 出门票 · Exit Ticket</h2>
+      <p>照片将在此处展示 · Photos will be shown here.</p>
+    </div>
+
+    <div class="placeholder photo-slot">
+      <span class="ph-icon">🖼️</span>
+      <p class="ph-title">照片占位 · Photos Coming Soon</p>
+      <p class="ph-sub">此处将放置您稍后上传的出门票照片</p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  © 2026 Physical Oceanography Hub · Built for classroom use ·
+  <a href="#top">Back to top ↑</a>
+</footer>
+
+<script>
+/* ===================== Q&A Data ===================== */
+const qaData = [
+  {
+    q: "What factors determine the heat budget terms Qs, Qb, Qe and Qh, respectively? Make clear the importance of each factor of each term.",
+    a: `<p><span class="label">Qs · Shortwave solar radiation</span> Incoming solar energy absorbed by the sea surface. Key factors:</p>
+        <ul>
+          <li><strong>Solar angle / latitude &amp; season</strong> — the dominant control on incoming flux.</li>
+          <li><strong>Cloud cover</strong> — reflects/scatters a large fraction back to space.</li>
+          <li><strong>Atmospheric scattering &amp; absorption</strong> (ozone, water vapor, aerosols).</li>
+          <li><strong>Surface albedo</strong> — open ocean reflects little (~6%), ice reflects much.</li>
+        </ul>
+        <p><span class="label">Qb · Longwave back radiation</span> Net infrared loss from the sea surface. Key factors:</p>
+        <ul>
+          <li><strong>Sea-surface temperature (SST)</strong> — governs emission via Stefan–Boltzmann law.</li>
+          <li><strong>Cloud cover &amp; water vapor</strong> — warm, moist atmosphere returns IR (greenhouse).</li>
+          <li><strong>Air temperature</strong> — sets the downward counter-radiation.</li>
+        </ul>
+        <p><span class="label">Qe · Latent heat flux (evaporation)</span> Heat carried away by vaporization. Key factors:</p>
+        <ul>
+          <li><strong>Wind speed</strong> — removes vapor, sets the exchange coefficient.</li>
+          <li><strong>Sea–air humidity difference</strong> — vapor pressure gradient.</li>
+          <li><strong>SST</strong> — higher SST raises saturation vapor pressure.</li>
+        </ul>
+        <p><span class="label">Qh · Sensible heat flux</span> Direct conductive/convective heat transfer. Key factors:</p>
+        <ul>
+          <li><strong>Sea–air temperature difference</strong> — the driving gradient.</li>
+          <li><strong>Wind speed</strong> — turbulent exchange coefficient.</li>
+        </ul>`
+  },
+  {
+    q: "What are the ranges of the magnitude of the four terms? For each term, specify the location and value of the maximum and minimum center.",
+    a: `<table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+        <thead><tr style="background:var(--foam);color:var(--ocean-deep);">
+          <th style="padding:8px;border:1px solid var(--line);text-align:left;">Term</th>
+          <th style="padding:8px;border:1px solid var(--line);text-align:left;">Typical range</th>
+          <th style="padding:8px;border:1px solid var(--line);text-align:left;">Maximum (location / value)</th>
+          <th style="padding:8px;border:1px solid var(--line);text-align:left;">Minimum (location / value)</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qs</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">0 – ~300 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">Tropics (clear skies, equatorial Pacific / Atlantic) ~280–300 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">Polar regions in winter ~0 W/m²</td></tr>
+          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qb</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">~40 – ~100 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">Tropical/subtropical oceans with warm SST ~100 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">High latitudes (cold SST) ~40 W/m²</td></tr>
+          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qe</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">~0 – ~150 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">Subtropics + western boundary currents (Gulf Stream, Kuroshio) ~150 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">Polar regions / high-rainfall belts ~0–20 W/m²</td></tr>
+          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qh</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">~−10 – ~30 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">NW Atlantic / NW Pacific in winter (cold air over warm current) ~30 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">Tropics &amp; polar ice margins ~0 W/m²</td></tr>
+        </tbody></table>
+        <p style="margin-top:10px;">Values are global-ocean climatological estimates and vary by dataset (e.g., OAFlux, NCEP).</p>`
+  },
+  {
+    q: "How deep is a typical mixed layer if mixed by wind? How deep can it reach if driven by cooling?",
+    a: `<ul>
+          <li><strong>Wind-mixed layer:</strong> typically <strong>10–100 m</strong>, with tropical values ~20–50 m and storm-forced cases near 100 m.</li>
+          <li><strong>Cooling-driven (deep convection):</strong> can reach <strong>several hundred to ~1000 m</strong> in regions such as the Labrador Sea, Greenland Sea, and Gulf of Lions, where dense plumes penetrate the deep ocean.</li>
+        </ul>`
+  },
+  {
+    q: "What are the typical vertical temperature and salinity profiles in the subtropical and subpolar regions of the North Pacific?",
+    a: `<p><span class="label">Subtropical North Pacific</span></p>
+        <ul>
+          <li><strong>Temperature:</strong> warm, well-stratified surface layer (~50–100 m) over a strong permanent thermocline (~200–1000 m) where T drops rapidly.</li>
+          <li><strong>Salinity:</strong> high surface salinity (evaporation exceeds precipitation), with a subsurface salinity maximum near the top of the thermocline.</li>
+        </ul>
+        <p><span class="label">Subpolar North Pacific</span></p>
+        <ul>
+          <li><strong>Temperature:</strong> cold throughout the upper ocean; weak or absent permanent thermocline — temperature may even <em>increase</em> with depth (temperature inversion beneath the halocline).</li>
+          <li><strong>Salinity:</strong> low surface salinity (excess precipitation), a strong halocline in the upper few hundred meters.</li>
+        </ul>`
+  },
+  {
+    q: "What are the dominant regions of net evaporation in the ocean?",
+    a: `<ul>
+          <li><strong>Subtropical gyres</strong> (≈ 15–35° latitude) in both hemispheres, especially the trade-wind belts.</li>
+          <li><strong>Mediterranean Sea</strong> — strong E–P excess, a net evaporative basin.</li>
+          <li><strong>Red Sea</strong> — one of the highest evaporation rates on Earth.</li>
+          <li><strong>Arabian Sea &amp; subtropical North Atlantic</strong> — also large net evaporation centers.</li>
+        </ul>
+        <p>These regions are the source of the intermediate/deep water-mass formation that drives the shallow overturning cell.</p>`
+  },
+  {
+    q: "What are the key components of the Mixed Layer heat budget?",
+    a: `<p>The mixed-layer heat budget balances all fluxes that change the upper-ocean heat content:</p>
+        <p style="text-align:center;font-family:'Cambria Math',serif;background:var(--foam);padding:10px;border-radius:8px;">
+          ∂(ρ·c<sub>p</sub>·h·T)/∂t = Q<sub>s</sub> − Q<sub>b</sub> − Q<sub>e</sub> − Q<sub>h</sub> − Q<sub>pen</sub> + Q<sub>adv</sub> + Q<sub>ent</sub>
+        </p>
+        <ul>
+          <li><strong>Q<sub>s</sub></strong> — shortwave solar radiation (penetrates to the diurnal layer).</li>
+          <li><strong>Q<sub>b</sub></strong> — longwave back radiation.</li>
+          <li><strong>Q<sub>e</sub></strong> — latent heat flux (evaporation).</li>
+          <li><strong>Q<sub>h</sub></strong> — sensible heat flux.</li>
+          <li><strong>Q<sub>pen</sub></strong> — shortwave that penetrates below the mixed layer.</li>
+          <li><strong>Q<sub>adv</sub></strong> — horizontal advective heat convergence.</li>
+          <li><strong>Q<sub>ent</sub></strong> — entrainment/mixing at the base of the mixed layer.</li>
+        </ul>`
+  },
+  {
+    q: "Is the North Atlantic Ocean saltier or fresher on average than the Pacific? Why?",
+    a: `<p>The North Atlantic is <strong>saltier</strong> than the Pacific on average.</p>
+        <ul>
+          <li><strong>Net evaporation</strong> exceeds precipitation in the Atlantic, while the Pacific receives more rain (ITCZ, monsoons).</li>
+          <li>The Atlantic imports high-salinity water from the <strong>Mediterranean outflow</strong>.</li>
+          <li><strong>Atmospheric vapor transport</strong> carries fresh water from the Atlantic basin to the Pacific across Central America.</li>
+          <li>Result: Atlantic surface salinity ~35–36 psu vs. Pacific ~34–34.5 psu — a key driver of the Atlantic Meridional Overturning Circulation (AMOC).</li>
+        </ul>`
+  },
+  {
+    q: "What regions of the ocean are characterized by large differences from summer to winter? What regions have the least seasonal variability?",
+    a: `<p><span class="label">Large seasonal contrast</span></p>
+        <ul>
+          <li><strong>Mid-latitude western boundary current regions</strong> — Kuroshio, Gulf Stream (warm in summer, fierce heat loss in winter).</li>
+          <li><strong>Monsoonal seas</strong> — especially the northern Indian Ocean / Arabian Sea.</li>
+          <li><strong>Subtropical gyres</strong> — strong summer stratification vs. winter mixing.</li>
+        </ul>
+        <p><span class="label">Least seasonal variability</span></p>
+        <ul>
+          <li><strong>Equatorial &amp; tropical oceans</strong> — small annual solar-angle variation.</li>
+          <li><strong>Deep ocean</strong> below the seasonal thermocline — insulated from the surface cycle.</li>
+          <li><strong>Polar regions</strong> are seasonally variable at the surface but the deep basins are steady.</li>
+        </ul>`
+  },
+  {
+    q: "Please describe the two processes that maintain the thermocline.",
+    a: `<ul>
+          <li><strong>1. Mechanical / vertical mixing</strong> — wind stress and shear-driven turbulence at the base of the mixed layer mix warm surface water downward, sharpening and maintaining the upper thermocline gradient.</li>
+          <li><strong>2. Subduction &amp; advection along density surfaces</strong> — water masses formed at the surface in subtropical/subpolar regions slide (subduct) along isopycnals into the thermocline interior, ventilating it and setting the layered T–S structure of the permanent thermocline.</li>
+        </ul>
+        <p>Together: mixing <em>sharpens</em> the top, while subduction <em>ventilates</em> the interior.</p>`
+  }
+];
+
+/* Render Q&A */
+const grid = document.getElementById('qaGrid');
+qaData.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'qa-card';
+  card.innerHTML = `
+    <button class="toggle" aria-label="toggle">▾</button>
+    <span class="q-num">${i + 1}</span>
+    <span class="q-text">${item.q}</span>
+    <div class="a-body">${item.a}</div>
+  `;
+  grid.appendChild(card);
+  const toggle = card.querySelector('.toggle');
+  const body = card.querySelector('.a-body');
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('open');
+    toggle.classList.toggle('open');
+  });
+  // Open the first card by default
+  if (i === 0) { body.classList.add('open'); toggle.classList.add('open'); }
+});
+
+/* ===================== Tabs ===================== */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ===================== Calculator ===================== */
+function num(id) { return parseFloat(document.getElementById(id).value); }
+function fmt(n, d = 2) { return Number.isFinite(n) ? n.toLocaleString('en-US', { maximumFractionDigits: d, minimumFractionDigits: d }) : '—'; }
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  const dT = num('dT'), depth = num('depth'), area = num('area'),
+        dt = num('dt'), rho = num('rho'), cp = num('cp');
+  if (![dT, depth, area, dt, rho, cp].every(Number.isFinite) || area <= 0 || dt <= 0) {
+    alert('Please enter valid positive numbers for all fields.');
+    return;
+  }
+  const V = depth * area;                       // m^3
+  const dt_s = dt * 86400;                       // seconds
+  const Q_total = rho * cp * dT * V;             // J (total heat)
+  const Q_rate = Q_total / dt_s;                 // W
+  const flux = Q_rate / area;                    // W/m^2
+
+  document.getElementById('fluxOut').textContent = `${fmt(flux)} W/m²`;
+  document.getElementById('totalOut').textContent =
+    `Total heat required: ${fmt(Q_total, 0)} J  ·  Heating rate: ${fmt(Q_rate, 1)} W`;
+  document.getElementById('stepsOut').innerHTML = `
+    <strong>Steps:</strong><br>
+    Volume V = depth × area = ${fmt(depth, 0)} × ${fmt(area, 0)} = <code>${fmt(V, 0)} m³</code><br>
+    Time Δt = ${fmt(dt, 0)} days × 86400 = <code>${fmt(dt_s, 0)} s</code><br>
+    Q<sub>total</sub> = ρ · c<sub>p</sub> · ΔT · V = ${fmt(rho, 0)} × ${fmt(cp, 0)} × ${fmt(dT)} × ${fmt(V, 0)} = <code>${fmt(Q_total, 0)} J</code><br>
+    Q̇ = Q<sub>total</sub> / Δt = <code>${fmt(Q_rate, 1)} W</code><br>
+    Flux = Q̇ / area = <code>${fmt(flux)} W/m²</code>
+  `;
+  document.getElementById('result').classList.add('show');
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  const defs = { dT: 1, depth: 100, area: 1, dt: 30, rho: 1025, cp: 3850 };
+  Object.entries(defs).forEach(([k, v]) => document.getElementById(k).value = v);
+  document.getElementById('result').classList.remove('show');
+});
+</script>
+</body>
+</html>
