@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>EOF · 经验正交函数 — 3B1B 风格动画</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%; background: #1f1f28;
+    font-family: 'CMU Serif', 'STIX Two Text', Georgia, 'Times New Roman', serif;
+    overflow: hidden;
+  }
+  #stage { display:block; width:100vw; height:100vh; }
+  #ui { position: fixed; right: 16px; bottom: 14px; display:flex; gap:10px; }
+  .btn {
+    background: #2a2a38; color: #cdd0e0; border: 1px solid #3a3a4a;
+    padding: 8px 14px; border-radius: 6px; font-size: 14px; cursor: pointer;
+    font-family: 'CMU Serif', Georgia, serif;
+  }
+  .btn:hover { background: #353548; }
+  #cap {
+    position: fixed; left: 18px; bottom: 14px; color:#8a8aa0; font-size: 12px;
+    font-family: 'CMU Serif', Georgia, serif;
+  }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="cap">EOF · 经验正交函数</div>
+<div id="ui">
+  <button class="btn" id="replay">↺ 重播</button>
+</div>
+
+<script>
+// ============================================================
+//  3B1B-style animation: "EOF — Empirical Orthogonal Function"
+//  Decomposing a spatio-temporal field into orthogonal modes.
+// ============================================================
+
+const cvs = document.getElementById('stage');
+const ctx = cvs.getContext('2d');
+let W = 0, H = 0, DPR = window.devicePixelRatio || 1;
+
+function resize(){
+  W = window.innerWidth; H = window.innerHeight;
+  cvs.width = W * DPR; cvs.height = H * DPR;
+  cvs.style.width = W+'px'; cvs.style.height = H+'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize', resize); resize();
+
+// ---- Palette ----
+const C = {
+  bg:'#1f1f28', blue:'#5fade8', blueDark:'#3a7fc0',
+  text:'#e8e8f0', dim:'#9a9ab0', yellow:'#f2c94c',
+  red:'#eb6a6a', green:'#7bd88f', grid:'#2a2a38',
+  warm:'#e07a5f', cool:'#5aa4d6',
+};
+
+// ---- Easing ----
+const easeInOut = t => t<0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+const easeOut   = t => 1 - Math.pow(1-t,3);
+const easeIn    = t => t*t*t;
+const clamp01   = t => Math.max(0, Math.min(1, t));
+const lerp = (a,b,t) => a + (b-a)*t;
+
+// ---- Time ----
+let t0 = performance.now();
+let T = 0;
+let paused = false;
+
+// ---- Text helper ----
+function text(str, x, y, opts={}){
+  const {size=28, color=C.text, align='center', alpha=1, weight='normal', italic=false, font='serif'} = opts;
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = color;
+  ctx.font = `${italic?'italic ':''}${weight} ${size}px ${font}`;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'middle';
+  ctx.fillText(str, x, y);
+  ctx.restore();
+}
+
+function roundRect(x,y,w,h,r,stroke=null,fill=null){
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+  ctx.closePath();
+  if(fill){ ctx.fillStyle = fill; ctx.fill(); }
+  if(stroke){ ctx.strokeStyle = stroke; ctx.lineWidth = 1.5; ctx.stroke(); }
+  ctx.restore();
+}
+
+// ============================================================
+//  Diverging colormap (cool -> dark -> warm), climate-style
+// ============================================================
+function divColor(v){
+  v = Math.max(-1, Math.min(1, v));
+  if(v >= 0){
+    const u = v;
+    const r = lerp(34, 224, u);
+    const g = lerp(40, 108, u);
+    const b = lerp(54, 78, u);
+    return `rgb(${r|0},${g|0},${b|0})`;
+  } else {
+    const u = -v;
+    const r = lerp(34, 80, u);
+    const g = lerp(40, 144, u);
+    const b = lerp(54, 220, u);
+    return `rgb(${r|0},${g|0},${b|0})`;
+  }
+}
+
+// ============================================================
+//  Synthetic spatio-temporal field F(t, x, y)
+//  F = PC1(t) * EOF1(x,y)  +  PC2(t) * EOF2(x,y)  +  noise
+// ============================================================
+const N_I = 22, N_J = 13, N_T = 160;
+
+// EOF1: dipole in x  (cosine across longitude)
+// EOF2: monopole bump (sin x * sin y)
+const EOF1 = new Array(N_I*N_J);
+const EOF2 = new Array(N_I*N_J);
+for(let j=0;j<N_J;j++) for(let i=0;i<N_I;i++){
+  const idx = j*N_I + i;
+  EOF1[idx] = Math.cos(Math.PI * i/(N_I-1));                 // dipole: + to -
+  EOF2[idx] = Math.sin(Math.PI * i/(N_I-1)) * Math.sin(Math.PI * j/(N_J-1)); // bump
+}
+// normalize patterns to max|.|=1
+function normalize(a){ const m = Math.max(...a.map(Math.abs)) || 1; for(let k=0;k<a.length;k++) a[k]/=m; }
+normalize(EOF1); normalize(EOF2);
+
+// PCs: oscillating time series
+const PC1 = new Array(N_T);
+const PC2 = new Array(N_T);
+const A1 = 1.20, A2 = 0.55;   // amplitudes (mode 1 dominant)
+for(let t=0;t<N_T;t++){
+  PC1[t] = A1 * Math.sin(2*Math.PI*t/N_T * 2.5);
+  PC2[t] = A2 * Math.sin(2*Math.PI*t/N_T * 1.2 + 0.8);
+}
+const PC1max = Math.max(...PC1.map(Math.abs));   // ~1.2
+
+// deterministic pseudo-noise
+function noise(i,j,t){
+  const x = Math.sin(i*12.9898 + j*78.233 + t*37.719)*43758.5453;
+  return (x - Math.floor(x))*2 - 1;
+}
+
+function fieldValue(t, i, j){
+  const idx = j*N_I + i;
+  const ti = ((t % N_T) + N_T) % N_T;
+  return PC1[ti]*EOF1[idx] + PC2[ti]*EOF2[idx] + 0.12*noise(i,j,ti);
+}
+const FMAX = 1.55; // display range for the full field
+
+// ============================================================
+//  Renderers
+// ============================================================
+function drawField(t, x0, y0, cell){
+  for(let j=0;j<N_J;j++) for(let i=0;i<N_I;i++){
+    const v = fieldValue(t,i,j)/FMAX;
+    ctx.fillStyle = divColor(v);
+    ctx.fillRect(x0+i*cell, y0+j*cell, cell+0.7, cell+0.7);
+  }
+  ctx.save();
+  ctx.strokeStyle = '#4a4a5a'; ctx.lineWidth = 1.2;
+  ctx.strokeRect(x0-0.5, y0-0.5, N_I*cell+1, N_J*cell+1);
+  ctx.restore();
+}
+
+function drawPattern(pattern, x0, y0, cell){
+  for(let j=0;j<N_J;j++) for(let i=0;i<N_I;i++){
+    ctx.fillStyle = divColor(pattern[j*N_I+i]);
+    ctx.fillRect(x0+i*cell, y0+j*cell, cell+0.7, cell+0.7);
+  }
+  ctx.save();
+  ctx.strokeStyle = '#4a4a5a'; ctx.lineWidth = 1.2;
+  ctx.strokeRect(x0-0.5, y0-0.5, N_I*cell+1, N_J*cell+1);
+  ctx.restore();
+}
+
+// contribution = scalar s in [-1,1] times normalized pattern
+function drawContribution(pattern, s, x0, y0, cell){
+  for(let j=0;j<N_J;j++) for(let i=0;i<N_I;i++){
+    ctx.fillStyle = divColor(pattern[j*N_I+i]*s);
+    ctx.fillRect(x0+i*cell, y0+j*cell, cell+0.7, cell+0.7);
+  }
+  ctx.save();
+  ctx.strokeStyle = '#4a4a5a'; ctx.lineWidth = 1.2;
+  ctx.strokeRect(x0-0.5, y0-0.5, N_I*cell+1, N_J*cell+1);
+  ctx.restore();
+}
+
+function colorbar(x0,y0,w,h, vmax, label){
+  for(let k=0;k<h;k++){
+    const v = 1 - 2*k/h;   // top = +1
+    ctx.fillStyle = divColor(v);
+    ctx.fillRect(x0, y0+k, w+0.7, 1.4);
+  }
+  ctx.save();
+  ctx.strokeStyle = '#4a4a5a'; ctx.lineWidth = 1;
+  ctx.strokeRect(x0-0.5, y0-0.5, w+1, h+1);
+  ctx.restore();
+  text('+'+vmax.toFixed(1), x0+w+8, y0+6,        {size:12, color:C.dim, align:'left'});
+  text('0',                  x0+w+8, y0+h/2,     {size:12, color:C.dim, align:'left'});
+  text('−'+vmax.toFixed(1),  x0+w+8, y0+h-6,     {size:12, color:C.dim, align:'left'});
+  if(label) text(label, x0+w/2, y0+h+18, {size:12, color:C.dim, align:'center'});
+}
+
+function linePlot(series, x0, y0, w, h, opts={}){
+  const n = series.length;
+  let vmin = Math.min(...series), vmax = Math.max(...series);
+  const pad = (vmax-vmin)*0.12 + 1e-6;
+  vmin -= pad; vmax += pad;
+  // axes
+  ctx.save();
+  ctx.strokeStyle = '#3a3a4a'; ctx.lineWidth = 1;
+  ctx.strokeRect(x0, y0, w, h);
+  // zero line
+  if(vmin < 0 && vmax > 0){
+    const yZ = y0 + h - ((0 - vmin)/(vmax-vmin))*h;
+    ctx.strokeStyle = '#3a3a4a'; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(x0, yZ); ctx.lineTo(x0+w, yZ); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  // trace
+  ctx.strokeStyle = opts.color || C.blue;
+  ctx.lineWidth = opts.lw || 2.2;
+  ctx.beginPath();
+  for(let i=0;i<n;i++){
+    const x = x0 + (i/(n-1))*w;
+    const y = y0 + h - ((series[i]-vmin)/(vmax-vmin))*h;
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  ctx.restore();
+  return {vmin, vmax};
+}
+
+function linePlotMarker(series, tIdx, x0, y0, w, h, color){
+  const n = series.length;
+  let vmin = Math.min(...series), vmax = Math.max(...series);
+  const pad = (vmax-vmin)*0.12 + 1e-6;
+  vmin -= pad; vmax += pad;
+  const x = x0 + (tIdx/(n-1))*w;
+  const y = y0 + h - ((series[tIdx]-vmin)/(vmax-vmin))*h;
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.setLineDash([2,3]);
+  ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y0+h); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fill();
+  ctx.restore();
+}
+
+// eigenvalue spectrum (precomputed plausible values)
+const EIG = [46, 12.5, 7.2, 5.6, 4.7, 4.1, 3.6, 3.2, 2.8, 2.5, 2.2, 1.9, 1.7, 1.5, 1.3, 1.2, 1.1, 1.0];
+const EIG_TOTAL = EIG.reduce((a,b)=>a+b,0);
+
+function barChart(x0, y0, w, h, progress){
+  const n = EIG.length;
+  const bw = w/n;
+  ctx.save();
+  // axes
+  ctx.strokeStyle = '#3a3a4a'; ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(x0, y0); ctx.lineTo(x0, y0+h); ctx.lineTo(x0+w, y0+h);
+  ctx.stroke();
+  const maxE = EIG[0];
+  for(let k=0;k<n;k++){
+    const reveal = clamp01(progress*1.1 - k*0.05);
+    const bh = (EIG[k]/maxE) * h * reveal;
+    const bx = x0 + k*bw + bw*0.18;
+    const bwd = bw*0.64;
+    const isLead = k < 2;
+    ctx.fillStyle = isLead ? (k===0? C.warm : C.yellow) : C.blue;
+    ctx.globalAlpha = 0.5 + 0.5*reveal;
+    ctx.fillRect(bx, y0+h-bh, bwd, bh);
+    if(k<3){
+      const pct = (EIG[k]/EIG_TOTAL*100).toFixed(1);
+      ctx.globalAlpha = reveal;
+      text(pct+'%', bx+bwd/2, y0+h-bh-10, {size:11, color: isLead?C.text:C.dim, alpha:reveal});
+    }
+  }
+  ctx.globalAlpha = 1;
+  // x labels
+  for(let k=0;k<n;k+=2){
+    const bx = x0 + k*bw + bw/2;
+    text(String(k+1), bx, y0+h+14, {size:11, color:C.dim});
+  }
+  text('模式序号 k', x0+w/2, y0+h+34, {size:13, color:C.dim});
+  // y label
+  ctx.save();
+  ctx.translate(x0-30, y0+h/2); ctx.rotate(-Math.PI/2);
+  text('特征值 λₖ (= 方差)', 0, 0, {size:13, color:C.dim});
+  ctx.restore();
+  ctx.restore();
+}
+
+// ============================================================
+//  Background
+// ============================================================
+function drawBackground(){
+  ctx.fillStyle = C.bg;
+  ctx.fillRect(0,0,W,H);
+  // faint dot grid like 3B1B
+  ctx.save();
+  ctx.fillStyle = 'rgba(255,255,255,0.025)';
+  const gap = 46;
+  for(let y=gap/2; y<H; y+=gap){
+    for(let x=gap/2; x<W; x+=gap){
+      ctx.beginPath(); ctx.arc(x,y,0.9,0,Math.PI*2); ctx.fill();
+    }
+  }
+  ctx.restore();
+}
+
+// ============================================================
+//  Scenes
+// ============================================================
+const scenes = [
+  { dur: 6.5,  draw: titleScene },
+  { dur: 11,   draw: dataScene },
+  { dur: 6.5,  draw: goalScene },
+  { dur: 12,   draw: decompositionScene },
+  { dur: 14,   draw: modeScene },
+  { dur: 12,   draw: computeScene },
+  { dur: 9,    draw: conclusionScene },
+];
+const TOTAL = scenes.reduce((s,sc)=>s+sc.dur,0);
+
+const CAPTIONS = [
+  '一、开场',
+  '二、数据：一个随时间演化的空间场',
+  '三、目标：把演化拆成几个干净的模式',
+  '四、分解：场 = 模式 × 时间系数 之和',
+  '五、看一个模式：EOF₁ 与 PC₁',
+  '六、怎么算？协方差矩阵的特征向量',
+  '七、回顾与现实意义',
+];
+
+function drawCaption(idx, p){
+  const fade = clamp01(Math.min(p*5, (1-p)*6));
+  text(CAPTIONS[idx] || '', 20, H-18, {size:13, color:C.dim, align:'left', alpha:0.6*fade});
+}
+
+function runScene(localT, idx){
+  drawBackground();
+  const sc = scenes[idx];
+  sc.draw(clamp01(localT / sc.dur), localT);
+  drawCaption(idx, clamp01(localT/ sc.dur));
+}
+
+// ---------- Scene 0: title ----------
+function titleScene(p, lt){
+  const cx = W/2, cy = H/2;
+  // animated mini-field behind title
+  const t = Math.floor(lt * 14);
+  const cell = 12;
+  const fw = N_I*cell, fh = N_J*cell;
+  ctx.save();
+  ctx.globalAlpha = 0.32;
+  drawField(t, cx-fw/2, cy-fh/2 - 20, cell);
+  ctx.restore();
+
+  // circle motif
+  const a = easeOut(p*1.3);
+  ctx.save();
+  ctx.globalAlpha = a;
+  ctx.strokeStyle = C.blue; ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(cx, cy-70, 56, 0, Math.PI*2 * easeOut(p*1.1));
+  ctx.stroke();
+  text('EOF', cx, cy-70, {size:30, color:C.blue, alpha:a, weight:'bold'});
+  ctx.restore();
+
+  const ta = clamp01((p-0.18)/0.22);
+  text('经验正交函数', cx, cy+18, {size:44, color:C.text, alpha:ta});
+  const sa = clamp01((p-0.45)/0.25);
+  text('Empirical Orthogonal Function', cx, cy+62, {size:20, color:C.dim, alpha:sa, italic:true});
+  const ha = clamp01((p-0.7)/0.3);
+  text('把一个随时间演化的空间场，拆成几个正交的"模式"', cx, cy+118, {size:17, color:C.dim, alpha:ha});
+}
+
+// ---------- Scene 1: the data ----------
+function dataScene(p, lt){
+  const cx = W/2, cy = H/2;
+  const ta = clamp01(p*5);
+  text('先看数据：一个随时间演化的空间场  X(t, x, y)', cx, cy-210, {size:25, color:C.text, alpha:ta});
+
+  const cell = 22;
+  const fw = N_I*cell, fh = N_J*cell;
+  const fx = cx - fw/2 - 40, fy = cy - fh/2 - 10;
+
+  const fa = clamp01((p-0.05)/0.12);
+  ctx.save(); ctx.globalAlpha = fa;
+  drawField(Math.floor(lt*12), fx, fy, cell);
+  // colorbar
+  colorbar(fx+fw+18, fy, 14, fh, FMAX, '场值');
+  ctx.restore();
+
+  // time marker
+  const tStep = Math.floor(lt*12) % N_T;
+  const ta2 = clamp01((p-0.3)/0.15);
+  text(`t = ${tStep}`, fx, fy-22, {size:14, color:C.yellow, alpha:ta2, align:'left', font:'monospace'});
+  // arrow indicating time
+  ctx.save(); ctx.globalAlpha = ta2;
+  ctx.strokeStyle = C.yellow; ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(fx+fw*0.3, fy+fh+22);
+  ctx.lineTo(fx+fw*0.7, fy+fh+22);
+  ctx.stroke();
+  // arrowhead
+  ctx.fillStyle = C.yellow;
+  ctx.beginPath();
+  ctx.moveTo(fx+fw*0.7, fy+fh+22);
+  ctx.lineTo(fx+fw*0.7-8, fy+fh+18);
+  ctx.lineTo(fx+fw*0.7-8, fy+fh+26);
+  ctx.closePath(); ctx.fill();
+  text('时间演化', fx+fw/2, fy+fh+40, {size:13, color:C.yellow, alpha:ta2});
+  ctx.restore();
+
+  const ca = clamp01((p-0.55)/0.15);
+  text('气温、气压、海温、降水……  地球科学里到处都是这种数据', cx, cy+fh/2+70, {size:17, color:C.text, alpha:ca, italic:true});
+}
+
+// ---------- Scene 2: goal ----------
+function goalScene(p, lt){
+  const cx = W/2, cy = H/2;
+  const ta = clamp01(p*5);
+  text('问题来了', cx, cy-170, {size:26, color:C.dim, alpha:ta});
+  text('这片"混乱"的演化，能不能拆成几个干净的模式？', cx, cy-120, {size:28, color:C.text, alpha:ta});
+
+  // illustrate: one field on the left, arrow, three stacked mode boxes on the right
+  const cell = 9;
+  const fw = N_I*cell, fh = N_J*cell;
+  const t = Math.floor(lt*10);
+  const fx = cx-330, fy = cy-50;
+
+  const fa = clamp01((p-0.15)/0.15);
+  ctx.save(); ctx.globalAlpha = fa;
+  drawField(t, fx, fy, cell);
+  text('X(t)', fx+fw/2, fy-18, {size:14, color:C.text, alpha:fa});
+  ctx.restore();
+
+  // arrow
+  const aa = clamp01((p-0.3)/0.15);
+  ctx.save(); ctx.globalAlpha = aa;
+  ctx.strokeStyle = C.blue; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(fx+fw+12, cy); ctx.lineTo(fx+fw+60, cy);
+  ctx.stroke();
+  ctx.fillStyle = C.blue;
+  ctx.beginPath();
+  ctx.moveTo(fx+fw+60, cy); ctx.lineTo(fx+fw+52, cy-6); ctx.lineTo(fx+fw+52, cy+6);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+
+  // three stacked small mode patterns on the right
+  const mcell = 6;
+  const mfw = N_I*mcell, mfh = N_J*mcell;
+  const mx = fx+fw+90;
+  for(let k=0;k<3;k++){
+    const ma = clamp01((p-0.45 - k*0.12)/0.15);
+    if(ma<=0) continue;
+    const my = cy-70 + k*50;
+    ctx.save(); ctx.globalAlpha = ma;
+    const pat = k===0?EOF1 : k===1?EOF2 : EOF1.map(v=>-v*0.6); // third: a tweaked pattern
+    drawPattern(pat, mx, my-mfh/2, mcell);
+    text(`模式 ${k+1}`, mx+mfw+10, my, {size:13, color:C.dim, alpha:ma, align:'left'});
+    ctx.restore();
+  }
+
+  const ca = clamp01((p-0.85)/0.13);
+  text('目标：找到"最主要的几种变动形态"，按重要性排序', cx, cy+130, {size:18, color:C.text, alpha:ca, italic:true});
+}
+
+// ---------- Scene 3: decomposition ----------
+function decompositionScene(p, lt){
+  const cx = W/2, cy = H/2;
+  const ta = clamp01(p*5);
+  text('分解：场 = 一组正交模式之和', cx, cy-200, {size:26, color:C.text, alpha:ta});
+
+  // formula
+  const fa = clamp01((p-0.1)/0.15);
+  if(fa>0){
+    ctx.save(); ctx.globalAlpha = fa;
+    // X(t,x) ≈ Σ_k  PC_k(t) · EOF_k(x)
+    const fy = cy-110;
+    text('X(t, x)  ≈', cx-220, fy, {size:30, color:C.text, alpha:fa, font:'serif', italic:true});
+    // big sigma
+    ctx.font = '50px serif';
+    ctx.fillStyle = C.blue; ctx.globalAlpha = fa;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('Σ', cx-120, fy);
+    // subscript k
+    ctx.font = '16px serif';
+    ctx.fillText('k', cx-120+18, fy+18);
+    // PC_k(t)
+    ctx.globalAlpha = fa;
+    text('PC', cx-40, fy, {size:28, color:C.warm, alpha:fa, italic:true});
+    ctx.font='16px serif'; ctx.fillStyle=C.warm; ctx.globalAlpha=fa;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('k', cx-40+22, fy+12);
+    ctx.fillText('(t)', cx-40+44, fy);
+    // dot
+    text('·', cx+30, fy, {size:30, color:C.dim, alpha:fa});
+    // EOF_k(x)
+    ctx.fillStyle = C.blue; ctx.globalAlpha = fa;
+    text('EOF', cx+90, fy, {size:28, color:C.blue, alpha:fa, italic:true});
+    ctx.font='16px serif';
+    ctx.fillText('k', cx+90+36, fy+12);
+    ctx.fillText('(x)', cx+90+58, fy);
+    ctx.restore();
+  }
+
+  // legend for PC and EOF
+  const la = clamp01((p-0.35)/0.15);
+  if(la>0){
+    text('PCₖ(t)：第 k 个时间系数（随时间变化）', cx, cy-40, {size:16, color:C.warm, alpha:la});
+    text('EOFₖ(x)：第 k 个空间模式（固定的形态）', cx, cy-12, {size:16, color:C.blue, alpha:la});
+  }
+
+  // visual: one mode contribution animating
+  const t = Math.floor(lt*10) % N_T;
+  const s = PC1[t] / PC1max;   // in [-1,1]
+  const cell = 9;
+  const fw = N_I*cell, fh = N_J*cell;
+
+  const va = clamp01((p-0.55)/0.15);
+  // EOF1 (static)
+  const ex = cx-260, ey = cy+50;
+  ctx.save(); ctx.globalAlpha = va;
+  drawPattern(EOF1, ex, ey, cell);
+  text('EOF₁(x)', ex+fw/2, ey-16, {size:14, color:C.blue, alpha:va});
+  ctx.restore();
+  // times scalar
+  ctx.save(); ctx.globalAlpha = va;
+  text('×', ex+fw+18, ey+fh/2, {size:26, color:C.dim});
+  text(`PC₁ = ${PC1[t].toFixed(2)}`, ex+fw+40, ey+fh/2, {size:16, color:C.warm, alpha:va, align:'left'});
+  ctx.restore();
+  // equals
+  ctx.save(); ctx.globalAlpha = va;
+  const cxR = ex+fw+40+130;
+  text('=', cxR+20, ey+fh/2, {size:26, color:C.dim});
+  ctx.restore();
+  // contribution
+  const cwx = cxR+50;
+  ctx.save(); ctx.globalAlpha = va;
+  drawContribution(EOF1, s, cwx, ey, cell);
+  text('模式 1 的贡献', cwx+fw/2, ey-16, {size:14, color:C.text, alpha:va});
+  ctx.restore();
+
+  const ca = clamp01((p-0.85)/0.13);
+  text('把所有模式的贡献加起来，就近似还原了原始场', cx, cy+fh+90, {size:16, color:C.dim, alpha:ca, italic:true});
+}
+
+// ---------- Scene 4: one mode visualized (money shot) ----------
+function modeScene(p, lt){
+  const cx = W/2, cy = H/2;
+  const ta = clamp01(p*5);
+  text('仔细看第一个模式', cx, cy-215, {size:26, color:C.text, alpha:ta});
+
+  const t = Math.floor(lt*10) % N_T;
+  const s = PC1[t] / PC1max;   // normalized scalar in [-1,1]
+
+  // Top: large contribution (animating)
+  const cell = 19;
+  const fw = N_I*cell, fh = N_J*cell;
+  const kx = cx - fw/2, ky = cy-170;
+  const ka = clamp01((p-0.05)/0.12);
+  ctx.save(); ctx.globalAlpha = ka;
+  drawContribution(EOF1, s, kx, ky, cell);
+  text('模式 1 的贡献 = EOF₁(x) · PC₁(t)', kx+fw/2, ky-16, {size:15, color:C.dim, alpha:ka});
+  // current scalar readout
+  text(`PC₁(t) = ${PC1[t].toFixed(2)}`, kx+fw+70, ky+fh/2-10, {size:15, color:C.warm, alpha:ka, align:'left'});
+  ctx.restore();
+
+  // Bottom-left: static EOF1 pattern
+  const scell = 8;
+  const sfw = N_I*scell, sfh = N_J*scell;
+  const sx = cx - 280, sy = cy+40;
+  const ea = clamp01((p-0.3)/0.15);
+  ctx.save(); ctx.globalAlpha = ea;
+  drawPattern(EOF1, sx, sy, scell);
+  text('EOF₁(x)  —— 固定的空间模式', sx+sfw/2, sy-14, {size:14, color:C.blue, alpha:ea});
+  text('(这里是个偶极子：左正右负)', sx+sfw/2, sy+sfh+14, {size:12, color:C.dim, alpha:ea});
+  ctx.restore();
+
+  // Bottom-right: PC1 time series with current marker
+  const px = cx+20, py = cy+40, pw = 260, ph = sfh;
+  const pa = clamp01((p-0.3)/0.15);
+  ctx.save(); ctx.globalAlpha = pa;
+  linePlot(PC1, px, py, pw, ph, {color:C.warm, lw:2.2});
+  linePlotMarker(PC1, t, px, py, pw, ph, C.yellow);
+  text('PC₁(t)  —— 时间系数', px+pw/2, py-14, {size:14, color:C.warm, alpha:pa});
+  text('当前 t', px+pw/2, py+ph+14, {size:12, color:C.dim, alpha:pa});
+  ctx.restore();
+
+  // explanation
+  const ca = clamp01((p-0.6)/0.15);
+  if(ca>0){
+    text('空间模式不变，时间系数在正负之间振荡 → 整片场随之"呼吸"', cx, cy+170, {size:16, color:C.text, alpha:ca, italic:true});
+  }
+  const ca2 = clamp01((p-0.8)/0.15);
+  if(ca2>0){
+    text('当 PC₁ > 0：左红右蓝；  当 PC₁ < 0：颜色翻转', cx, cy+200, {size:14, color:C.dim, alpha:ca2, italic:true});
+  }
+}
+
+// ---------- Scene 5: how to compute ----------
+function computeScene(p, lt){
+  const cx = W/2, cy = H/2;
+  const ta = clamp01(p*5);
+  text('怎么算出来？', cx, cy-215, {size:26, color:C.text, alpha:ta});
+
+  // Step 1: data matrix
+  const sa = clamp01((p-0.05)/0.1);
+  ctx.save(); ctx.globalAlpha = sa;
+  text('把场排成矩阵  X：行 = 时间，列 = 空间点', cx-180, cy-140, {size:17, color:C.text, alpha:sa, align:'left'});
+
+  // small matrix illustration
+  const mx = cx-180, my = cy-110;
+  const mrows = 6, mcols = 10;
+  const mcw = 18, mch = 18;
+  for(let r=0;r<mrows;r++) for(let c=0;c<mcols;c++){
+    // pseudo-random value
+    const v = Math.sin(r*1.3 + c*0.7)*0.8 + Math.sin(r*0.5-c*0.3)*0.4;
+    ctx.fillStyle = divColor(v);
+    ctx.fillRect(mx+c*mcw, my+r*mch, mcw+0.6, mch+0.6);
+  }
+  ctx.strokeStyle = '#4a4a5a'; ctx.lineWidth = 1.2;
+  ctx.strokeRect(mx-0.5, my-0.5, mcols*mcw+1, mrows*mch+1);
+  text('t₁', mx-14, my+mch/2,        {size:12, color:C.dim, align:'right'});
+  text('t₂', mx-14, my+mch/2+mch,    {size:12, color:C.dim, align:'right'});
+  text('⋮', mx-14, my+mch/2+mch*2.5, {size:14, color:C.dim, align:'right'});
+  text('空间点 →', mx+mcols*mcw/2, my+mrows*mch+16, {size:12, color:C.dim});
+  text('时间 ↓', mx-30, my+mrows*mch/2, {size:12, color:C.dim});
+  ctx.restore();
+
+  // Step 2: covariance and eigen
+  const ea = clamp01((p-0.3)/0.12);
+  ctx.save(); ctx.globalAlpha = ea;
+  // C = (1/N) Xᵀ X
+  text('空间协方差矩阵', cx+60, cy-140, {size:17, color:C.text, alpha:ea, align:'left'});
+  text('C = (1/N) · Xᵀ X', cx+60, cy-108, {size:22, color:C.green, alpha:ea, font:'serif', italic:true, align:'left'});
+  // eigen equation
+  text('C vₖ = λₖ vₖ', cx+60, cy-60, {size:22, color:C.green, alpha:ea, font:'serif', italic:true, align:'left'});
+  text('特征向量 vₖ  →  就是  EOFₖ', cx+60, cy-26, {size:15, color:C.blue, alpha:ea, align:'left'});
+  text('特征值 λₖ  →  对应这个模式解释的方差', cx+60, cy-2, {size:15, color:C.warm, alpha:ea, align:'left'});
+  ctx.restore();
+
+  // Step 3: eigenvalue spectrum bar chart
+  const ba = clamp01((p-0.55)/0.15);
+  const bx = cx-260, by = cy+40, bw = 520, bh = 130;
+  ctx.save(); ctx.globalAlpha = ba;
+  barChart(bx, by, bw, bh, clamp01((p-0.55)/0.3));
+  // highlight callouts
+  text('↑ 前几个模式解释了大部分方差', bx+bw*0.18, by-12, {size:13, color:C.warm, alpha:ba, align:'center'});
+  ctx.restore();
+
+  const ca = clamp01((p-0.88)/0.12);
+  text('按 λₖ 从大到小排序 —— 这就是"经验"二字的含义：让数据自己说话', cx, by+bh+60, {size:16, color:C.text, alpha:ca, italic:true});
+}
+
+// ---------- Scene 6: conclusion ----------
+function conclusionScene(p, lt){
+  const cx = W/2, cy = H/2;
+  const ta = clamp01(p*4);
+  text('回顾与现实意义', cx, cy-180, {size:30, color:C.text, alpha:ta});
+
+  const lines = [
+    ['• 场 X(t,x) ≈ Σₖ  PCₖ(t) · EOFₖ(x)   ——  时空分离', C.text],
+    ['• EOFₖ 是空间协方差矩阵的特征向量（彼此正交）', C.blue],
+    ['• PCₖ 是对应的时间系数，按特征值大小排序', C.warm],
+    ['• 现实里：北大西洋海平面气压的 EOF₁ ≈ NAO（北大西洋涛动）', C.green],
+    ['• 与 PCA 本质同源 —— 气象/海洋领域的叫法', C.yellow],
+  ];
+  const lineH = 44;
+  const startY = cy-100;
+  for(let i=0;i<lines.length;i++){
+    const la = clamp01((p-0.08 - i*0.12));
+    text(lines[i][0], cx-300, startY + i*lineH, {size:18, color:lines[i][1], alpha:la, align:'left'});
+  }
+
+  const ea = clamp01((p-0.85)/0.13);
+  if(ea>0){
+    text('EOF = 把混沌的演化，拆成几条干净、正交、按重要性排序的模式', cx, cy+150, {size:17, color:C.text, alpha:ea, italic:true});
+  }
+}
+
+// ============================================================
+//  Main loop
+// ============================================================
+let last = performance.now();
+function frame(now){
+  const dt = (now - last)/1000; last = now;
+  if(!paused) T += dt;
+  if(T > TOTAL) T = 0;
+
+  let acc = 0, idx = 0, local = 0;
+  for(let i=0;i<scenes.length;i++){
+    if(T < acc + scenes[i].dur){ idx = i; local = T - acc; break; }
+    acc += scenes[i].dur;
+  }
+  runScene(local, idx);
+
+  // progress bar
+  ctx.save();
+  ctx.fillStyle = 'rgba(95,173,232,0.55)';
+  ctx.fillRect(0, H-3, (T/TOTAL)*W, 3);
+  ctx.restore();
+
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+// ============================================================
+//  Controls
+// ============================================================
+document.getElementById('replay').addEventListener('click', ()=>{ T = 0; paused = false; });
+window.addEventListener('keydown', e=>{
+  if(e.code === 'Space'){ e.preventDefault(); paused = !paused; }
+});
+cvs.addEventListener('click', ()=>{ paused = !paused; });
+</script>
+</body>
+</html>
