@@ -175,10 +175,37 @@
   .qa-card .q-text {
     font-weight: 600;
     color: var(--ocean-deep);
-    display: inline;
-    vertical-align: middle;
+    display: block;
     font-size: 1.05rem;
+    line-height: 1.4;
   }
+  .qa-card .q-cn {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .qa-card .a-body .a-en,
+  .qa-card .a-body .a-cn {
+    margin-top: 10px;
+  }
+  .qa-card .a-body .a-cn {
+    border-top: 1px dashed var(--line);
+    padding-top: 10px;
+    margin-top: 14px;
+  }
+  .qa-card .lang-tag {
+    display: inline-block;
+    background: var(--ocean-deep);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 1px 8px;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+  .qa-card .a-cn .lang-tag { background: var(--accent); }
   .qa-card .toggle {
     float: right;
     background: var(--foam);
@@ -365,6 +392,52 @@
   .placeholder.video-slot .ph-icon { color: var(--ocean-mid); }
   .placeholder.photo-slot .ph-icon { color: var(--accent); }
 
+  /* EOF Demo (iframe embed) */
+  .eof-card {
+    background: linear-gradient(160deg, #ffffff, #f3fafd);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    border: 2px dashed var(--ocean-light);
+    margin-top: 8px;
+  }
+  .eof-frame-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    border-radius: 12px;
+    overflow: hidden;
+    background: #1f1f28;
+  }
+  .eof-frame {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .eof-hint {
+    margin: 12px 0 0;
+    padding: 10px 14px;
+    background: var(--foam);
+    border-radius: 10px;
+    font-size: 0.86rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .eof-hint em { color: var(--muted); display: block; margin-top: 4px; font-style: italic; }
+  .eof-explain {
+    margin: 10px 0 0;
+    padding: 12px 14px;
+    background: var(--foam);
+    border-radius: 10px;
+    font-size: 0.86rem;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .eof-explain em { color: var(--muted); display: block; margin-top: 6px; font-style: italic; }
+
   footer {
     text-align: center;
     color: var(--muted);
@@ -465,6 +538,28 @@
         <div class="steps" id="stepsOut"></div>
       </div>
     </div>
+
+    <!-- ============== EOF Demo Animation ============== -->
+    <div class="sec-head" style="margin-top:48px;">
+      <h2>🌊 EOF Demo Animation · 经验正交函数演示</h2>
+      <p>A 3B1B-style animated explainer of Empirical Orthogonal Functions — 7 scenes, ~71 s loop. · 3B1B 风格 EOF 动画，7 段场景，约 71 秒循环。</p>
+    </div>
+
+    <div class="eof-card">
+      <div class="eof-frame-wrap">
+        <iframe class="eof-frame" src="eof.html" title="EOF 动画演示" loading="lazy"></iframe>
+      </div>
+      <p class="eof-hint">
+        💡 动画内交互：点击画面或按空格键暂停 / 继续；右下角「↺ 重播」按钮可重新开始。
+        <em>In-animation controls: click the canvas or press Space to pause/resume; the "↺ 重播" button restarts from scene 1.</em>
+      </p>
+      <p class="eof-explain">
+        <strong>动画结构 · Scene list:</strong>
+        ① 开场 → ② 数据：随时间演化的空间场 → ③ 目标：拆成几个模式 → ④ 分解公式 X(t,x) ≈ Σ PCₖ(t)·EOFₖ(x) →
+        ⑤ 详解 EOF₁ 与 PC₁ → ⑥ 协方差矩阵特征向量算法 → ⑦ 回顾（NAO / PCA 关联）。
+        <em>Walks through data → goal → decomposition formula → mode-1 visualization → covariance-eigenvector computation → real-world meaning (NAO, PCA).</em>
+      </p>
+    </div>
   </section>
 
   <!-- ============== Story Panel ============== -->
@@ -502,10 +597,11 @@
 </footer>
 
 <script>
-/* ===================== Q&A Data ===================== */
+/* ===================== Q&A Data (Bilingual CN/EN) ===================== */
 const qaData = [
   {
     q: "What factors determine the heat budget terms Qs, Qb, Qe and Qh, respectively? Make clear the importance of each factor of each term.",
+    qcn: "决定热收支项 Qs、Qb、Qe、Qh 的因子分别是什么？请说明每一项各因子的重要性。",
     a: `<p><span class="label">Qs · Shortwave solar radiation</span> Incoming solar energy absorbed by the sea surface. Key factors:</p>
         <ul>
           <li><strong>Solar angle / latitude &amp; season</strong> — the dominant control on incoming flux.</li>
@@ -529,10 +625,35 @@ const qaData = [
         <ul>
           <li><strong>Sea–air temperature difference</strong> — the driving gradient.</li>
           <li><strong>Wind speed</strong> — turbulent exchange coefficient.</li>
+        </ul>`,
+    acn: `<p><span class="label">Qs · 短波太阳辐射</span> 海面吸收的入射太阳能量。关键因子：</p>
+        <ul>
+          <li><strong>太阳高度角 / 纬度与季节</strong> —— 入射通量的主控因子。</li>
+          <li><strong>云量</strong> —— 将大量辐射反射/散射回太空。</li>
+          <li><strong>大气散射与吸收</strong>（臭氧、水汽、气溶胶）。</li>
+          <li><strong>表面反照率</strong> —— 开阔大洋反照率低（约 6%），海冰反照率高。</li>
+        </ul>
+        <p><span class="label">Qb · 长波回辐射</span> 海面向外的净红外辐射损失。关键因子：</p>
+        <ul>
+          <li><strong>海表温度（SST）</strong> —— 通过 Stefan–Boltzmann 定律决定发射强度。</li>
+          <li><strong>云量与水汽</strong> —— 暖湿大气会把红外辐射回送（温室效应）。</li>
+          <li><strong>气温</strong> —— 决定向下的反向辐射。</li>
+        </ul>
+        <p><span class="label">Qe · 潜热通量（蒸发）</span> 随汽化带走的热量。关键因子：</p>
+        <ul>
+          <li><strong>风速</strong> —— 移走水汽并设定交换系数。</li>
+          <li><strong>海气湿度差</strong> —— 水汽压梯度。</li>
+          <li><strong>SST</strong> —— SST 越高，饱和水汽压越大。</li>
+        </ul>
+        <p><span class="label">Qh · 感热通量</span> 直接的传导/对流热交换。关键因子：</p>
+        <ul>
+          <li><strong>海气温差</strong> —— 驱动梯度。</li>
+          <li><strong>风速</strong> —— 湍流交换系数。</li>
         </ul>`
   },
   {
     q: "What are the ranges of the magnitude of the four terms? For each term, specify the location and value of the maximum and minimum center.",
+    qcn: "四项的量级范围分别是多少？请给出每一项最大值与最小值中心的位置与数值。",
     a: `<table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
         <thead><tr style="background:var(--foam);color:var(--ocean-deep);">
           <th style="padding:8px;border:1px solid var(--line);text-align:left;">Term</th>
@@ -558,17 +679,49 @@ const qaData = [
               <td style="padding:8px;border:1px solid var(--line);">NW Atlantic / NW Pacific in winter (cold air over warm current) ~30 W/m²</td>
               <td style="padding:8px;border:1px solid var(--line);">Tropics &amp; polar ice margins ~0 W/m²</td></tr>
         </tbody></table>
-        <p style="margin-top:10px;">Values are global-ocean climatological estimates and vary by dataset (e.g., OAFlux, NCEP).</p>`
+        <p style="margin-top:10px;">Values are global-ocean climatological estimates and vary by dataset (e.g., OAFlux, NCEP).</p>`,
+    acn: `<table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+        <thead><tr style="background:var(--foam);color:var(--ocean-deep);">
+          <th style="padding:8px;border:1px solid var(--line);text-align:left;">项</th>
+          <th style="padding:8px;border:1px solid var(--line);text-align:left;">典型范围</th>
+          <th style="padding:8px;border:1px solid var(--line);text-align:left;">最大值（位置 / 数值）</th>
+          <th style="padding:8px;border:1px solid var(--line);text-align:left;">最小值（位置 / 数值）</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qs</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">0 – 约 300 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">热带（晴空、赤道太平洋 / 大西洋）约 280–300 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">冬季极地 约 0 W/m²</td></tr>
+          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qb</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">约 40 – 约 100 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">SST 较高的热带 / 副热带海区 约 100 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">高纬度（冷 SST）约 40 W/m²</td></tr>
+          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qe</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">约 0 – 约 150 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">副热带 + 西边界流（黑潮、湾流）约 150 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">极地 / 多雨带 约 0–20 W/m²</td></tr>
+          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qh</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">约 −10 – 约 30 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">西北大西洋 / 西北太平洋冬季（冷空气位于暖流之上）约 30 W/m²</td>
+              <td style="padding:8px;border:1px solid var(--line);">热带与极地冰缘 约 0 W/m²</td></tr>
+        </tbody></table>
+        <p style="margin-top:10px;">以上为全球海洋气候态估计值，不同数据集（如 OAFlux、NCEP）略有差异。</p>`
   },
   {
     q: "How deep is a typical mixed layer if mixed by wind? How deep can it reach if driven by cooling?",
+    qcn: "风混搅拌下的典型混合层有多深？冷却驱动下又能达到多深？",
     a: `<ul>
           <li><strong>Wind-mixed layer:</strong> typically <strong>10–100 m</strong>, with tropical values ~20–50 m and storm-forced cases near 100 m.</li>
           <li><strong>Cooling-driven (deep convection):</strong> can reach <strong>several hundred to ~1000 m</strong> in regions such as the Labrador Sea, Greenland Sea, and Gulf of Lions, where dense plumes penetrate the deep ocean.</li>
+        </ul>`,
+    acn: `<ul>
+          <li><strong>风混混合层：</strong>一般为 <strong>10–100 m</strong>，热带约 20–50 m，强风暴过程可达近 100 m。</li>
+          <li><strong>冷却驱动（深对流）：</strong>在拉布拉多海、格陵兰海、里昂湾等区域可达 <strong>数百米乃至约 1000 m</strong>，高密水团下沉穿透至深海。</li>
         </ul>`
   },
   {
     q: "What are the typical vertical temperature and salinity profiles in the subtropical and subpolar regions of the North Pacific?",
+    qcn: "北太平洋副热带与副极地区域的典型温度、盐度垂直剖面是怎样的？",
     a: `<p><span class="label">Subtropical North Pacific</span></p>
         <ul>
           <li><strong>Temperature:</strong> warm, well-stratified surface layer (~50–100 m) over a strong permanent thermocline (~200–1000 m) where T drops rapidly.</li>
@@ -578,20 +731,39 @@ const qaData = [
         <ul>
           <li><strong>Temperature:</strong> cold throughout the upper ocean; weak or absent permanent thermocline — temperature may even <em>increase</em> with depth (temperature inversion beneath the halocline).</li>
           <li><strong>Salinity:</strong> low surface salinity (excess precipitation), a strong halocline in the upper few hundred meters.</li>
+        </ul>`,
+    acn: `<p><span class="label">副热带北太平洋</span></p>
+        <ul>
+          <li><strong>温度：</strong>表层暖且层结稳定（约 50–100 m），其下为强永久温跃层（约 200–1000 m），温度迅速下降。</li>
+          <li><strong>盐度：</strong>表层盐度高（蒸发大于降水），在温跃层顶部附近出现次表层盐度极大值。</li>
+        </ul>
+        <p><span class="label">副极地北太平洋</span></p>
+        <ul>
+          <li><strong>温度：</strong>上层整层偏冷；永久温跃层弱甚至不存在 —— 温度甚至可能随深度<em>升高</em>（盐跃层下方的温度倒置）。</li>
+          <li><strong>盐度：</strong>表层盐度低（降水过剩），上部数百米存在强盐跃层。</li>
         </ul>`
   },
   {
     q: "What are the dominant regions of net evaporation in the ocean?",
+    qcn: "海洋中净蒸发占主导的区域有哪些？",
     a: `<ul>
           <li><strong>Subtropical gyres</strong> (≈ 15–35° latitude) in both hemispheres, especially the trade-wind belts.</li>
           <li><strong>Mediterranean Sea</strong> — strong E–P excess, a net evaporative basin.</li>
           <li><strong>Red Sea</strong> — one of the highest evaporation rates on Earth.</li>
           <li><strong>Arabian Sea &amp; subtropical North Atlantic</strong> — also large net evaporation centers.</li>
         </ul>
-        <p>These regions are the source of the intermediate/deep water-mass formation that drives the shallow overturning cell.</p>`
+        <p>These regions are the source of the intermediate/deep water-mass formation that drives the shallow overturning cell.</p>`,
+    acn: `<ul>
+          <li><strong>副热带环流</strong>（约 15–35° 纬度，南北半球均存在），尤以信风带最为显著。</li>
+          <li><strong>地中海</strong> —— E–P 失衡强烈，属净蒸发盆地。</li>
+          <li><strong>红海</strong> —— 全球蒸发率最高的海域之一。</li>
+          <li><strong>阿拉伯海与副热带北大西洋</strong> —— 同为净蒸发中心。</li>
+        </ul>
+        <p>这些区域是驱动浅层翻转环流的中间 / 深水团形成源地。</p>`
   },
   {
     q: "What are the key components of the Mixed Layer heat budget?",
+    qcn: "混合层热收支的关键组成部分有哪些？",
     a: `<p>The mixed-layer heat budget balances all fluxes that change the upper-ocean heat content:</p>
         <p style="text-align:center;font-family:'Cambria Math',serif;background:var(--foam);padding:10px;border-radius:8px;">
           ∂(ρ·c<sub>p</sub>·h·T)/∂t = Q<sub>s</sub> − Q<sub>b</sub> − Q<sub>e</sub> − Q<sub>h</sub> − Q<sub>pen</sub> + Q<sub>adv</sub> + Q<sub>ent</sub>
@@ -604,20 +776,42 @@ const qaData = [
           <li><strong>Q<sub>pen</sub></strong> — shortwave that penetrates below the mixed layer.</li>
           <li><strong>Q<sub>adv</sub></strong> — horizontal advective heat convergence.</li>
           <li><strong>Q<sub>ent</sub></strong> — entrainment/mixing at the base of the mixed layer.</li>
+        </ul>`,
+    acn: `<p>混合层热收支平衡所有改变上层海洋热含量的通量：</p>
+        <p style="text-align:center;font-family:'Cambria Math',serif;background:var(--foam);padding:10px;border-radius:8px;">
+          ∂(ρ·c<sub>p</sub>·h·T)/∂t = Q<sub>s</sub> − Q<sub>b</sub> − Q<sub>e</sub> − Q<sub>h</sub> − Q<sub>pen</sub> + Q<sub>adv</sub> + Q<sub>ent</sub>
+        </p>
+        <ul>
+          <li><strong>Q<sub>s</sub></strong> —— 短波太阳辐射（穿透至日变层）。</li>
+          <li><strong>Q<sub>b</sub></strong> —— 长波回辐射。</li>
+          <li><strong>Q<sub>e</sub></strong> —— 潜热通量（蒸发）。</li>
+          <li><strong>Q<sub>h</sub></strong> —— 感热通量。</li>
+          <li><strong>Q<sub>pen</sub></strong> —— 穿透混合层底部的短波辐射。</li>
+          <li><strong>Q<sub>adv</sub></strong> —— 水平平流热辐合。</li>
+          <li><strong>Q<sub>ent</sub></strong> —— 混合层底部的卷入 / 混合。</li>
         </ul>`
   },
   {
     q: "Is the North Atlantic Ocean saltier or fresher on average than the Pacific? Why?",
+    qcn: "北大西洋平均盐度比太平洋高还是低？为什么？",
     a: `<p>The North Atlantic is <strong>saltier</strong> than the Pacific on average.</p>
         <ul>
           <li><strong>Net evaporation</strong> exceeds precipitation in the Atlantic, while the Pacific receives more rain (ITCZ, monsoons).</li>
           <li>The Atlantic imports high-salinity water from the <strong>Mediterranean outflow</strong>.</li>
           <li><strong>Atmospheric vapor transport</strong> carries fresh water from the Atlantic basin to the Pacific across Central America.</li>
           <li>Result: Atlantic surface salinity ~35–36 psu vs. Pacific ~34–34.5 psu — a key driver of the Atlantic Meridional Overturning Circulation (AMOC).</li>
+        </ul>`,
+    acn: `<p>北大西洋平均<strong>更咸</strong>。</p>
+        <ul>
+          <li>大西洋<strong>净蒸发</strong>大于降水，而太平洋降水更丰沛（ITCZ、季风）。</li>
+          <li>大西洋还接受<strong>地中海外流水</strong>带来的高盐水。</li>
+          <li><strong>大气水汽输送</strong>把淡水从中美洲跨流域带往太平洋。</li>
+          <li>结果：大西洋表层盐度约 35–36 psu，太平洋约 34–34.5 psu —— 这是大西洋经向翻转环流（AMOC）的关键驱动因素。</li>
         </ul>`
   },
   {
     q: "What regions of the ocean are characterized by large differences from summer to winter? What regions have the least seasonal variability?",
+    qcn: "海洋中哪些区域夏冬差异显著？哪些区域季节变率最小？",
     a: `<p><span class="label">Large seasonal contrast</span></p>
         <ul>
           <li><strong>Mid-latitude western boundary current regions</strong> — Kuroshio, Gulf Stream (warm in summer, fierce heat loss in winter).</li>
@@ -629,19 +823,103 @@ const qaData = [
           <li><strong>Equatorial &amp; tropical oceans</strong> — small annual solar-angle variation.</li>
           <li><strong>Deep ocean</strong> below the seasonal thermocline — insulated from the surface cycle.</li>
           <li><strong>Polar regions</strong> are seasonally variable at the surface but the deep basins are steady.</li>
+        </ul>`,
+    acn: `<p><span class="label">夏冬差异显著</span></p>
+        <ul>
+          <li><strong>中纬度西边界流区</strong> —— 黑潮、湾流（夏季暖，冬季强烈失热）。</li>
+          <li><strong>季风海区</strong> —— 尤其是北印度洋 / 阿拉伯海。</li>
+          <li><strong>副热带环流</strong> —— 夏季强层结 vs. 冬季强混合。</li>
+        </ul>
+        <p><span class="label">季节变率最小</span></p>
+        <ul>
+          <li><strong>赤道与热带海洋</strong> —— 全年太阳高度角变化小。</li>
+          <li><strong>季节温跃层以下的深海</strong> —— 与表层循环隔离。</li>
+          <li><strong>极地区域</strong>表层季节变化明显，但深层海盆稳定。</li>
         </ul>`
   },
   {
     q: "Please describe the two processes that maintain the thermocline.",
+    qcn: "请描述维持温跃层的两个过程。",
     a: `<ul>
           <li><strong>1. Mechanical / vertical mixing</strong> — wind stress and shear-driven turbulence at the base of the mixed layer mix warm surface water downward, sharpening and maintaining the upper thermocline gradient.</li>
           <li><strong>2. Subduction &amp; advection along density surfaces</strong> — water masses formed at the surface in subtropical/subpolar regions slide (subduct) along isopycnals into the thermocline interior, ventilating it and setting the layered T–S structure of the permanent thermocline.</li>
         </ul>
-        <p>Together: mixing <em>sharpens</em> the top, while subduction <em>ventilates</em> the interior.</p>`
+        <p>Together: mixing <em>sharpens</em> the top, while subduction <em>ventilates</em> the interior.</p>`,
+    acn: `<ul>
+          <li><strong>1. 机械 / 垂向混合</strong> —— 风应力与混合层底的剪切湍流把暖的表层水向下混合，使上层温跃层梯度更锐利并得以维持。</li>
+          <li><strong>2. 沿密度面的俯冲与平流</strong> —— 副热带 / 副极地表层形成的水团沿等密度面（俯冲）进入温跃层内部，对其进行通风并塑造永久温跃层的层状 T–S 结构。</li>
+        </ul>
+        <p>两者协同：混合<em>锐化</em>顶部，俯冲<em>通风</em>内部。</p>`
+  },
+  {
+    q: "Please summarize the four families of statistical / analytical methods commonly used in physical-oceanography data analysis, and explain each.",
+    qcn: "请归纳物理海洋数据分析中常用的四大类统计 / 分析方法，并逐一讲解。",
+    a: `<p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem;">Source slide lists four methods: <strong>Basic concepts</strong>, <strong>Time series analysis</strong>, <strong>Multi-dimensional data analysis</strong>, and <strong>Empirical Orthogonal Functions (EOFs)</strong>. Each is summarized below.</p>
+
+        <p><span class="label">① Basic concepts · 基础概念</span></p>
+        <ul>
+          <li><strong>Random vs. systematic error</strong> — random error is zero-mean, unpredictable noise; systematic error is a consistent bias that must be calibrated out.</li>
+          <li><strong>Mean, variance, standard deviation</strong> — describe central tendency and spread of a sample.</li>
+          <li><strong>Correlation &amp; covariance</strong> — quantify the linear relationship (signed strength / shared variance) between two variables.</li>
+        </ul>
+
+        <p><span class="label">② Time series analysis · 时间序列分析</span></p>
+        <ul>
+          <li>Also known as <strong>spectral / Fourier / harmonic analysis</strong>.</li>
+          <li>Can be performed in the <strong>time (frequency) domain</strong> or the <strong>spatial (wavenumber) domain</strong>.</li>
+          <li>Identifies <strong>dominant frequencies of variability</strong> — especially useful when the forcing has a well-defined frequency (e.g. tides, annual cycle).</li>
+          <li>The <strong>shape of the spectrum</strong> reveals underlying physics: a <em>red spectrum</em> (more power at low frequencies) implies persistence / memory typical of geophysical systems; a <em>white spectrum</em> implies pure randomness.</li>
+        </ul>
+
+        <p><span class="label">③ Multi-dimensional data analysis · 多维数据分析（客观分析）</span></p>
+        <ul>
+          <li><strong>Objective analysis</strong> (a.k.a. optimal interpolation / Kriging) maps spatially non-uniform observations onto a regular grid.</li>
+          <li>It incorporates the <strong>correlation length scale</strong> and the <strong>noise of observations</strong>.</li>
+          <li>The grid estimate is a <strong>weighted sum of nearby observations</strong>, with weights chosen to minimize mean-square error.</li>
+        </ul>
+
+        <p><span class="label">④ Empirical Orthogonal Functions (EOFs) · 经验正交函数</span></p>
+        <ul>
+          <li>Also known as <strong>Principal Component Analysis</strong> (PCA) or <strong>Factor Analysis</strong>.</li>
+          <li>Provides a <strong>compact description of the principal spatial and temporal variability</strong> of a dataset.</li>
+          <li>Called <em>empirical</em> because the spatial structures are <strong>defined by the data itself</strong>, as opposed to a set of pre-prescribed mathematical basis functions (e.g. sine waves, Bessel functions, Legendre polynomials).</li>
+          <li>Output: a small set of orthogonal <strong>spatial modes (EOFs)</strong> each paired with a <strong>time-varying amplitude (Principal Component, PC)</strong>, ordered by the fraction of variance explained.</li>
+        </ul>`,
+    acn: `<p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem;">课件将方法归纳为四类：<strong>基础概念</strong>、<strong>时间序列分析</strong>、<strong>多维数据分析</strong>、<strong>经验正交函数 EOF</strong>。逐条如下。</p>
+
+        <p><span class="label">① 基础概念 · Basic concepts</span></p>
+        <ul>
+          <li><strong>随机误差与系统误差</strong> —— 随机误差为零均值、不可预测的噪声；系统误差是恒定偏倚，需要标定去除。</li>
+          <li><strong>均值、方差、标准差</strong> —— 描述样本的中心趋势与离散程度。</li>
+          <li><strong>相关与协方差</strong> —— 量化两个变量之间的线性关系（带符号强度 / 共享方差）。</li>
+        </ul>
+
+        <p><span class="label">② 时间序列分析 · Time series analysis</span></p>
+        <ul>
+          <li>又称<strong>谱分析 / 傅里叶分析 / 谐波分析</strong>。</li>
+          <li>可在<strong>时间（频率）域</strong>或<strong>空间（波数）域</strong>中进行。</li>
+          <li>提取<strong>变率的主频率</strong> —— 当外强迫频率明确（如潮汐、年循环）时尤为有用。</li>
+          <li><strong>谱形</strong>能反映物理机制：<em>红谱</em>（低频能量更强）暗示地球物理系统典型的持续性 / 记忆性；<em>白谱</em>则意味着纯随机。</li>
+        </ul>
+
+        <p><span class="label">③ 多维数据分析（客观分析）· Multi-dimensional data analysis</span></p>
+        <ul>
+          <li><strong>客观分析</strong>（又称最优插值 / 克里金）将空间分布不均匀的观测映射到规则网格上。</li>
+          <li>纳入<strong>相关长度尺度</strong>与<strong>观测噪声</strong>。</li>
+          <li>网格估计值是<strong>邻近观测的加权和</strong>，权重按最小均方误差准则确定。</li>
+        </ul>
+
+        <p><span class="label">④ 经验正交函数 EOF · Empirical Orthogonal Functions</span></p>
+        <ul>
+          <li>又称<strong>主成分分析（PCA）</strong>或<strong>因子分析</strong>。</li>
+          <li>对数据集的<strong>主要时空变率给出紧凑描述</strong>。</li>
+          <li>之所以称为<em>经验</em>，是因为空间结构由<strong>数据本身定义</strong>，而非预先设定的数学基函数（如正弦波、贝塞尔函数、勒让德多项式）。</li>
+          <li>输出：少量相互正交的<strong>空间模态（EOF）</strong>，每个配一条<strong>随时间变化的振幅（主成分 PC）</strong>，按解释方差大小排序。</li>
+        </ul>`
   }
 ];
 
-/* Render Q&A */
+/* Render Q&A (bilingual CN/EN) */
 const grid = document.getElementById('qaGrid');
 qaData.forEach((item, i) => {
   const card = document.createElement('div');
@@ -649,8 +927,14 @@ qaData.forEach((item, i) => {
   card.innerHTML = `
     <button class="toggle" aria-label="toggle">▾</button>
     <span class="q-num">${i + 1}</span>
-    <span class="q-text">${item.q}</span>
-    <div class="a-body">${item.a}</div>
+    <div class="q-text-wrap">
+      <div class="q-text">${item.q}</div>
+      <div class="q-cn">${item.qcn || ''}</div>
+    </div>
+    <div class="a-body">
+      <div class="a-en"><div class="lang-tag">EN</div>${item.a}</div>
+      ${item.acn ? `<div class="a-cn"><div class="lang-tag">中文</div>${item.acn}</div>` : ''}
+    </div>
   `;
   grid.appendChild(card);
   const toggle = card.querySelector('.toggle');
