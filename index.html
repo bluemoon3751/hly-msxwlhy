@@ -438,6 +438,51 @@
   }
   .eof-explain em { color: var(--muted); display: block; margin-top: 6px; font-style: italic; }
 
+  /* Worked example & NS-reduction modules */
+  .eof-card h3 { margin: 0 0 6px; color: var(--ocean-deep); }
+  .ex-figure {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px;
+    overflow-x: auto;
+  }
+  .ex-steps { display: grid; gap: 12px; margin-top: 14px; }
+  .ex-step {
+    display: flex;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 8px rgba(10, 42, 67, 0.06);
+  }
+  .ex-num {
+    flex: 0 0 auto;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--ocean-mid);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ex-step strong { color: var(--ocean-deep); }
+  .ex-step p { margin: 6px 0 0; font-size: 0.9rem; line-height: 1.6; }
+  .ex-step .cn { color: var(--muted); display: block; margin-top: 4px; }
+  .mini-eq {
+    margin: 8px 0 0;
+    background: var(--ocean-deep);
+    color: #fff;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    overflow-x: auto;
+  }
+  .mini-eq .hl { color: var(--sun); font-weight: 700; }
+
   footer {
     text-align: center;
     color: var(--muted);
@@ -477,22 +522,23 @@
   <!-- ============== Q&A Panel ============== -->
   <section class="panel active" id="panel-qa">
     <div class="sec-head">
-      <h2>📖 Physical Oceanography Q&A</h2>
-      <p>Nine questions covering heat budget, mixed layer, thermocline & water masses — answers in English.</p>
+      <h2>📖 Physical Oceanography Q&amp;A · 物理海洋问答</h2>
+      <p>15 bilingual questions + 3 bilingual modules — heat budget, mixed layer, thermocline, dynamics, EOF, a geostrophic worked example &amp; NS-equation reductions. · 15 道双语题目 + 3 个双语模块：涵盖热收支、混合层、温跃层、动力学、EOF、地转流算例与 NS 方程退化。</p>
     </div>
 
     <div class="qa-grid" id="qaGrid"></div>
 
     <!-- Heat Flux Calculator -->
     <div class="sec-head" style="margin-top:36px;">
-      <h2>🧮 Seawater Heat Flux Calculator</h2>
-      <p>Interactive solver for the worked problem in Week-3 lecture (change the temperature of a water column).</p>
+      <h2>🧮 Seawater Heat Flux Calculator · 海水热通量计算器</h2>
+      <p>Interactive solver for the Week-3 lecture problem (change the temperature of a water column). · 交互式求解第 3 周课件例题（改变水柱温度所需的热通量）。</p>
     </div>
 
     <div class="calc-card">
-      <h3>🌡️ Compute the required surface heat flux</h3>
+      <h3>🌡️ Required Surface Heat Flux · 所需海面热通量</h3>
       <p style="margin:4px 0 0;color:var(--muted);font-size:0.9rem;">
-        Based on the lecture problem: <em>"To change the temperature by 1 °C in a column of water 100 m thick and 1 m² in cross-section, over 30 days — what heat flux is required?"</em>
+        <em>"To change the temperature by 1 °C in a column of water 100 m thick and 1 m² in cross-section, over 30 days — what heat flux is required?"</em><br>
+        <em>"在 30 天内使厚 100 m、截面积 1 m² 的水柱温度改变 1 °C，需要多大的热通量？"</em>
       </p>
 
       <div class="formula">
@@ -501,38 +547,38 @@
 
       <div class="calc-grid">
         <div class="field">
-          <label>ΔT — Temperature change <span class="hint">(°C)</span></label>
+          <label>ΔT — 温度变化 Temperature change <span class="hint">(°C)</span></label>
           <input type="number" id="dT" value="1" step="0.1" />
         </div>
         <div class="field">
-          <label>Depth — water column thickness <span class="hint">(m)</span></label>
+          <label>Depth — 水柱厚度 thickness <span class="hint">(m)</span></label>
           <input type="number" id="depth" value="100" step="1" />
         </div>
         <div class="field">
-          <label>Area — cross-section <span class="hint">(m²)</span></label>
+          <label>Area — 截面积 cross-section <span class="hint">(m²)</span></label>
           <input type="number" id="area" value="1" step="0.1" />
         </div>
         <div class="field">
-          <label>Δt — Time period <span class="hint">(days)</span></label>
+          <label>Δt — 时间周期 period <span class="hint">(days)</span></label>
           <input type="number" id="dt" value="30" step="1" />
         </div>
         <div class="field">
-          <label>ρ — Seawater density <span class="hint">(kg/m³)</span></label>
+          <label>ρ — 海水密度 density <span class="hint">(kg/m³)</span></label>
           <input type="number" id="rho" value="1025" step="1" />
         </div>
         <div class="field">
-          <label>c<sub>p</sub> — Specific heat <span class="hint">(J/(kg·°C))</span></label>
+          <label>c<sub>p</sub> — 比热容 specific heat <span class="hint">(J/(kg·°C))</span></label>
           <input type="number" id="cp" value="3850" step="1" />
         </div>
       </div>
 
       <div class="calc-actions">
-        <button class="btn btn-primary" id="calcBtn">⚡ Calculate</button>
-        <button class="btn btn-ghost" id="resetBtn">↺ Reset to lecture defaults</button>
+        <button class="btn btn-primary" id="calcBtn">⚡ Calculate · 计算</button>
+        <button class="btn btn-ghost" id="resetBtn">↺ Reset to defaults · 恢复默认</button>
       </div>
 
       <div class="result" id="result">
-        <div class="small">Required surface heat flux</div>
+        <div class="small">Required surface heat flux · 所需海面热通量</div>
         <div class="big" id="fluxOut">— W/m²</div>
         <div class="small" id="totalOut">—</div>
         <div class="steps" id="stepsOut"></div>
@@ -559,6 +605,234 @@
         ⑤ 详解 EOF₁ 与 PC₁ → ⑥ 协方差矩阵特征向量算法 → ⑦ 回顾（NAO / PCA 关联）。
         <em>Walks through data → goal → decomposition formula → mode-1 visualization → covariance-eigenvector computation → real-world meaning (NAO, PCA).</em>
       </p>
+    </div>
+
+    <!-- ============== Worked Example: Geostrophic Flow across the Gulf Stream ============== -->
+    <div class="sec-head" style="margin-top:48px;">
+      <h2>🧪 Worked Example · Geostrophic Flow across the Gulf Stream · 地转流计算范例</h2>
+      <p>Density section → dynamic height → geostrophic velocity, step by step. · 由密度断面推求动力高度与地转流速，逐步推演。</p>
+    </div>
+
+    <div class="eof-card">
+      <p style="margin:0 0 12px;font-size:0.95rem;line-height:1.65;">
+        <strong>Question · 题目：</strong>Given the density section across the Gulf Stream (station A at 38.2°N, station B at 39.2°N, L ≈ 100 km apart), find the dynamic-height difference and the geostrophic velocity, and determine the flow direction.<br>
+        <span style="color:var(--muted);">已知墨西哥湾流断面的密度分布（测站 A 位于 38.2°N，测站 B 位于 39.2°N，相距 L ≈ 100 km），求动力高度差与地转流速，并判断流向。</span>
+      </p>
+
+      <div class="ex-figure">
+        <svg viewBox="0 0 640 300" style="width:100%;height:auto;display:block;" role="img" aria-label="Gulf Stream density section and geostrophic velocity profile">
+          <defs>
+            <linearGradient id="gDens" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ff8a80"/>
+              <stop offset="34%" stop-color="#eaf7c0"/>
+              <stop offset="68%" stop-color="#8fd96a"/>
+              <stop offset="100%" stop-color="#2e7d32"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Panel (a): potential-density section -->
+          <text x="14" y="14" font-size="12" font-weight="700" fill="#0a2a43">(a) 位势密度 σθ (kg/m³)</text>
+          <rect x="44" y="24" width="316" height="220" fill="url(#gDens)" stroke="#16323f" stroke-width="1.2"/>
+          <path d="M300,244 L360,244 L360,168 Z" fill="#1b1b1b"/>
+          <g fill="none" stroke="#7a4b3a" stroke-width="1">
+            <path d="M44,46 Q204,36 360,30"/>
+            <path d="M44,58 Q204,46 360,38"/>
+            <path d="M44,72 Q204,58 360,48"/>
+            <path d="M44,94 Q204,74 360,62"/>
+            <path d="M44,114 Q204,90 360,76"/>
+            <path d="M44,142 Q204,110 360,94"/>
+            <path d="M44,182 Q204,140 360,122"/>
+          </g>
+          <g font-size="9" fill="#5a2020">
+            <text x="48" y="43">26.0</text>
+            <text x="48" y="55">26.5</text>
+            <text x="48" y="69">27.0</text>
+            <text x="48" y="91">27.5</text>
+            <text x="48" y="111">27.7</text>
+            <text x="48" y="139">27.8</text>
+            <text x="48" y="179">27.88</text>
+          </g>
+          <line x1="144" y1="24" x2="144" y2="244" stroke="#c0522a" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <line x1="286" y1="24" x2="286" y2="244" stroke="#2a5cc0" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <text x="137" y="20" font-size="13" font-weight="700" fill="#c0522a">A</text>
+          <text x="279" y="20" font-size="13" font-weight="700" fill="#2a5cc0">B</text>
+          <text x="8" y="28" font-size="9" fill="#5a7480">0 m</text>
+          <text x="2" y="248" font-size="9" fill="#5a7480">5000</text>
+          <text x="132" y="262" font-size="9" fill="#5a7480">38°N</text>
+          <text x="274" y="262" font-size="9" fill="#5a7480">39°N</text>
+          <text x="344" y="262" font-size="9" fill="#5a7480">40°N</text>
+          <text x="44" y="286" font-size="11" font-weight="700" fill="#c0522a">地转流向：向东 Eastward (⊙ 垂直纸面向外 out of page)</text>
+
+          <!-- Panel (b): geostrophic velocity profile -->
+          <text x="404" y="14" font-size="12" font-weight="700" fill="#0a2a43">(b) 地转流速 v (cm/s)</text>
+          <line x1="424" y1="24" x2="424" y2="244" stroke="#16323f" stroke-width="1.2"/>
+          <line x1="424" y1="244" x2="620" y2="244" stroke="#16323f" stroke-width="1.2"/>
+          <line x1="424" y1="207" x2="620" y2="207" stroke="#c0522a" stroke-width="1" stroke-dasharray="4 3"/>
+          <path d="M610,24 C610,58 596,88 566,118 C536,150 478,178 424,207" fill="none" stroke="#16323f" stroke-width="2.4"/>
+          <text x="396" y="28" font-size="9" fill="#5a7480">0 m</text>
+          <text x="378" y="211" font-size="9" fill="#5a7480">1000 m</text>
+          <text x="414" y="258" font-size="9" fill="#5a7480">0</text>
+          <text x="596" y="258" font-size="9" fill="#5a7480">100 cm/s</text>
+          <text x="432" y="228" font-size="9" fill="#c0522a">参考面 reference level</text>
+          <text x="434" y="70" font-size="9" fill="#16323f">表层最快 ~100 cm/s</text>
+        </svg>
+      </div>
+
+      <p class="eof-explain">
+        <strong>图注 · Legend：</strong>(a) 位势密度断面 σ<sub>θ</sub> (kg/m³)：红色为低密度暖水（南侧），绿色为高密度冷水（北侧），黑色三角为陆坡地形；(b) 地转流速剖面 v(z) (cm/s)，红色虚线为参考面。
+        <em>(a) Potential-density section σ<sub>θ</sub> (kg/m³): warm light water to the south (red), cold dense water to the north (green); the black wedge is the continental slope. (b) Geostrophic velocity profile v(z) (cm/s); the dashed line marks the reference level.</em>
+      </p>
+
+      <div class="ex-steps">
+        <div class="ex-step">
+          <span class="ex-num">1</span>
+          <div>
+            <strong>Read the density section · 读取密度断面</strong>
+            <p>Warm, light water (σ<sub>θ</sub> ≈ 26.0–26.5) occupies the southern side; cold, dense water (up to 27.88) lies to the north. Isopycnals are deep in the south and rise toward the north.
+            <span class="cn">南侧为暖而低密的水（σ<sub>θ</sub> ≈ 26.0–26.5），北侧为冷而高密的水（可达 27.88）。等密度面在南侧深、向北抬升。</span></p>
+          </div>
+        </div>
+        <div class="ex-step">
+          <span class="ex-num">2</span>
+          <div>
+            <strong>Specific volume anomaly δ · 比容异常</strong>
+            <p>δ = α(S, T, p) − α(35, 0, p). The lighter the water, the larger δ and the taller the water column. Below the surface layer, station A has a larger δ than station B.
+            <span class="cn">δ = α(S, T, p) − α(35, 0, p)。水越轻，δ 越大，水柱越高。表层以下 A 站的 δ 大于 B 站。</span></p>
+          </div>
+        </div>
+        <div class="ex-step">
+          <span class="ex-num">3</span>
+          <div>
+            <strong>Dynamic height D · 动力高度</strong>
+            <p>D(z) = ∫<sub>z</sub><sup>0</sup> δ dp, integrated upward from the reference level (here 1000 m). Larger δ ⇒ larger D. In this section ΔD = D<sub>A</sub> − D<sub>B</sub> ≈ 0.9 dyn·m — the southern station A is higher.
+            <span class="cn">自参考面（此处取 1000 m）向上积分 D(z) = ∫ δ dp。δ 越大 ⇒ D 越大。本例 ΔD = D<sub>A</sub> − D<sub>B</sub> ≈ 0.9 动力米，南侧 A 站更高。</span></p>
+          </div>
+        </div>
+        <div class="ex-step">
+          <span class="ex-num">4</span>
+          <div>
+            <strong>Geostrophic velocity v · 地转流速</strong>
+            <p>v = (1/f)·(ΔD/L), with 1 dyn·m = 10 m²/s². At 39°N, f ≈ 9.2 × 10⁻⁵ s⁻¹:<br>
+            v ≈ (1 / 9.2×10⁻⁵) × (9 m²/s² ÷ 1×10⁵ m) ≈ 0.98 m/s ≈ <strong>100 cm/s</strong>, decreasing with depth toward the reference level.
+            <span class="cn">v = (1/f)·(ΔD/L)，1 动力米 = 10 m²/s²。39°N 处 f ≈ 9.2×10⁻⁵ s⁻¹：v ≈ 0.98 m/s ≈ <strong>100 cm/s</strong>，随深度递减至参考面。</span></p>
+          </div>
+        </div>
+      </div>
+
+      <p class="eof-hint">
+        <strong>核心规律 · Key rules：</strong><br>
+        ① <strong>密度越低 → 比容越大 → 动力高度（海面高度）越高。</strong>低密度水体积更大，整层水柱积分后海面相对隆起。
+        <em>Lower density ⇒ larger specific volume ⇒ higher dynamic height (sea surface).</em><br>
+        ② <strong>低密度侧 = 高动力高度侧</strong>（本图南侧为高值）。<em>The low-density side is the high-dynamic-height side (here, the south).</em><br>
+        ③ 压强梯度力<strong>由高指向低</strong>（南→北）；地转流向<strong>垂直于断面</strong>、沿等动力高度线流动。
+        <em>PGF runs high→low; geostrophic flow is perpendicular to the section, along the dynamic-height contours.</em><br>
+        ⚠ <strong>易错提醒：不是沿断面从高到低流动！</strong>记忆法：面朝流向，高压在右 → 本图流向<strong>向东</strong>。
+        <em>Pitfall: the flow does NOT run downhill across the section. Rule of thumb — face the flow, high pressure on the right ⇒ here the flow is eastward.</em><br>
+        ④ <strong>等密度线越密 → 密度梯度越大 → 流速越强</strong>；上层密度梯度最大 → 表层流速最快（约 100 cm/s），向深层递减。
+        <em>Tighter isopycnals ⇒ larger density gradient ⇒ stronger flow; the strongest gradient is in the upper layer, so the surface velocity is fastest (~100 cm/s) and decays with depth.</em>
+      </p>
+    </div>
+
+    <!-- ============== Navier-Stokes Equations & Their Reductions ============== -->
+    <div class="sec-head" style="margin-top:48px;">
+      <h2>🌀 Navier–Stokes Equations &amp; Their Reductions · NS 方程及其退化</h2>
+      <p>How the full momentum equation reduces to geostrophic, inertial and Ekman flow. · 完整动量方程在何种条件下退化为地转流、惯性流与埃克曼流。</p>
+    </div>
+
+    <div class="eof-card">
+      <h3>① 完整 NS 动量方程 · The full momentum equation</h3>
+      <p style="margin:0 0 8px;color:var(--muted);font-size:0.9rem;">
+        In a rotating frame, per unit mass · 旋转坐标系下（单位质量）：
+      </p>
+      <div class="mini-eq" style="text-align:center;">
+        ∂<strong>u</strong>/∂t + (<strong>u</strong>·∇)<strong>u</strong> + 2<strong>Ω</strong> × <strong>u</strong> = −(1/ρ)∇p + <strong>g</strong> + <strong>F</strong>
+      </div>
+      <p style="margin:12px 0 0;font-size:0.9rem;color:var(--muted);">Horizontal components · 水平分量：</p>
+      <div class="mini-eq" style="text-align:left;">
+        ∂u/∂t + u·∇u − f v = −(1/ρ)·∂p/∂x + (1/ρ)·∂τ<sub>x</sub>/∂z<br>
+        ∂v/∂t + u·∇v + f u = −(1/ρ)·∂p/∂y + (1/ρ)·∂τ<sub>y</sub>/∂z
+      </div>
+      <p class="eof-explain">
+        <strong>五项 · Five terms：</strong>
+        ① 局地加速度 ∂u/∂t (local acceleration)　② 平流 / 惯性 (u·∇)u (advection)　③ 科里奥利 2Ω × u (Coriolis)　④ 压强梯度 (1/ρ)∇p (pressure gradient)　⑤ 摩擦 / 风应力 ∂τ/∂z (friction / wind stress)。
+        <em>Which terms are kept and which are dropped defines each simplified flow below.</em>
+      </p>
+      <p class="eof-hint">
+        <strong>罗斯贝数 · Rossby number：</strong>Ro = U / (fL) 度量平流项与科里奥利项之比。Ro ≪ 1 ⇒ 平流可忽略 ⇒ 地转 / 埃克曼近似成立；Ro ≫ 1 ⇒ 平流主导 ⇒ 非地转（惯性流）。
+        <em>Ro = U/(fL) measures advection against Coriolis. Ro ≪ 1 ⇒ advection negligible ⇒ geostrophic / Ekman; Ro ≫ 1 ⇒ advection dominates ⇒ ageostrophic (inertial).</em>
+      </p>
+
+      <div class="ex-steps">
+        <div class="ex-step">
+          <span class="ex-num" style="background:#13769b;">G</span>
+          <div>
+            <strong>Geostrophic flow · 地转流</strong>
+            <p><strong>Conditions · 条件：</strong>Ro ≪ 1（大尺度、缓变），定常 ∂/∂t = 0，无摩擦 F = 0，远离边界。
+            <span class="cn">Large scale, steady, frictionless, away from boundaries.</span></p>
+            <p><strong>Retained · 保留：</strong>科里奥利 + 压强梯度。<span class="cn">Coriolis + pressure gradient.</span></p>
+            <div class="mini-eq">−f v<sub>g</sub> = −(1/ρ)·∂p/∂x　　+ f u<sub>g</sub> = −(1/ρ)·∂p/∂y</div>
+            <p><strong>Result · 结果：</strong>u<sub>g</sub> = −(1/ρf)·∂p/∂y，v<sub>g</sub> = (1/ρf)·∂p/∂x。沿等压线流动，北半球高压在右（见上方湾流算例）。
+            <span class="cn">Flow along isobars, with high pressure on the right in the NH.</span></p>
+          </div>
+        </div>
+        <div class="ex-step">
+          <span class="ex-num" style="background:#c0522a;">I</span>
+          <div>
+            <strong>Inertial flow · 惯性流</strong>
+            <p><strong>Conditions · 条件：</strong>无压强梯度 ∇p ≈ 0，无摩擦，不受边界影响（孤立水质点）。
+            <span class="cn">No pressure gradient, frictionless, isolated from boundaries.</span></p>
+            <p><strong>Retained · 保留：</strong>局地加速度 + 科里奥利。<span class="cn">Local acceleration + Coriolis.</span></p>
+            <div class="mini-eq">∂u/∂t = f v　　∂v/∂t = −f u</div>
+            <p><strong>Result · 结果：</strong>等速圆周运动（惯性振荡），周期 T = 2π/f，半径 R = V/f；北半球顺时针旋转。
+            <span class="cn">Uniform circular motion (inertial oscillation): T = 2π/f, R = V/f; clockwise in the NH.</span></p>
+          </div>
+        </div>
+        <div class="ex-step">
+          <span class="ex-num" style="background:#2e7d32;">E</span>
+          <div>
+            <strong>Ekman flow · 埃克曼流</strong>
+            <p><strong>Conditions · 条件：</strong>定常，f 平面，层内压强梯度可忽略，但海面存在风应力。
+            <span class="cn">Steady, f-plane, PGF negligible inside the layer, but wind stress at the surface.</span></p>
+            <p><strong>Retained · 保留：</strong>科里奥利 + 垂向应力散度。<span class="cn">Coriolis + vertical stress divergence.</span></p>
+            <div class="mini-eq">−f v = (1/ρ)·∂τ<sub>x</sub>/∂z　　+ f u = (1/ρ)·∂τ<sub>y</sub>/∂z</div>
+            <p><strong>Result · 结果：</strong>埃克曼螺线；北半球表层流偏于风向右侧 45°，净输运偏右 90°：M = τ/(ρf)；抽吸 w<sub>E</sub> = curl(τ)/(ρf)。
+            <span class="cn">Ekman spiral; NH surface current 45° right of the wind, net transport 90° right: M = τ/(ρf); pumping w<sub>E</sub> = curl(τ)/(ρf).</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;margin-top:16px;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.86rem;">
+          <thead>
+            <tr style="background:var(--foam);color:var(--ocean-deep);">
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">流型 Flow</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">保留项 Retained</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">忽略项 Neglected</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">关键条件 Key condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>地转流 Geostrophic</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">科里奥利 + 压强梯度</td>
+              <td style="padding:8px;border:1px solid var(--line);">加速度、摩擦</td>
+              <td style="padding:8px;border:1px solid var(--line);">Ro ≪ 1，定常，无摩擦</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>惯性流 Inertial</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">局地加速度 + 科里奥利</td>
+              <td style="padding:8px;border:1px solid var(--line);">压强梯度、摩擦</td>
+              <td style="padding:8px;border:1px solid var(--line);">∇p ≈ 0</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>埃克曼流 Ekman</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">科里奥利 + 应力散度</td>
+              <td style="padding:8px;border:1px solid var(--line);">压强梯度、加速度</td>
+              <td style="padding:8px;border:1px solid var(--line);">定常，f 平面，风应力</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -916,6 +1190,104 @@ const qaData = [
           <li>之所以称为<em>经验</em>，是因为空间结构由<strong>数据本身定义</strong>，而非预先设定的数学基函数（如正弦波、贝塞尔函数、勒让德多项式）。</li>
           <li>输出：少量相互正交的<strong>空间模态（EOF）</strong>，每个配一条<strong>随时间变化的振幅（主成分 PC）</strong>，按解释方差大小排序。</li>
         </ul>`
+  },
+  {
+    q: "Work out the period of inertial oscillations at the north pole, 30°N, equator, and south pole.",
+    qcn: "计算北极、北纬 30°、赤道和南极处惯性振荡的周期。",
+    a: `<p>Period of inertial oscillations: <strong>T = 2π / f</strong>, where <strong>f = 2Ω·sinφ</strong> is the Coriolis parameter.<br>
+        Earth's angular velocity Ω ≈ 7.292 × 10⁻⁵ rad/s</p>
+        <ul>
+          <li><strong>North Pole (90°N)</strong>: f = 2Ω ≈ 1.458×10⁻⁴ s⁻¹, period T ≈ <strong>12 hours</strong> (half a sidereal day, counterclockwise)</li>
+          <li><strong>30°N</strong>: f = 2Ω·sin30° = Ω ≈ 7.292×10⁻⁵ s⁻¹, period T ≈ <strong>24 hours</strong> (one sidereal day)</li>
+          <li><strong>Equator (0°)</strong>: f = 0, period T → <strong>infinity</strong> (no inertial oscillations at the equator)</li>
+          <li><strong>South Pole (90°S)</strong>: f = −2Ω, |f| = 2Ω, period T ≈ <strong>12 hours</strong> (clockwise — opposite sense to NH)</li>
+        </ul>`,
+    acn: `<p>惯性振荡周期公式：<strong>T = 2π / f</strong>，其中 <strong>f = 2Ω·sinφ</strong> 为科里奥利参数。<br>
+        地球自转角速度 Ω ≈ 7.292 × 10⁻⁵ rad/s</p>
+        <ul>
+          <li><strong>北极（90°N）</strong>：f = 2Ω ≈ 1.458×10⁻⁴ s⁻¹，周期 T ≈ <strong>12 小时</strong>（约半个恒星日，逆时针旋转）</li>
+          <li><strong>北纬 30°</strong>：f = 2Ω·sin30° = Ω ≈ 7.292×10⁻⁵ s⁻¹，周期 T ≈ <strong>24 小时</strong>（约一个恒星日）</li>
+          <li><strong>赤道（0°）</strong>：f = 0，周期 T → <strong>无穷大</strong>（赤道处无惯性振荡）</li>
+          <li><strong>南极（90°S）</strong>：f = −2Ω，|f| = 2Ω，周期 T ≈ <strong>12 小时</strong>（顺时针旋转，与北半球方向相反）</li>
+        </ul>`
+  },
+  {
+    q: "In geostrophic flow, what direction is the Coriolis force in relation to the pressure gradient force? What direction is it in relation to the velocity?",
+    qcn: "在地转流中，科里奥利力相对于压强梯度力的方向是什么？相对于速度的方向呢？",
+    a: `<ul>
+          <li><strong>Relative to the pressure gradient force</strong>: equal in magnitude and <strong>opposite</strong> in direction — the two forces exactly balance (geostrophic balance).</li>
+          <li><strong>Relative to the velocity</strong>: <strong>perpendicular</strong> to the flow direction — to the right in the Northern Hemisphere, to the left in the Southern Hemisphere.</li>
+          <li>Consequence: geostrophic flow runs <strong>parallel to isobars</strong>, with high pressure on the right (NH) / left (SH) of the current.</li>
+        </ul>`,
+    acn: `<ul>
+          <li><strong>相对于压强梯度力</strong>：大小相等、方向<strong>相反</strong>——两者恰好平衡（地转平衡）。</li>
+          <li><strong>相对于速度方向</strong>：<strong>垂直</strong>于速度方向——北半球指向速度的右侧，南半球指向速度的左侧。</li>
+          <li>结果：地转流<strong>平行于等压线</strong>流动，高压在流速的右侧（北半球）/ 左侧（南半球），即"顺流而立，高压在右"。</li>
+        </ul>`
+  },
+  {
+    q: 'What is a "level of no motion"? Why would a "level of known motion" be a better choice for the same kind of calculation? (What can we actually compute about the velocity structure given the density distribution and an assumption of geostrophy?)',
+    qcn: '什么是"无运动面"？为什么"已知运动面"是同类计算中更好的选择？（给定密度分布和地转平衡假设，我们实际上能计算出速度结构的什么信息？）',
+    a: `<ul>
+          <li><strong>Level of no motion</strong>: an assumed reference depth (e.g., 2000 m or the seafloor) where we set horizontal velocity to zero. We then compute geostrophic shear from the density field via the thermal wind relation and integrate upward to obtain absolute velocity.</li>
+          <li><strong>Problem</strong>: a truly motionless level almost never exists — deep currents persist (deep western boundary currents, abyssal circulation).</li>
+          <li><strong>Level of known motion</strong>: uses actually measured velocities (from LADCP, Argo floats, moorings) at some depth as the reference, removing the error of the "no motion" assumption — hence the better choice.</li>
+          <li><strong>What density alone gives us</strong>: only the <strong>vertical shear</strong> of geostrophic velocity (the thermal wind), i.e. the <strong>relative</strong> velocity structure. Absolute speed requires a reference level — this is the fundamental indeterminacy of the geostrophic calculation.</li>
+        </ul>`,
+    acn: `<ul>
+          <li><strong>无运动面（level of no motion）</strong>：假设某一参考深度（例如 2000 m 或海底）的水平流速为零，然后利用热成风关系从密度场计算地转切变，向上积分得到绝对流速。</li>
+          <li><strong>问题</strong>：真正流速为零的深度几乎不存在——深层海流（如深层西边界流、深渊环流）始终存在。</li>
+          <li><strong>已知运动面（level of known motion）</strong>：用实际观测数据（如 LADCP、Argo 浮标、潜标）在某一深度测得的真实流速作为参考，避免了"无运动"假设带来的误差，因此更优。</li>
+          <li><strong>仅靠密度能算出什么</strong>：只能得到地转速度的<strong>垂直切变</strong>（即热成风），也就是速度的<strong>相对结构</strong>。绝对速度必须依赖参考面——这是地转计算的根本不确定性。</li>
+        </ul>`
+  },
+  {
+    q: "Name the three contributing factors to potential vorticity.",
+    qcn: "列出位势涡度（位涡）的三个贡献因素。",
+    a: `<p>Potential vorticity (PV) combines three ingredients:</p>
+        <ol>
+          <li><strong>Planetary vorticity (f)</strong> — vorticity from Earth's rotation, i.e. the Coriolis parameter, which varies with latitude (f = 2Ω·sinφ).</li>
+          <li><strong>Relative vorticity (ζ)</strong> — the spin of a fluid parcel relative to the Earth, arising from horizontal shear and curvature of the flow.</li>
+          <li><strong>Layer thickness / stratification (h or ∂ρ/∂z)</strong> — the vertical extent of the water column or the vertical density gradient, which captures the stretching or squashing of vortex tubes.</li>
+        </ol>
+        <p>Simple form for a homogeneous layer: <strong>PV = (f + ζ) / h</strong><br>
+        Ertel form in stratified fluids (on isopycnals): <strong>PV = (f + ζ<sub>θ</sub>) · ∂ρ/∂z</strong></p>`,
+    acn: `<p>位势涡度（Potential Vorticity, PV）综合了以下三个要素：</p>
+        <ol>
+          <li><strong>行星涡度（f）</strong>——由地球自转产生，即科里奥利参数，随纬度变化（f = 2Ω·sinφ）。</li>
+          <li><strong>相对涡度（ζ）</strong>——流体微团自身的旋转（相对于地球的涡度），由流速的水平切变和曲率决定。</li>
+          <li><strong>层厚 / 层结（h 或 ∂ρ/∂z）</strong>——水柱的垂直厚度或密度垂直梯度，体现涡管被拉伸或压缩的程度。</li>
+        </ol>
+        <p>均匀层化流体的简化形式：<strong>PV = (f + ζ) / h</strong><br>
+        分层流体的 Ertel 形式（等密度面上）：<strong>PV = (f + ζ<sub>θ</sub>) · ∂ρ/∂z</strong></p>`
+  },
+  {
+    q: "How does Ekman pumping connect to the Sverdrup interior flow? Explain using potential vorticity arguments.",
+    qcn: "埃克曼抽吸如何与斯维尔德鲁普内区流联系起来？用位涡的观点解释。",
+    a: `<ul>
+          <li><strong>Ekman pumping (w<sub>E</sub>)</strong>: vertical velocity at the base of the wind-driven Ekman layer, w<sub>E</sub> = curl(τ) / (ρf). In the NH subtropical gyre, the (negative) clockwise wind curl drives <strong>downward</strong> Ekman pumping.</li>
+          <li><strong>Sverdrup balance</strong>: the interior geostrophic transport satisfies βV = curl(τ)/ρ — the vertically integrated meridional transport equals the wind stress curl divided by ρβ.</li>
+        </ul>
+        <p><strong>PV argument:</strong></p>
+        <ul>
+          <li>In the ocean interior, potential vorticity is approximately conserved: D(f/h)/Dt ≈ 0 (neglecting relative vorticity and mixing).</li>
+          <li>In the subtropical gyre, downward Ekman pumping pushes surface water into the interior — the water column is <strong>squashed</strong> (h decreases).</li>
+          <li>To conserve PV (f/h ≈ constant), f must <strong>decrease</strong> as h decreases.</li>
+          <li>f decreases toward the equator, so parcels move <strong>equatorward</strong> — this is the Sverdrup interior flow.</li>
+          <li>The gyre closes via a narrow, fast <strong>western boundary current</strong> (Kuroshio, Gulf Stream) that returns water poleward.</li>
+        </ul>`,
+    acn: `<ul>
+          <li><strong>埃克曼抽吸（w<sub>E</sub>）</strong>：风生埃克曼输运的辐合/辐散在埃克曼层底产生的垂直速度，w<sub>E</sub> = curl(τ) / (ρf)。在北半球副热带环流中，风应力旋度为负（顺时针），产生<strong>向下</strong>的埃克曼抽吸。</li>
+          <li><strong>斯维尔德鲁普平衡</strong>：内区地转输运满足 βV = curl(τ)/ρ，即经向整层输运等于风应力旋度除以 ρβ。</li>
+        </ul>
+        <p><strong>位涡解释：</strong></p>
+        <ul>
+          <li>大洋内区位涡近似守恒：D(f/h)/Dt ≈ 0（忽略相对涡度和混合）。</li>
+          <li>在副热带环流中，向下的埃克曼抽吸把表层水压入内区——水柱被<strong>压扁</strong>（h 减小）。</li>
+          <li>为保持位涡 f/h 近似不变，f 必须随 h 减小而<strong>减小</strong>。</li>
+          <li>f 向赤道方向减小，因此水团向<strong>赤道</strong>方向流动——这就是斯维尔德鲁普内区流。</li>
+          <li>环流通过狭窄而快速的<strong>西边界流</strong>（如黑潮、湾流）向极地方向回流，从而闭合整个副热带环流圈。</li>
+        </ul>`
   }
 ];
 
@@ -966,7 +1338,7 @@ document.getElementById('calcBtn').addEventListener('click', () => {
   const dT = num('dT'), depth = num('depth'), area = num('area'),
         dt = num('dt'), rho = num('rho'), cp = num('cp');
   if (![dT, depth, area, dt, rho, cp].every(Number.isFinite) || area <= 0 || dt <= 0) {
-    alert('Please enter valid positive numbers for all fields.');
+    alert('Please enter valid positive numbers for all fields. · 请输入有效的正数。');
     return;
   }
   const V = depth * area;                       // m^3
@@ -977,14 +1349,14 @@ document.getElementById('calcBtn').addEventListener('click', () => {
 
   document.getElementById('fluxOut').textContent = `${fmt(flux)} W/m²`;
   document.getElementById('totalOut').textContent =
-    `Total heat required: ${fmt(Q_total, 0)} J  ·  Heating rate: ${fmt(Q_rate, 1)} W`;
+    `Total heat required · 所需总热量: ${fmt(Q_total, 0)} J  ·  Heating rate · 加热功率: ${fmt(Q_rate, 1)} W`;
   document.getElementById('stepsOut').innerHTML = `
-    <strong>Steps:</strong><br>
-    Volume V = depth × area = ${fmt(depth, 0)} × ${fmt(area, 0)} = <code>${fmt(V, 0)} m³</code><br>
-    Time Δt = ${fmt(dt, 0)} days × 86400 = <code>${fmt(dt_s, 0)} s</code><br>
+    <strong>Steps · 计算步骤:</strong><br>
+    Volume V = depth × area · 体积 = 水深 × 面积 = ${fmt(depth, 0)} × ${fmt(area, 0)} = <code>${fmt(V, 0)} m³</code><br>
+    Time Δt = ${fmt(dt, 0)} days × 86400 · 时间 = ${fmt(dt, 0)} 天 × 86400 = <code>${fmt(dt_s, 0)} s</code><br>
     Q<sub>total</sub> = ρ · c<sub>p</sub> · ΔT · V = ${fmt(rho, 0)} × ${fmt(cp, 0)} × ${fmt(dT)} × ${fmt(V, 0)} = <code>${fmt(Q_total, 0)} J</code><br>
     Q̇ = Q<sub>total</sub> / Δt = <code>${fmt(Q_rate, 1)} W</code><br>
-    Flux = Q̇ / area = <code>${fmt(flux)} W/m²</code>
+    Flux = Q̇ / area · 通量 = 功率 / 面积 = <code>${fmt(flux)} W/m²</code>
   `;
   document.getElementById('result').classList.add('show');
 });
