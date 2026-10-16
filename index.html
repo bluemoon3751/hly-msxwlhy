@@ -483,6 +483,175 @@
   }
   .mini-eq .hl { color: var(--sun); font-weight: 700; }
 
+  /* Topic Navigation Guide */
+  .topic-guide {
+    background: linear-gradient(160deg, #ffffff, #f3fafd);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--ocean-light);
+    margin-bottom: 28px;
+  }
+  .topic-guide h3 {
+    margin: 0 0 6px;
+    color: var(--ocean-deep);
+    font-size: 1.15rem;
+    text-align: center;
+  }
+  .topic-guide .guide-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+  }
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .guide-card {
+    display: block;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .guide-card:hover {
+    border-color: var(--ocean-mid);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(19, 118, 155, 0.15);
+  }
+  .guide-card .gc-icon {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .guide-card .gc-title {
+    font-weight: 700;
+    color: var(--ocean-deep);
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+  .guide-card .gc-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* Textbook link card */
+  .textbook-card {
+    background: linear-gradient(135deg, #fff7e6, #fff);
+    border: 2px solid var(--sun);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .textbook-card .tb-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .textbook-card h3 {
+    margin: 0 0 4px;
+    color: var(--ocean-deep);
+    font-size: 1.2rem;
+  }
+  .textbook-card .tb-sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+  .textbook-card .tb-link {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--sun), #ff9a3c);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(255, 179, 71, 0.35);
+  }
+  .textbook-card .tb-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 179, 71, 0.45);
+  }
+  .textbook-card .tb-hint {
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  /* Image explainer module */
+  .image-explainer {
+    background: linear-gradient(160deg, #ffffff, #f3fafd);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 2px dashed var(--ocean-light);
+  }
+  .image-explainer h3 {
+    margin: 0 0 6px;
+    color: var(--ocean-deep);
+  }
+  .image-main {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+    margin: 12px 0;
+    border: 1px solid var(--line);
+  }
+  .explain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .explain-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(10, 42, 67, 0.06);
+  }
+  .explain-item img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .explain-item .ei-label {
+    display: inline-block;
+    background: var(--ocean-mid);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .explain-item .ei-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .explain-item .ei-text .cn {
+    color: var(--muted);
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* Topic section anchor */
+  .topic-section {
+    scroll-margin-top: 20px;
+  }
+
   footer {
     text-align: center;
     color: var(--muted);
@@ -511,6 +680,9 @@
     <button class="tab-btn active" data-tab="qa" role="tab">
       <span class="icon">📖</span> 物理海洋问答
     </button>
+    <button class="tab-btn" data-tab="topics" role="tab">
+      <span class="icon">📚</span> 专题与教材图解
+    </button>
     <button class="tab-btn" data-tab="story" role="tab">
       <span class="icon">🎭</span> 故事会
     </button>
@@ -523,13 +695,130 @@
   <section class="panel active" id="panel-qa">
     <div class="sec-head">
       <h2>📖 Physical Oceanography Q&amp;A · 物理海洋问答</h2>
-      <p>15 bilingual questions + 3 bilingual modules — heat budget, mixed layer, thermocline, dynamics, EOF, a geostrophic worked example &amp; NS-equation reductions. · 15 道双语题目 + 3 个双语模块：涵盖热收支、混合层、温跃层、动力学、EOF、地转流算例与 NS 方程退化。</p>
+      <p>15 bilingual Q&amp;A on heat budget, mixed layer, thermocline, dynamics and more. · 15 道双语问答，涵盖热收支、混合层、温跃层、动力学等主题。</p>
     </div>
 
     <div class="qa-grid" id="qaGrid"></div>
+  </section>
+
+  <!-- ============== Topics & Textbook Illustrations Panel ============== -->
+  <section class="panel" id="panel-topics">
+    <div class="sec-head">
+      <h2>📚 Topics &amp; Textbook Illustrations · 专题与教材图解</h2>
+      <p>Special topics, textbook resources, and visual explanations — bilingual. · 专题讲解、教材资源与图解说明，中英双语呈现。</p>
+    </div>
+
+    <!-- Navigation Guide -->
+    <div class="topic-guide">
+      <h3>🧭 Module Guide · 模块导引</h3>
+      <p class="guide-sub">Click to jump to any section · 点击跳转至任意模块</p>
+      <div class="guide-grid">
+        <a class="guide-card" href="#topic-textbook" onclick="scrollToTopic('topic-textbook')">
+          <span class="gc-icon">📕</span>
+          <div class="gc-title">Textbook · 教材链接</div>
+          <div class="gc-sub">《物理海洋学》教材下载 · Download textbook</div>
+        </a>
+        <a class="guide-card" href="#topic-image" onclick="scrollToTopic('topic-image')">
+          <span class="gc-icon">🌊</span>
+          <div class="gc-title">Sverdrup Balance · 位涡平衡</div>
+          <div class="gc-sub">Wind-driven circulation & vorticity · 风生环流与位涡</div>
+        </a>
+        <a class="guide-card" href="#topic-calc" onclick="scrollToTopic('topic-calc')">
+          <span class="gc-icon">🧮</span>
+          <div class="gc-title">Heat Flux Calculator · 热通量计算器</div>
+          <div class="gc-sub">Interactive seawater heat flux solver · 交互式求解</div>
+        </a>
+        <a class="guide-card" href="#topic-eof" onclick="scrollToTopic('topic-eof')">
+          <span class="gc-icon">🌊</span>
+          <div class="gc-title">EOF Demo · 经验正交函数</div>
+          <div class="gc-sub">Animated EOF explainer · EOF 动画演示</div>
+        </a>
+        <a class="guide-card" href="#topic-geo" onclick="scrollToTopic('topic-geo')">
+          <span class="gc-icon">🧪</span>
+          <div class="gc-title">Geostrophic Example · 地转流算例</div>
+          <div class="gc-sub">Gulf Stream worked example · 湾流算例详解</div>
+        </a>
+        <a class="guide-card" href="#topic-ns" onclick="scrollToTopic('topic-ns')">
+          <span class="gc-icon">🌀</span>
+          <div class="gc-title">NS Equations · NS 方程退化</div>
+          <div class="gc-sub">Geostrophic / inertial / Ekman · 地转/惯性/埃克曼</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Textbook Link -->
+    <div class="sec-head topic-section" id="topic-textbook" style="margin-top:36px;">
+      <h2>📕 Textbook · 《物理海洋学》教材</h2>
+      <p>Download the course textbook via the shared link · 通过分享链接下载课程教材</p>
+    </div>
+
+    <div class="textbook-card">
+      <span class="tb-icon">📖</span>
+      <h3>《物理海洋学》 Physical Oceanography</h3>
+      <p class="tb-sub">Course textbook · 课程指定教材</p>
+      <a class="tb-link" href="https://pan.zju.edu.cn/share/6984d8c68b4eac504045f029c4" target="_blank" rel="noopener">
+        🔗 Download · 下载教材
+      </a>
+      <p class="tb-hint">
+        浙江大学云盘分享 · ZJU Cloud Drive share · 
+        <em>Link: pan.zju.edu.cn/share/6984d8c68b4eac504045f029c4</em>
+      </p>
+    </div>
+
+    <!-- Sverdrup Balance -->
+    <div class="sec-head topic-section" id="topic-image" style="margin-top:48px;">
+      <h2>🌊 Sverdrup Balance · 位涡平衡</h2>
+      <p>Wind-driven ocean circulation and the vorticity balance · 风生大洋环流与位涡平衡机制</p>
+    </div>
+
+    <div class="image-explainer">
+      <h3>📊 Sverdrup Balance Diagram · 位涡平衡示意图</h3>
+      <p style="margin:4px 0 0;color:var(--muted);font-size:0.9rem;">
+        <em>The classic schematic of wind-driven gyres, Ekman dynamics, and the vorticity response. · 风生环流、埃克曼动力学与位涡响应的经典示意图。</em>
+      </p>
+      <img class="image-main" src="sverdrup-balance.jpg" alt="Sverdrup Balance diagram · 位涡平衡示意图" />
+
+      <div class="explain-grid" style="grid-template-columns:1fr;margin-top:20px;">
+        <div class="explain-item">
+          <div class="ei-text" style="font-size:1rem;line-height:1.7;">
+            <strong>🔑 Key Concepts · 核心概念</strong>
+            <p style="margin:10px 0;">
+              <strong>① Wind causes Ekman transport and convergence · 风驱动埃克曼输送与辐合</strong><br>
+              <span class="cn">西风带（Westerlies）与信风带（Trades）驱动表层埃克曼输送，导致大洋中部产生 Ekman 泵送（pumping）或抽吸（suction）。</span><br>
+              <em>The Westerlies and Trade Winds drive surface Ekman transport, causing Ekman pumping or suction in the central ocean.</em>
+            </p>
+            <p style="margin:10px 0;">
+              <strong>② Ekman pumping provides squashing or stretching · 埃克曼泵送导致水柱压缩或拉伸</strong><br>
+              <span class="cn">辐合的 Ekman 输送将水柱压扁（squashing），辐散则将其拉伸（stretching）。这一垂直运动改变了水柱的相对涡度。</span><br>
+              <em>Convergent Ekman transport squashes the water column; divergent transport stretches it. This vertical motion alters the relative vorticity of the column.</em>
+            </p>
+            <p style="margin:10px 0;">
+              <strong>③ Vorticity response: change latitude, not spin up · 位涡响应：改变纬度而非原地加速</strong><br>
+              <span class="cn">水柱必须通过改变相对涡度或行星涡度（即迁移纬度）来响应，而不是原地旋转加速。这是因为位涡守恒：</span><br>
+              <em>Water columns must respond by changing relative vorticity or planetary vorticity (i.e., migrating in latitude), rather than spinning up in place — a consequence of potential-vorticity conservation:</em>
+            </p>
+            <div class="formula" style="margin:12px 0;font-size:1.05rem;">
+              (f + ζ) / h = constant &nbsp;⇒&nbsp; Squashing (h↓) → equatorward movement (f↓) · 压缩 → 向赤道移动
+            </div>
+            <div class="formula" style="margin:12px 0;font-size:1.05rem;">
+              (f + ζ) / h = constant &nbsp;⇒&nbsp; Stretching (h↑) → poleward movement (f↑) · 拉伸 → 向极地移动
+            </div>
+            <p style="margin:10px 0;color:var(--muted);">
+              <strong>Sverdrup transport · 斯文德鲁普输送：</strong>风生环流（Gyres）中，Ekman 泵送/抽吸驱动的经向体积输送，平衡了风应力旋度的作用。<br>
+              <em>Within the wind-driven gyres, the meridional volume transport driven by Ekman pumping/suction balances the wind-stress curl.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="eof-hint" style="margin-top:16px;">
+        💡 <strong>记忆口诀 · Memory aid：</strong>Squashing → 水柱变扁 → 为保持位涡守恒 → f 必须减小 → 向赤道移动；Stretching → 水柱变长 → f 必须增大 → 向极地移动。
+        <em>Squashing flattens the column → to conserve PV, f must decrease → move equatorward; Stretching lengthens it → f must increase → move poleward.</em>
+      </p>
+    </div>
 
     <!-- Heat Flux Calculator -->
-    <div class="sec-head" style="margin-top:36px;">
+    <div class="sec-head topic-section" id="topic-calc" style="margin-top:48px;">
       <h2>🧮 Seawater Heat Flux Calculator · 海水热通量计算器</h2>
       <p>Interactive solver for the Week-3 lecture problem (change the temperature of a water column). · 交互式求解第 3 周课件例题（改变水柱温度所需的热通量）。</p>
     </div>
@@ -548,45 +837,45 @@
       <div class="calc-grid">
         <div class="field">
           <label>ΔT — 温度变化 Temperature change <span class="hint">(°C)</span></label>
-          <input type="number" id="dT" value="1" step="0.1" />
+          <input type="number" id="dT2" value="1" step="0.1" />
         </div>
         <div class="field">
           <label>Depth — 水柱厚度 thickness <span class="hint">(m)</span></label>
-          <input type="number" id="depth" value="100" step="1" />
+          <input type="number" id="depth2" value="100" step="1" />
         </div>
         <div class="field">
           <label>Area — 截面积 cross-section <span class="hint">(m²)</span></label>
-          <input type="number" id="area" value="1" step="0.1" />
+          <input type="number" id="area2" value="1" step="0.1" />
         </div>
         <div class="field">
           <label>Δt — 时间周期 period <span class="hint">(days)</span></label>
-          <input type="number" id="dt" value="30" step="1" />
+          <input type="number" id="dt2" value="30" step="1" />
         </div>
         <div class="field">
           <label>ρ — 海水密度 density <span class="hint">(kg/m³)</span></label>
-          <input type="number" id="rho" value="1025" step="1" />
+          <input type="number" id="rho2" value="1025" step="1" />
         </div>
         <div class="field">
           <label>c<sub>p</sub> — 比热容 specific heat <span class="hint">(J/(kg·°C))</span></label>
-          <input type="number" id="cp" value="3850" step="1" />
+          <input type="number" id="cp2" value="3850" step="1" />
         </div>
       </div>
 
       <div class="calc-actions">
-        <button class="btn btn-primary" id="calcBtn">⚡ Calculate · 计算</button>
-        <button class="btn btn-ghost" id="resetBtn">↺ Reset to defaults · 恢复默认</button>
+        <button class="btn btn-primary" id="calcBtn2">⚡ Calculate · 计算</button>
+        <button class="btn btn-ghost" id="resetBtn2">↺ Reset to defaults · 恢复默认</button>
       </div>
 
-      <div class="result" id="result">
+      <div class="result" id="result2">
         <div class="small">Required surface heat flux · 所需海面热通量</div>
-        <div class="big" id="fluxOut">— W/m²</div>
-        <div class="small" id="totalOut">—</div>
-        <div class="steps" id="stepsOut"></div>
+        <div class="big" id="fluxOut2">— W/m²</div>
+        <div class="small" id="totalOut2">—</div>
+        <div class="steps" id="stepsOut2"></div>
       </div>
     </div>
 
-    <!-- ============== EOF Demo Animation ============== -->
-    <div class="sec-head" style="margin-top:48px;">
+    <!-- EOF Demo Animation -->
+    <div class="sec-head topic-section" id="topic-eof" style="margin-top:48px;">
       <h2>🌊 EOF Demo Animation · 经验正交函数演示</h2>
       <p>A 3B1B-style animated explainer of Empirical Orthogonal Functions — 7 scenes, ~71 s loop. · 3B1B 风格 EOF 动画，7 段场景，约 71 秒循环。</p>
     </div>
@@ -607,8 +896,8 @@
       </p>
     </div>
 
-    <!-- ============== Worked Example: Geostrophic Flow across the Gulf Stream ============== -->
-    <div class="sec-head" style="margin-top:48px;">
+    <!-- Worked Example: Geostrophic Flow -->
+    <div class="sec-head topic-section" id="topic-geo" style="margin-top:48px;">
       <h2>🧪 Worked Example · Geostrophic Flow across the Gulf Stream · 地转流计算范例</h2>
       <p>Density section → dynamic height → geostrophic velocity, step by step. · 由密度断面推求动力高度与地转流速，逐步推演。</p>
     </div>
@@ -622,7 +911,7 @@
       <div class="ex-figure">
         <svg viewBox="0 0 640 300" style="width:100%;height:auto;display:block;" role="img" aria-label="Gulf Stream density section and geostrophic velocity profile">
           <defs>
-            <linearGradient id="gDens" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="gDens2" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#ff8a80"/>
               <stop offset="34%" stop-color="#eaf7c0"/>
               <stop offset="68%" stop-color="#8fd96a"/>
@@ -630,9 +919,8 @@
             </linearGradient>
           </defs>
 
-          <!-- Panel (a): potential-density section -->
           <text x="14" y="14" font-size="12" font-weight="700" fill="#0a2a43">(a) 位势密度 σθ (kg/m³)</text>
-          <rect x="44" y="24" width="316" height="220" fill="url(#gDens)" stroke="#16323f" stroke-width="1.2"/>
+          <rect x="44" y="24" width="316" height="220" fill="url(#gDens2)" stroke="#16323f" stroke-width="1.2"/>
           <path d="M300,244 L360,244 L360,168 Z" fill="#1b1b1b"/>
           <g fill="none" stroke="#7a4b3a" stroke-width="1">
             <path d="M44,46 Q204,36 360,30"/>
@@ -663,7 +951,6 @@
           <text x="344" y="262" font-size="9" fill="#5a7480">40°N</text>
           <text x="44" y="286" font-size="11" font-weight="700" fill="#c0522a">地转流向：向东 Eastward (⊙ 垂直纸面向外 out of page)</text>
 
-          <!-- Panel (b): geostrophic velocity profile -->
           <text x="404" y="14" font-size="12" font-weight="700" fill="#0a2a43">(b) 地转流速 v (cm/s)</text>
           <line x1="424" y1="24" x2="424" y2="244" stroke="#16323f" stroke-width="1.2"/>
           <line x1="424" y1="244" x2="620" y2="244" stroke="#16323f" stroke-width="1.2"/>
@@ -733,8 +1020,8 @@
       </p>
     </div>
 
-    <!-- ============== Navier-Stokes Equations & Their Reductions ============== -->
-    <div class="sec-head" style="margin-top:48px;">
+    <!-- NS Equations & Reductions -->
+    <div class="sec-head topic-section" id="topic-ns" style="margin-top:48px;">
       <h2>🌀 Navier–Stokes Equations &amp; Their Reductions · NS 方程及其退化</h2>
       <p>How the full momentum equation reduces to geostrophic, inertial and Ekman flow. · 完整动量方程在何种条件下退化为地转流、惯性流与埃克曼流。</p>
     </div>
@@ -1365,6 +1652,59 @@ document.getElementById('resetBtn').addEventListener('click', () => {
   const defs = { dT: 1, depth: 100, area: 1, dt: 30, rho: 1025, cp: 3850 };
   Object.entries(defs).forEach(([k, v]) => document.getElementById(k).value = v);
   document.getElementById('result').classList.remove('show');
+});
+
+/* ===================== Scroll to Topic (module guide) ===================== */
+function scrollToTopic(id) {
+  // First make sure the topics panel is active
+  const topicsPanel = document.getElementById('panel-topics');
+  if (!topicsPanel.classList.contains('active')) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelector('.tab-btn[data-tab="topics"]').classList.add('active');
+    topicsPanel.classList.add('active');
+  }
+  // Small delay so panel is visible before scrolling
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 50);
+}
+
+/* ===================== Calculator 2 (Topics panel) ===================== */
+document.getElementById('calcBtn2').addEventListener('click', () => {
+  const dT = num('dT2'), depth = num('depth2'), area = num('area2'),
+        dt = num('dt2'), rho = num('rho2'), cp = num('cp2');
+  if (![dT, depth, area, dt, rho, cp].every(Number.isFinite) || area <= 0 || dt <= 0) {
+    alert('Please enter valid positive numbers for all fields. · 请输入有效的正数。');
+    return;
+  }
+  const V = depth * area;
+  const dt_s = dt * 86400;
+  const Q_total = rho * cp * dT * V;
+  const Q_rate = Q_total / dt_s;
+  const flux = Q_rate / area;
+
+  document.getElementById('fluxOut2').textContent = `${fmt(flux)} W/m²`;
+  document.getElementById('totalOut2').textContent =
+    `Total heat required · 所需总热量: ${fmt(Q_total, 0)} J  ·  Heating rate · 加热功率: ${fmt(Q_rate, 1)} W`;
+  document.getElementById('stepsOut2').innerHTML = `
+    <strong>Steps · 计算步骤:</strong><br>
+    Volume V = depth × area · 体积 = 水深 × 面积 = ${fmt(depth, 0)} × ${fmt(area, 0)} = <code>${fmt(V, 0)} m³</code><br>
+    Time Δt = ${fmt(dt, 0)} days × 86400 · 时间 = ${fmt(dt, 0)} 天 × 86400 = <code>${fmt(dt_s, 0)} s</code><br>
+    Q<sub>total</sub> = ρ · c<sub>p</sub> · ΔT · V = ${fmt(rho, 0)} × ${fmt(cp, 0)} × ${fmt(dT)} × ${fmt(V, 0)} = <code>${fmt(Q_total, 0)} J</code><br>
+    Q̇ = Q<sub>total</sub> / Δt = <code>${fmt(Q_rate, 1)} W</code><br>
+    Flux = Q̇ / area · 通量 = 功率 / 面积 = <code>${fmt(flux)} W/m²</code>
+  `;
+  document.getElementById('result2').classList.add('show');
+});
+
+document.getElementById('resetBtn2').addEventListener('click', () => {
+  const defs = { dT2: 1, depth2: 100, area2: 1, dt2: 30, rho2: 1025, cp2: 3850 };
+  Object.entries(defs).forEach(([k, v]) => document.getElementById(k).value = v);
+  document.getElementById('result2').classList.remove('show');
 });
 </script>
 </body>
