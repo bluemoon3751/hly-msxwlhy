@@ -3969,6 +3969,7 @@ const qaData = [
 
 /* Render Q&A (bilingual CN/EN) */
 const grid = document.getElementById('qaGrid');
+grid.innerHTML = ''; // Clear any hardcoded cards first
 qaData.forEach((item, i) => {
   const card = document.createElement('div');
   card.className = 'qa-card';
