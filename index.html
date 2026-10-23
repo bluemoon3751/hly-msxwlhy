@@ -743,6 +743,314 @@
     .lec-title { font-size: 1rem; }
   }
 
+  /* Comprehensive quiz cards */
+  .quiz-grid {
+    display: grid;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .quiz-card {
+    background: linear-gradient(160deg, #fff, #f3fafd);
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    border: 2px dashed var(--ocean-light);
+    transition: transform 0.2s ease;
+  }
+  .quiz-card:hover { transform: translateY(-2px); }
+  .quiz-q {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .quiz-num {
+    flex: 0 0 auto;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sun), #ff9a3c);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 179, 71, 0.4);
+  }
+  .quiz-q strong { color: var(--ocean-deep); display: block; margin-bottom: 4px; }
+  .quiz-q p { margin: 4px 0; font-size: 0.95rem; line-height: 1.5; }
+  .quiz-q .cn { color: var(--muted); font-size: 0.88rem; }
+  .quiz-toggle {
+    margin-top: 10px;
+    background: var(--foam);
+    border: none;
+    color: var(--ocean);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .quiz-toggle:hover { background: var(--ocean-light); color: #fff; }
+  .quiz-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
+    padding-top: 0;
+    margin-top: 0;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--ink);
+    border-top: 1px dashed transparent;
+  }
+  .quiz-a.open {
+    max-height: 2000px;
+    padding-top: 14px;
+    margin-top: 12px;
+    border-top: 1px dashed var(--line);
+  }
+  .quiz-a p { margin: 6px 0; }
+  .quiz-a strong { color: var(--ocean); }
+  .quiz-a .lang-tag {
+    display: inline-block;
+    background: var(--ocean-deep);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 1px 8px;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+
+  /* Knowledge chain flow nodes */
+  .chain-node {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid var(--ocean-light);
+    color: var(--ocean-deep);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    min-width: 90px;
+    box-shadow: 0 2px 6px rgba(10,42,67,0.08);
+  }
+  .chain-node small {
+    display: block;
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 0.72rem;
+    margin-top: 2px;
+  }
+  .chain-arrow {
+    color: var(--ocean-mid);
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+
+  /* Wave types table */
+  .wave-table-wrap {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    overflow-x: auto;
+  }
+  .wave-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    min-width: 700px;
+  }
+  .wave-table caption {
+    caption-side: top;
+    text-align: center;
+  }
+  .wave-table th {
+    background: var(--ocean-deep);
+    color: #fff;
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+  .wave-table td {
+    padding: 8px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .wave-table tr:hover { background: #f7fbfe; }
+  .wave-table td small { color: var(--muted); font-size: 0.72rem; }
+  .wave-table tr.wave-sec-head td {
+    background: var(--foam);
+    font-weight: 700;
+    color: var(--ocean-deep);
+    border-bottom: 2px solid var(--ocean-mid);
+    font-size: 0.85rem;
+  }
+  .wave-table-note {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--line);
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .wave-table-note strong { color: var(--ocean-deep); }
+
+  /* Wave accordion */
+  .wave-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wave-acc-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .wave-acc-item:hover { box-shadow: 0 2px 10px rgba(10,42,67,0.08); }
+  .wave-acc-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: #f7fbfe;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.92rem;
+    color: var(--ocean-deep);
+    transition: background 0.2s;
+  }
+  .wave-acc-header:hover { background: var(--foam); }
+  .wa-icon { font-size: 1.2rem; flex: 0 0 auto; }
+  .wa-arrow {
+    margin-left: auto;
+    transition: transform 0.3s;
+    font-size: 1rem;
+    color: var(--ocean-mid);
+  }
+  .wave-acc-header.open .wa-arrow { transform: rotate(90deg); }
+  .wave-acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .wave-acc-body.open { max-height: 2000px; }
+  .wave-acc-content {
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+  .wave-acc-content p { margin: 6px 0; }
+  .wave-acc-content .cn {
+    color: var(--muted);
+    display: block;
+    margin-top: 4px;
+  }
+  .wave-acc-content ul { margin: 6px 0 6px 20px; padding: 0; }
+  .wave-acc-content li { margin: 3px 0; }
+
+  /* Learning path */
+  .learn-path {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .lp-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    border: 1.5px solid var(--ocean-light);
+    border-radius: 12px;
+    padding: 10px 14px;
+  }
+  .lp-num {
+    flex: 0 0 32px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ocean-mid), var(--ocean));
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(19,118,155,0.3);
+  }
+  .lp-content strong { display: block; color: var(--ocean-deep); font-size: 0.9rem; }
+  .lp-content .cn { color: var(--muted); font-size: 0.78rem; display: block; margin-top: 2px; }
+  .lp-line {
+    width: 2px;
+    height: 16px;
+    background: var(--ocean-light);
+    margin: 0 auto;
+  }
+
+  /* Wave quick test */
+  .wave-test-grid {
+    display: grid;
+    gap: 10px;
+  }
+  .wave-test-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .wave-test-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.88rem;
+    color: var(--ocean-deep);
+    transition: background 0.2s;
+  }
+  .wave-test-q:hover { background: var(--foam); }
+  .wt-num {
+    flex: 0 0 28px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--sun);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .wt-arrow {
+    margin-left: auto;
+    color: var(--ocean-mid);
+    transition: transform 0.3s;
+  }
+  .wave-test-q.open .wt-arrow { transform: rotate(180deg); }
+  .wave-test-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 14px;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+  .wave-test-a.open {
+    max-height: 500px;
+    padding: 0 14px 12px;
+  }
+  .wave-test-a .cn { color: var(--muted); display: block; margin-top: 4px; }
+
   footer {
     text-align: center;
     color: var(--muted);
@@ -768,7 +1076,7 @@
 
 <div class="wrap">
   <nav class="tabs" role="tablist">
-    <button class="tab-btn" data-tab="qa" role="tab">
+    <button class="tab-btn active" data-tab="qa" role="tab">
       <span class="icon">📖</span> 物理海洋问答
     </button>
     <button class="tab-btn" data-tab="topics" role="tab">
@@ -777,13 +1085,13 @@
     <button class="tab-btn" data-tab="story" role="tab">
       <span class="icon">🎭</span> 故事会
     </button>
-    <button class="tab-btn active" data-tab="ticket" role="tab">
+    <button class="tab-btn" data-tab="ticket" role="tab">
       <span class="icon">🎫</span>课堂与出门票
     </button>
   </nav>
 
   <!-- ============== Q&A Panel ============== -->
-  <section class="panel" id="panel-qa">
+  <section class="panel active" id="panel-qa">
     <div class="sec-head">
       <h2>📖 Physical Oceanography Q&amp;A · 物理海洋问答</h2>
       <p>15 bilingual Q&amp;A on heat budget, mixed layer, thermocline, dynamics and more. · 15 道双语问答，涵盖热收支、混合层、温跃层、动力学等主题。</p>
@@ -1281,500 +1589,463 @@
         </ul></div>
     </div>
   </div><div class="qa-card">
-    <button class="toggle open" aria-label="toggle">▾</button>
-    <span class="q-num">1</span>
+    <button class="toggle" aria-label="toggle">▾</button>
+    <span class="q-num">16</span>
     <div class="q-text-wrap">
-      <div class="q-text">What factors determine the heat budget terms Qs, Qb, Qe and Qh, respectively? Make clear the importance of each factor of each term.</div>
-      <div class="q-cn">决定热收支项 Qs、Qb、Qe、Qh 的因子分别是什么？请说明每一项各因子的重要性。</div>
+      <div class="q-text">Under what conditions can the Coriolis force be neglected for gravity waves?</div>
+      <div class="q-cn">在什么条件下重力波可以不考虑科氏力的作用？</div>
     </div>
-    <div class="a-body open">
-      <div class="a-en"><div class="lang-tag">EN</div><p><span class="label">Qs · Shortwave solar radiation</span> Incoming solar energy absorbed by the sea surface. Key factors:</p>
+    <div class="a-body">
+      <div class="a-en"><div class="lang-tag">EN</div><p>The Coriolis effect can be neglected when the wave's <strong>period is much shorter</strong> than the local inertial period (i.e., T<sub>wave</sub> &lt;&lt; 2π/f), or equivalently, when the <strong>wave frequency ω is much larger than f</strong> (ω &gt;&gt; f).</p>
         <ul>
-          <li><strong>Solar angle / latitude &amp; season</strong> — the dominant control on incoming flux.</li>
-          <li><strong>Cloud cover</strong> — reflects/scatters a large fraction back to space.</li>
-          <li><strong>Atmospheric scattering &amp; absorption</strong> (ozone, water vapor, aerosols).</li>
-          <li><strong>Surface albedo</strong> — open ocean reflects little (~6%), ice reflects much.</li>
+          <li><strong>Short-period surface gravity waves</strong> (wind waves, swell): typical periods of seconds to ~20 s — far shorter than inertial periods of hours to days.</li>
+          <li><strong>Small spatial scale</strong> relative to the Rossby radius of deformation.</li>
+          <li><strong>Rule of thumb:</strong> if the wave period &lt; 1/10 of the local inertial period, the Coriolis deflection during one wave cycle is negligible.</li>
         </ul>
-        <p><span class="label">Qb · Longwave back radiation</span> Net infrared loss from the sea surface. Key factors:</p>
+        <p>Conversely, for <strong>long waves</strong> (tsunamis, tides, Rossby waves, Kelvin waves) with periods of hours to days/years, the Coriolis force becomes important and cannot be ignored.</p></div>
+      <div class="a-cn"><div class="lang-tag">中文</div><p>当波的<strong>周期远小于</strong>当地惯性周期（T<sub>波</sub> &lt;&lt; 2π/f），或者说<strong>波频率 ω 远大于 f</strong>（ω &gt;&gt; f）时，科氏力可以忽略。</p>
         <ul>
-          <li><strong>Sea-surface temperature (SST)</strong> — governs emission via Stefan–Boltzmann law.</li>
-          <li><strong>Cloud cover &amp; water vapor</strong> — warm, moist atmosphere returns IR (greenhouse).</li>
-          <li><strong>Air temperature</strong> — sets the downward counter-radiation.</li>
+          <li><strong>短周期表面重力波</strong>（风浪、涌浪）：周期几秒到约 20 秒，远小于数小时到数天的惯性周期。</li>
+          <li>空间尺度<strong>远小于</strong>罗斯贝变形半径。</li>
+          <li><strong>经验法则：</strong>如果波周期小于当地惯性周期的 1/10，则一个波周期内的科氏偏转可以忽略不计。</li>
         </ul>
-        <p><span class="label">Qe · Latent heat flux (evaporation)</span> Heat carried away by vaporization. Key factors:</p>
-        <ul>
-          <li><strong>Wind speed</strong> — removes vapor, sets the exchange coefficient.</li>
-          <li><strong>Sea–air humidity difference</strong> — vapor pressure gradient.</li>
-          <li><strong>SST</strong> — higher SST raises saturation vapor pressure.</li>
-        </ul>
-        <p><span class="label">Qh · Sensible heat flux</span> Direct conductive/convective heat transfer. Key factors:</p>
-        <ul>
-          <li><strong>Sea–air temperature difference</strong> — the driving gradient.</li>
-          <li><strong>Wind speed</strong> — turbulent exchange coefficient.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p><span class="label">Qs · 短波太阳辐射</span> 海面吸收的入射太阳能量。关键因子：</p>
-        <ul>
-          <li><strong>太阳高度角 / 纬度与季节</strong> —— 入射通量的主控因子。</li>
-          <li><strong>云量</strong> —— 将大量辐射反射/散射回太空。</li>
-          <li><strong>大气散射与吸收</strong>（臭氧、水汽、气溶胶）。</li>
-          <li><strong>表面反照率</strong> —— 开阔大洋反照率低（约 6%），海冰反照率高。</li>
-        </ul>
-        <p><span class="label">Qb · 长波回辐射</span> 海面向外的净红外辐射损失。关键因子：</p>
-        <ul>
-          <li><strong>海表温度（SST）</strong> —— 通过 Stefan–Boltzmann 定律决定发射强度。</li>
-          <li><strong>云量与水汽</strong> —— 暖湿大气会把红外辐射回送（温室效应）。</li>
-          <li><strong>气温</strong> —— 决定向下的反向辐射。</li>
-        </ul>
-        <p><span class="label">Qe · 潜热通量（蒸发）</span> 随汽化带走的热量。关键因子：</p>
-        <ul>
-          <li><strong>风速</strong> —— 移走水汽并设定交换系数。</li>
-          <li><strong>海气湿度差</strong> —— 水汽压梯度。</li>
-          <li><strong>SST</strong> —— SST 越高，饱和水汽压越大。</li>
-        </ul>
-        <p><span class="label">Qh · 感热通量</span> 直接的传导/对流热交换。关键因子：</p>
-        <ul>
-          <li><strong>海气温差</strong> —— 驱动梯度。</li>
-          <li><strong>风速</strong> —— 湍流交换系数。</li>
-        </ul></div>
+        <p>反之，对于<strong>长波</strong>（海啸、潮汐、罗斯贝波、开尔文波等），周期为数小时到数天/年，科氏力变得重要，不能忽略。</p></div>
     </div>
   </div><div class="qa-card">
     <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">2</span>
+    <span class="q-num">17</span>
     <div class="q-text-wrap">
-      <div class="q-text">What are the ranges of the magnitude of the four terms? For each term, specify the location and value of the maximum and minimum center.</div>
-      <div class="q-cn">四项的量级范围分别是多少？请给出每一项最大值与最小值中心的位置与数值。</div>
+      <div class="q-text">Are gravity waves, inertia–gravity waves, and Rossby waves dispersive? Why?</div>
+      <div class="q-cn">重力波、惯性重力波和罗斯贝波是否弥散？为什么？</div>
     </div>
     <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
-        <thead><tr style="background:var(--foam);color:var(--ocean-deep);">
-          <th style="padding:8px;border:1px solid var(--line);text-align:left;">Term</th>
-          <th style="padding:8px;border:1px solid var(--line);text-align:left;">Typical range</th>
-          <th style="padding:8px;border:1px solid var(--line);text-align:left;">Maximum (location / value)</th>
-          <th style="padding:8px;border:1px solid var(--line);text-align:left;">Minimum (location / value)</th>
-        </tr></thead>
-        <tbody>
-          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qs</strong></td>
-              <td style="padding:8px;border:1px solid var(--line);">0 – ~300 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">Tropics (clear skies, equatorial Pacific / Atlantic) ~280–300 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">Polar regions in winter ~0 W/m²</td></tr>
-          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qb</strong></td>
-              <td style="padding:8px;border:1px solid var(--line);">~40 – ~100 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">Tropical/subtropical oceans with warm SST ~100 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">High latitudes (cold SST) ~40 W/m²</td></tr>
-          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qe</strong></td>
-              <td style="padding:8px;border:1px solid var(--line);">~0 – ~150 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">Subtropics + western boundary currents (Gulf Stream, Kuroshio) ~150 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">Polar regions / high-rainfall belts ~0–20 W/m²</td></tr>
-          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qh</strong></td>
-              <td style="padding:8px;border:1px solid var(--line);">~−10 – ~30 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">NW Atlantic / NW Pacific in winter (cold air over warm current) ~30 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">Tropics &amp; polar ice margins ~0 W/m²</td></tr>
-        </tbody></table>
-        <p style="margin-top:10px;">Values are global-ocean climatological estimates and vary by dataset (e.g., OAFlux, NCEP).</p></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
-        <thead><tr style="background:var(--foam);color:var(--ocean-deep);">
-          <th style="padding:8px;border:1px solid var(--line);text-align:left;">项</th>
-          <th style="padding:8px;border:1px solid var(--line);text-align:left;">典型范围</th>
-          <th style="padding:8px;border:1px solid var(--line);text-align:left;">最大值（位置 / 数值）</th>
-          <th style="padding:8px;border:1px solid var(--line);text-align:left;">最小值（位置 / 数值）</th>
-        </tr></thead>
-        <tbody>
-          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qs</strong></td>
-              <td style="padding:8px;border:1px solid var(--line);">0 – 约 300 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">热带（晴空、赤道太平洋 / 大西洋）约 280–300 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">冬季极地 约 0 W/m²</td></tr>
-          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qb</strong></td>
-              <td style="padding:8px;border:1px solid var(--line);">约 40 – 约 100 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">SST 较高的热带 / 副热带海区 约 100 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">高纬度（冷 SST）约 40 W/m²</td></tr>
-          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qe</strong></td>
-              <td style="padding:8px;border:1px solid var(--line);">约 0 – 约 150 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">副热带 + 西边界流（黑潮、湾流）约 150 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">极地 / 多雨带 约 0–20 W/m²</td></tr>
-          <tr><td style="padding:8px;border:1px solid var(--line);"><strong>Qh</strong></td>
-              <td style="padding:8px;border:1px solid var(--line);">约 −10 – 约 30 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">西北大西洋 / 西北太平洋冬季（冷空气位于暖流之上）约 30 W/m²</td>
-              <td style="padding:8px;border:1px solid var(--line);">热带与极地冰缘 约 0 W/m²</td></tr>
-        </tbody></table>
-        <p style="margin-top:10px;">以上为全球海洋气候态估计值，不同数据集（如 OAFlux、NCEP）略有差异。</p></div>
+      <div class="a-en"><div class="lang-tag">EN</div><p><strong>① Surface gravity waves — dispersive</strong></p>
+        <ul>
+          <li>Dispersion relation (deep water): ω² = gk</li>
+          <li>Phase speed c = ω/k = √(g/k), which <strong>depends on k</strong> — different wavelengths travel at different speeds.</li>
+          <li>Group speed c<sub>g</sub> = dω/dk = c/2 — energy propagates at half the phase speed.</li>
+        </ul>
+        <p><strong>② Inertia–gravity waves — dispersive</strong></p>
+        <ul>
+          <li>Dispersion relation: ω² = f² + N²k²/m² (or ω² = f² + gHk² for shallow water with rotation)</li>
+          <li>Phase speed depends on wavenumber and the angle of propagation relative to the vertical — clearly dispersive.</li>
+        </ul>
+        <p><strong>③ Rossby waves — dispersive</strong></p>
+        <ul>
+          <li>Dispersion relation: ω = −βk / (k² + l² + f₀²/(gH))</li>
+          <li>Phase speed c = ω/k = −β / (k² + l² + f₀²/(gH)), which varies with wavenumber.</li>
+          <li>Longer waves propagate faster (westward), shorter waves slower — classic dispersion.</li>
+        </ul>
+        <p><strong>Exception:</strong> shallow-water gravity waves (ω = k√(gh)) are <em>non-dispersive</em> — all wavelengths travel at the same speed c = √(gh).</p></div>
+      <div class="a-cn"><div class="lang-tag">中文</div><p><strong>① 表面重力波 — 频散（弥散）</strong></p>
+        <ul>
+          <li>频散关系（深水）：ω² = gk</li>
+          <li>相速度 c = ω/k = √(g/k)，<strong>依赖于波数 k</strong>——不同波长以不同速度传播。</li>
+          <li>群速度 c<sub>g</sub> = dω/dk = c/2 —— 能量以相速度的一半传播。</li>
+        </ul>
+        <p><strong>② 惯性重力波 — 频散（弥散）</strong></p>
+        <ul>
+          <li>频散关系：ω² = f² + N²k²/m²（或浅水旋转情况下 ω² = f² + gHk²）</li>
+          <li>相速度随波数和传播方向（与垂直夹角）变化——明显频散。</li>
+        </ul>
+        <p><strong>③ 罗斯贝波 — 频散（弥散）</strong></p>
+        <ul>
+          <li>频散关系：ω = −βk / (k² + l² + f₀²/(gH))</li>
+          <li>相速度 c = ω/k = −β / (k² + l² + f₀²/(gH))，随波数变化。</li>
+          <li>长波传播（西传）更快，短波更慢——典型频散。</li>
+        </ul>
+        <p><strong>例外：</strong>浅水波重力波（ω = k√(gh)）是<em>非频散</em>的——所有波长以相同速度 c = √(gh) 传播。</p></div>
     </div>
   </div><div class="qa-card">
     <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">3</span>
+    <span class="q-num">18</span>
     <div class="q-text-wrap">
-      <div class="q-text">How deep is a typical mixed layer if mixed by wind? How deep can it reach if driven by cooling?</div>
-      <div class="q-cn">风混搅拌下的典型混合层有多深？冷却驱动下又能达到多深？</div>
+      <div class="q-text">What causes equatorial waveguides, and which wave types can exist there?</div>
+      <div class="q-cn">赤道波系形成波导的原因是什么？可以产生哪几种波动？</div>
     </div>
     <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><ul>
-          <li><strong>Wind-mixed layer:</strong> typically <strong>10–100 m</strong>, with tropical values ~20–50 m and storm-forced cases near 100 m.</li>
-          <li><strong>Cooling-driven (deep convection):</strong> can reach <strong>several hundred to ~1000 m</strong> in regions such as the Labrador Sea, Greenland Sea, and Gulf of Lions, where dense plumes penetrate the deep ocean.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><ul>
-          <li><strong>风混混合层：</strong>一般为 <strong>10–100 m</strong>，热带约 20–50 m，强风暴过程可达近 100 m。</li>
-          <li><strong>冷却驱动（深对流）：</strong>在拉布拉多海、格陵兰海、里昂湾等区域可达 <strong>数百米乃至约 1000 m</strong>，高密水团下沉穿透至深海。</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">4</span>
-    <div class="q-text-wrap">
-      <div class="q-text">What are the typical vertical temperature and salinity profiles in the subtropical and subpolar regions of the North Pacific?</div>
-      <div class="q-cn">北太平洋副热带与副极地区域的典型温度、盐度垂直剖面是怎样的？</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><p><span class="label">Subtropical North Pacific</span></p>
+      <div class="a-en"><div class="lang-tag">EN</div><p><strong>Cause of the equatorial waveguide:</strong></p>
         <ul>
-          <li><strong>Temperature:</strong> warm, well-stratified surface layer (~50–100 m) over a strong permanent thermocline (~200–1000 m) where T drops rapidly.</li>
-          <li><strong>Salinity:</strong> high surface salinity (evaporation exceeds precipitation), with a subsurface salinity maximum near the top of the thermocline.</li>
+          <li>The Coriolis parameter f = 2Ω·sinφ is <strong>zero at the equator</strong> and increases with latitude on both sides.</li>
+          <li>This creates a <strong>trapping mechanism</strong>: waves that try to propagate poleward encounter increasing f, which bends their energy back toward the equator (analogous to total internal reflection).</li>
+          <li>The effective waveguide width is set by the <strong>equatorial Rossby radius of deformation</strong>, R<sub>eq</sub> = √(gH) / β (typically ~200–300 km for the ocean thermocline).</li>
         </ul>
-        <p><span class="label">Subpolar North Pacific</span></p>
-        <ul>
-          <li><strong>Temperature:</strong> cold throughout the upper ocean; weak or absent permanent thermocline — temperature may even <em>increase</em> with depth (temperature inversion beneath the halocline).</li>
-          <li><strong>Salinity:</strong> low surface salinity (excess precipitation), a strong halocline in the upper few hundred meters.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p><span class="label">副热带北太平洋</span></p>
-        <ul>
-          <li><strong>温度：</strong>表层暖且层结稳定（约 50–100 m），其下为强永久温跃层（约 200–1000 m），温度迅速下降。</li>
-          <li><strong>盐度：</strong>表层盐度高（蒸发大于降水），在温跃层顶部附近出现次表层盐度极大值。</li>
-        </ul>
-        <p><span class="label">副极地北太平洋</span></p>
-        <ul>
-          <li><strong>温度：</strong>上层整层偏冷；永久温跃层弱甚至不存在 —— 温度甚至可能随深度<em>升高</em>（盐跃层下方的温度倒置）。</li>
-          <li><strong>盐度：</strong>表层盐度低（降水过剩），上部数百米存在强盐跃层。</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">5</span>
-    <div class="q-text-wrap">
-      <div class="q-text">What are the dominant regions of net evaporation in the ocean?</div>
-      <div class="q-cn">海洋中净蒸发占主导的区域有哪些？</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><ul>
-          <li><strong>Subtropical gyres</strong> (≈ 15–35° latitude) in both hemispheres, especially the trade-wind belts.</li>
-          <li><strong>Mediterranean Sea</strong> — strong E–P excess, a net evaporative basin.</li>
-          <li><strong>Red Sea</strong> — one of the highest evaporation rates on Earth.</li>
-          <li><strong>Arabian Sea &amp; subtropical North Atlantic</strong> — also large net evaporation centers.</li>
-        </ul>
-        <p>These regions are the source of the intermediate/deep water-mass formation that drives the shallow overturning cell.</p></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><ul>
-          <li><strong>副热带环流</strong>（约 15–35° 纬度，南北半球均存在），尤以信风带最为显著。</li>
-          <li><strong>地中海</strong> —— E–P 失衡强烈，属净蒸发盆地。</li>
-          <li><strong>红海</strong> —— 全球蒸发率最高的海域之一。</li>
-          <li><strong>阿拉伯海与副热带北大西洋</strong> —— 同为净蒸发中心。</li>
-        </ul>
-        <p>这些区域是驱动浅层翻转环流的中间 / 深水团形成源地。</p></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">6</span>
-    <div class="q-text-wrap">
-      <div class="q-text">What are the key components of the Mixed Layer heat budget?</div>
-      <div class="q-cn">混合层热收支的关键组成部分有哪些？</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><p>The mixed-layer heat budget balances all fluxes that change the upper-ocean heat content:</p>
-        <p style="text-align:center;font-family:'Cambria Math',serif;background:var(--foam);padding:10px;border-radius:8px;">
-          ∂(ρ·c<sub>p</sub>·h·T)/∂t = Q<sub>s</sub> − Q<sub>b</sub> − Q<sub>e</sub> − Q<sub>h</sub> − Q<sub>pen</sub> + Q<sub>adv</sub> + Q<sub>ent</sub>
-        </p>
-        <ul>
-          <li><strong>Q<sub>s</sub></strong> — shortwave solar radiation (penetrates to the diurnal layer).</li>
-          <li><strong>Q<sub>b</sub></strong> — longwave back radiation.</li>
-          <li><strong>Q<sub>e</sub></strong> — latent heat flux (evaporation).</li>
-          <li><strong>Q<sub>h</sub></strong> — sensible heat flux.</li>
-          <li><strong>Q<sub>pen</sub></strong> — shortwave that penetrates below the mixed layer.</li>
-          <li><strong>Q<sub>adv</sub></strong> — horizontal advective heat convergence.</li>
-          <li><strong>Q<sub>ent</sub></strong> — entrainment/mixing at the base of the mixed layer.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p>混合层热收支平衡所有改变上层海洋热含量的通量：</p>
-        <p style="text-align:center;font-family:'Cambria Math',serif;background:var(--foam);padding:10px;border-radius:8px;">
-          ∂(ρ·c<sub>p</sub>·h·T)/∂t = Q<sub>s</sub> − Q<sub>b</sub> − Q<sub>e</sub> − Q<sub>h</sub> − Q<sub>pen</sub> + Q<sub>adv</sub> + Q<sub>ent</sub>
-        </p>
-        <ul>
-          <li><strong>Q<sub>s</sub></strong> —— 短波太阳辐射（穿透至日变层）。</li>
-          <li><strong>Q<sub>b</sub></strong> —— 长波回辐射。</li>
-          <li><strong>Q<sub>e</sub></strong> —— 潜热通量（蒸发）。</li>
-          <li><strong>Q<sub>h</sub></strong> —— 感热通量。</li>
-          <li><strong>Q<sub>pen</sub></strong> —— 穿透混合层底部的短波辐射。</li>
-          <li><strong>Q<sub>adv</sub></strong> —— 水平平流热辐合。</li>
-          <li><strong>Q<sub>ent</sub></strong> —— 混合层底部的卷入 / 混合。</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">7</span>
-    <div class="q-text-wrap">
-      <div class="q-text">Is the North Atlantic Ocean saltier or fresher on average than the Pacific? Why?</div>
-      <div class="q-cn">北大西洋平均盐度比太平洋高还是低？为什么？</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><p>The North Atlantic is <strong>saltier</strong> than the Pacific on average.</p>
-        <ul>
-          <li><strong>Net evaporation</strong> exceeds precipitation in the Atlantic, while the Pacific receives more rain (ITCZ, monsoons).</li>
-          <li>The Atlantic imports high-salinity water from the <strong>Mediterranean outflow</strong>.</li>
-          <li><strong>Atmospheric vapor transport</strong> carries fresh water from the Atlantic basin to the Pacific across Central America.</li>
-          <li>Result: Atlantic surface salinity ~35–36 psu vs. Pacific ~34–34.5 psu — a key driver of the Atlantic Meridional Overturning Circulation (AMOC).</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p>北大西洋平均<strong>更咸</strong>。</p>
-        <ul>
-          <li>大西洋<strong>净蒸发</strong>大于降水，而太平洋降水更丰沛（ITCZ、季风）。</li>
-          <li>大西洋还接受<strong>地中海外流水</strong>带来的高盐水。</li>
-          <li><strong>大气水汽输送</strong>把淡水从中美洲跨流域带往太平洋。</li>
-          <li>结果：大西洋表层盐度约 35–36 psu，太平洋约 34–34.5 psu —— 这是大西洋经向翻转环流（AMOC）的关键驱动因素。</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">8</span>
-    <div class="q-text-wrap">
-      <div class="q-text">What regions of the ocean are characterized by large differences from summer to winter? What regions have the least seasonal variability?</div>
-      <div class="q-cn">海洋中哪些区域夏冬差异显著？哪些区域季节变率最小？</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><p><span class="label">Large seasonal contrast</span></p>
-        <ul>
-          <li><strong>Mid-latitude western boundary current regions</strong> — Kuroshio, Gulf Stream (warm in summer, fierce heat loss in winter).</li>
-          <li><strong>Monsoonal seas</strong> — especially the northern Indian Ocean / Arabian Sea.</li>
-          <li><strong>Subtropical gyres</strong> — strong summer stratification vs. winter mixing.</li>
-        </ul>
-        <p><span class="label">Least seasonal variability</span></p>
-        <ul>
-          <li><strong>Equatorial &amp; tropical oceans</strong> — small annual solar-angle variation.</li>
-          <li><strong>Deep ocean</strong> below the seasonal thermocline — insulated from the surface cycle.</li>
-          <li><strong>Polar regions</strong> are seasonally variable at the surface but the deep basins are steady.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p><span class="label">夏冬差异显著</span></p>
-        <ul>
-          <li><strong>中纬度西边界流区</strong> —— 黑潮、湾流（夏季暖，冬季强烈失热）。</li>
-          <li><strong>季风海区</strong> —— 尤其是北印度洋 / 阿拉伯海。</li>
-          <li><strong>副热带环流</strong> —— 夏季强层结 vs. 冬季强混合。</li>
-        </ul>
-        <p><span class="label">季节变率最小</span></p>
-        <ul>
-          <li><strong>赤道与热带海洋</strong> —— 全年太阳高度角变化小。</li>
-          <li><strong>季节温跃层以下的深海</strong> —— 与表层循环隔离。</li>
-          <li><strong>极地区域</strong>表层季节变化明显，但深层海盆稳定。</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">9</span>
-    <div class="q-text-wrap">
-      <div class="q-text">Please describe the two processes that maintain the thermocline.</div>
-      <div class="q-cn">请描述维持温跃层的两个过程。</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><ul>
-          <li><strong>1. Mechanical / vertical mixing</strong> — wind stress and shear-driven turbulence at the base of the mixed layer mix warm surface water downward, sharpening and maintaining the upper thermocline gradient.</li>
-          <li><strong>2. Subduction &amp; advection along density surfaces</strong> — water masses formed at the surface in subtropical/subpolar regions slide (subduct) along isopycnals into the thermocline interior, ventilating it and setting the layered T–S structure of the permanent thermocline.</li>
-        </ul>
-        <p>Together: mixing <em>sharpens</em> the top, while subduction <em>ventilates</em> the interior.</p></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><ul>
-          <li><strong>1. 机械 / 垂向混合</strong> —— 风应力与混合层底的剪切湍流把暖的表层水向下混合，使上层温跃层梯度更锐利并得以维持。</li>
-          <li><strong>2. 沿密度面的俯冲与平流</strong> —— 副热带 / 副极地表层形成的水团沿等密度面（俯冲）进入温跃层内部，对其进行通风并塑造永久温跃层的层状 T–S 结构。</li>
-        </ul>
-        <p>两者协同：混合<em>锐化</em>顶部，俯冲<em>通风</em>内部。</p></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">10</span>
-    <div class="q-text-wrap">
-      <div class="q-text">Please summarize the four families of statistical / analytical methods commonly used in physical-oceanography data analysis, and explain each.</div>
-      <div class="q-cn">请归纳物理海洋数据分析中常用的四大类统计 / 分析方法，并逐一讲解。</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem;">Source slide lists four methods: <strong>Basic concepts</strong>, <strong>Time series analysis</strong>, <strong>Multi-dimensional data analysis</strong>, and <strong>Empirical Orthogonal Functions (EOFs)</strong>. Each is summarized below.</p>
-
-        <p><span class="label">① Basic concepts · 基础概念</span></p>
-        <ul>
-          <li><strong>Random vs. systematic error</strong> — random error is zero-mean, unpredictable noise; systematic error is a consistent bias that must be calibrated out.</li>
-          <li><strong>Mean, variance, standard deviation</strong> — describe central tendency and spread of a sample.</li>
-          <li><strong>Correlation &amp; covariance</strong> — quantify the linear relationship (signed strength / shared variance) between two variables.</li>
-        </ul>
-
-        <p><span class="label">② Time series analysis · 时间序列分析</span></p>
-        <ul>
-          <li>Also known as <strong>spectral / Fourier / harmonic analysis</strong>.</li>
-          <li>Can be performed in the <strong>time (frequency) domain</strong> or the <strong>spatial (wavenumber) domain</strong>.</li>
-          <li>Identifies <strong>dominant frequencies of variability</strong> — especially useful when the forcing has a well-defined frequency (e.g. tides, annual cycle).</li>
-          <li>The <strong>shape of the spectrum</strong> reveals underlying physics: a <em>red spectrum</em> (more power at low frequencies) implies persistence / memory typical of geophysical systems; a <em>white spectrum</em> implies pure randomness.</li>
-        </ul>
-
-        <p><span class="label">③ Multi-dimensional data analysis · 多维数据分析（客观分析）</span></p>
-        <ul>
-          <li><strong>Objective analysis</strong> (a.k.a. optimal interpolation / Kriging) maps spatially non-uniform observations onto a regular grid.</li>
-          <li>It incorporates the <strong>correlation length scale</strong> and the <strong>noise of observations</strong>.</li>
-          <li>The grid estimate is a <strong>weighted sum of nearby observations</strong>, with weights chosen to minimize mean-square error.</li>
-        </ul>
-
-        <p><span class="label">④ Empirical Orthogonal Functions (EOFs) · 经验正交函数</span></p>
-        <ul>
-          <li>Also known as <strong>Principal Component Analysis</strong> (PCA) or <strong>Factor Analysis</strong>.</li>
-          <li>Provides a <strong>compact description of the principal spatial and temporal variability</strong> of a dataset.</li>
-          <li>Called <em>empirical</em> because the spatial structures are <strong>defined by the data itself</strong>, as opposed to a set of pre-prescribed mathematical basis functions (e.g. sine waves, Bessel functions, Legendre polynomials).</li>
-          <li>Output: a small set of orthogonal <strong>spatial modes (EOFs)</strong> each paired with a <strong>time-varying amplitude (Principal Component, PC)</strong>, ordered by the fraction of variance explained.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem;">课件将方法归纳为四类：<strong>基础概念</strong>、<strong>时间序列分析</strong>、<strong>多维数据分析</strong>、<strong>经验正交函数 EOF</strong>。逐条如下。</p>
-
-        <p><span class="label">① 基础概念 · Basic concepts</span></p>
-        <ul>
-          <li><strong>随机误差与系统误差</strong> —— 随机误差为零均值、不可预测的噪声；系统误差是恒定偏倚，需要标定去除。</li>
-          <li><strong>均值、方差、标准差</strong> —— 描述样本的中心趋势与离散程度。</li>
-          <li><strong>相关与协方差</strong> —— 量化两个变量之间的线性关系（带符号强度 / 共享方差）。</li>
-        </ul>
-
-        <p><span class="label">② 时间序列分析 · Time series analysis</span></p>
-        <ul>
-          <li>又称<strong>谱分析 / 傅里叶分析 / 谐波分析</strong>。</li>
-          <li>可在<strong>时间（频率）域</strong>或<strong>空间（波数）域</strong>中进行。</li>
-          <li>提取<strong>变率的主频率</strong> —— 当外强迫频率明确（如潮汐、年循环）时尤为有用。</li>
-          <li><strong>谱形</strong>能反映物理机制：<em>红谱</em>（低频能量更强）暗示地球物理系统典型的持续性 / 记忆性；<em>白谱</em>则意味着纯随机。</li>
-        </ul>
-
-        <p><span class="label">③ 多维数据分析（客观分析）· Multi-dimensional data analysis</span></p>
-        <ul>
-          <li><strong>客观分析</strong>（又称最优插值 / 克里金）将空间分布不均匀的观测映射到规则网格上。</li>
-          <li>纳入<strong>相关长度尺度</strong>与<strong>观测噪声</strong>。</li>
-          <li>网格估计值是<strong>邻近观测的加权和</strong>，权重按最小均方误差准则确定。</li>
-        </ul>
-
-        <p><span class="label">④ 经验正交函数 EOF · Empirical Orthogonal Functions</span></p>
-        <ul>
-          <li>又称<strong>主成分分析（PCA）</strong>或<strong>因子分析</strong>。</li>
-          <li>对数据集的<strong>主要时空变率给出紧凑描述</strong>。</li>
-          <li>之所以称为<em>经验</em>，是因为空间结构由<strong>数据本身定义</strong>，而非预先设定的数学基函数（如正弦波、贝塞尔函数、勒让德多项式）。</li>
-          <li>输出：少量相互正交的<strong>空间模态（EOF）</strong>，每个配一条<strong>随时间变化的振幅（主成分 PC）</strong>，按解释方差大小排序。</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">11</span>
-    <div class="q-text-wrap">
-      <div class="q-text">Work out the period of inertial oscillations at the north pole, 30°N, equator, and south pole.</div>
-      <div class="q-cn">计算北极、北纬 30°、赤道和南极处惯性振荡的周期。</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><p>Period of inertial oscillations: <strong>T = 2π / f</strong>, where <strong>f = 2Ω·sinφ</strong> is the Coriolis parameter.<br>
-        Earth's angular velocity Ω ≈ 7.292 × 10⁻⁵ rad/s</p>
-        <ul>
-          <li><strong>North Pole (90°N)</strong>: f = 2Ω ≈ 1.458×10⁻⁴ s⁻¹, period T ≈ <strong>12 hours</strong> (half a sidereal day, counterclockwise)</li>
-          <li><strong>30°N</strong>: f = 2Ω·sin30° = Ω ≈ 7.292×10⁻⁵ s⁻¹, period T ≈ <strong>24 hours</strong> (one sidereal day)</li>
-          <li><strong>Equator (0°)</strong>: f = 0, period T → <strong>infinity</strong> (no inertial oscillations at the equator)</li>
-          <li><strong>South Pole (90°S)</strong>: f = −2Ω, |f| = 2Ω, period T ≈ <strong>12 hours</strong> (clockwise — opposite sense to NH)</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p>惯性振荡周期公式：<strong>T = 2π / f</strong>，其中 <strong>f = 2Ω·sinφ</strong> 为科里奥利参数。<br>
-        地球自转角速度 Ω ≈ 7.292 × 10⁻⁵ rad/s</p>
-        <ul>
-          <li><strong>北极（90°N）</strong>：f = 2Ω ≈ 1.458×10⁻⁴ s⁻¹，周期 T ≈ <strong>12 小时</strong>（约半个恒星日，逆时针旋转）</li>
-          <li><strong>北纬 30°</strong>：f = 2Ω·sin30° = Ω ≈ 7.292×10⁻⁵ s⁻¹，周期 T ≈ <strong>24 小时</strong>（约一个恒星日）</li>
-          <li><strong>赤道（0°）</strong>：f = 0，周期 T → <strong>无穷大</strong>（赤道处无惯性振荡）</li>
-          <li><strong>南极（90°S）</strong>：f = −2Ω，|f| = 2Ω，周期 T ≈ <strong>12 小时</strong>（顺时针旋转，与北半球方向相反）</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">12</span>
-    <div class="q-text-wrap">
-      <div class="q-text">In geostrophic flow, what direction is the Coriolis force in relation to the pressure gradient force? What direction is it in relation to the velocity?</div>
-      <div class="q-cn">在地转流中，科里奥利力相对于压强梯度力的方向是什么？相对于速度的方向呢？</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><ul>
-          <li><strong>Relative to the pressure gradient force</strong>: equal in magnitude and <strong>opposite</strong> in direction — the two forces exactly balance (geostrophic balance).</li>
-          <li><strong>Relative to the velocity</strong>: <strong>perpendicular</strong> to the flow direction — to the right in the Northern Hemisphere, to the left in the Southern Hemisphere.</li>
-          <li>Consequence: geostrophic flow runs <strong>parallel to isobars</strong>, with high pressure on the right (NH) / left (SH) of the current.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><ul>
-          <li><strong>相对于压强梯度力</strong>：大小相等、方向<strong>相反</strong>——两者恰好平衡（地转平衡）。</li>
-          <li><strong>相对于速度方向</strong>：<strong>垂直</strong>于速度方向——北半球指向速度的右侧，南半球指向速度的左侧。</li>
-          <li>结果：地转流<strong>平行于等压线</strong>流动，高压在流速的右侧（北半球）/ 左侧（南半球），即"顺流而立，高压在右"。</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">13</span>
-    <div class="q-text-wrap">
-      <div class="q-text">What is a "level of no motion"? Why would a "level of known motion" be a better choice for the same kind of calculation? (What can we actually compute about the velocity structure given the density distribution and an assumption of geostrophy?)</div>
-      <div class="q-cn">什么是"无运动面"？为什么"已知运动面"是同类计算中更好的选择？（给定密度分布和地转平衡假设，我们实际上能计算出速度结构的什么信息？）</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><ul>
-          <li><strong>Level of no motion</strong>: an assumed reference depth (e.g., 2000 m or the seafloor) where we set horizontal velocity to zero. We then compute geostrophic shear from the density field via the thermal wind relation and integrate upward to obtain absolute velocity.</li>
-          <li><strong>Problem</strong>: a truly motionless level almost never exists — deep currents persist (deep western boundary currents, abyssal circulation).</li>
-          <li><strong>Level of known motion</strong>: uses actually measured velocities (from LADCP, Argo floats, moorings) at some depth as the reference, removing the error of the "no motion" assumption — hence the better choice.</li>
-          <li><strong>What density alone gives us</strong>: only the <strong>vertical shear</strong> of geostrophic velocity (the thermal wind), i.e. the <strong>relative</strong> velocity structure. Absolute speed requires a reference level — this is the fundamental indeterminacy of the geostrophic calculation.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><ul>
-          <li><strong>无运动面（level of no motion）</strong>：假设某一参考深度（例如 2000 m 或海底）的水平流速为零，然后利用热成风关系从密度场计算地转切变，向上积分得到绝对流速。</li>
-          <li><strong>问题</strong>：真正流速为零的深度几乎不存在——深层海流（如深层西边界流、深渊环流）始终存在。</li>
-          <li><strong>已知运动面（level of known motion）</strong>：用实际观测数据（如 LADCP、Argo 浮标、潜标）在某一深度测得的真实流速作为参考，避免了"无运动"假设带来的误差，因此更优。</li>
-          <li><strong>仅靠密度能算出什么</strong>：只能得到地转速度的<strong>垂直切变</strong>（即热成风），也就是速度的<strong>相对结构</strong>。绝对速度必须依赖参考面——这是地转计算的根本不确定性。</li>
-        </ul></div>
-    </div>
-  </div><div class="qa-card">
-    <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">14</span>
-    <div class="q-text-wrap">
-      <div class="q-text">Name the three contributing factors to potential vorticity.</div>
-      <div class="q-cn">列出位势涡度（位涡）的三个贡献因素。</div>
-    </div>
-    <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><p>Potential vorticity (PV) combines three ingredients:</p>
+        <p><strong>Wave types in the equatorial waveguide:</strong></p>
         <ol>
-          <li><strong>Planetary vorticity (f)</strong> — vorticity from Earth's rotation, i.e. the Coriolis parameter, which varies with latitude (f = 2Ω·sinφ).</li>
-          <li><strong>Relative vorticity (ζ)</strong> — the spin of a fluid parcel relative to the Earth, arising from horizontal shear and curvature of the flow.</li>
-          <li><strong>Layer thickness / stratification (h or ∂ρ/∂z)</strong> — the vertical extent of the water column or the vertical density gradient, which captures the stretching or squashing of vortex tubes.</li>
-        </ol>
-        <p>Simple form for a homogeneous layer: <strong>PV = (f + ζ) / h</strong><br>
-        Ertel form in stratified fluids (on isopycnals): <strong>PV = (f + ζ<sub>θ</sub>) · ∂ρ/∂z</strong></p></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p>位势涡度（Potential Vorticity, PV）综合了以下三个要素：</p>
+          <li><strong>Equatorial Kelvin waves</strong> — eastward-propagating, trapped to the equator, non-dispersive, symmetric about the equator.</li>
+          <li><strong>Equatorial Rossby waves</strong> — westward-propagating, trapped, dispersive, symmetric.</li>
+          <li><strong>Mixed Rossby–gravity waves</strong> (Yanai waves) — eastward group velocity, unusual dispersion curve.</li>
+          <li><strong>Equatorial inertia–gravity waves</strong> (Poincaré waves) — east and west propagating, higher frequency.</li>
+        </ol></div>
+      <div class="a-cn"><div class="lang-tag">中文</div><p><strong>赤道波导形成原因：</strong></p>
+        <ul>
+          <li>科里奥利参数 f = 2Ω·sinφ 在<strong>赤道处为零</strong>，向两侧随纬度增大。</li>
+          <li>这产生了<strong>捕获机制</strong>：试图向极地传播的波遇到不断增大的 f，其能量被折回赤道（类似于全内反射）。</li>
+          <li>波导宽度由<strong>赤道罗斯贝变形半径</strong> R<sub>eq</sub> = √(gH) / β 决定（海洋温跃层典型值约 200–300 km）。</li>
+        </ul>
+        <p><strong>赤道波系中的波动类型：</strong></p>
         <ol>
-          <li><strong>行星涡度（f）</strong>——由地球自转产生，即科里奥利参数，随纬度变化（f = 2Ω·sinφ）。</li>
-          <li><strong>相对涡度（ζ）</strong>——流体微团自身的旋转（相对于地球的涡度），由流速的水平切变和曲率决定。</li>
-          <li><strong>层厚 / 层结（h 或 ∂ρ/∂z）</strong>——水柱的垂直厚度或密度垂直梯度，体现涡管被拉伸或压缩的程度。</li>
-        </ol>
-        <p>均匀层化流体的简化形式：<strong>PV = (f + ζ) / h</strong><br>
-        分层流体的 Ertel 形式（等密度面上）：<strong>PV = (f + ζ<sub>θ</sub>) · ∂ρ/∂z</strong></p></div>
+          <li><strong>赤道开尔文波</strong>——东向传播，被赤道捕获，非频散，关于赤道对称。</li>
+          <li><strong>赤道罗斯贝波</strong>——西向传播，被捕获，频散，对称。</li>
+          <li><strong>混合罗斯贝-重力波</strong>（Yanai 波）——群速度东向，频散曲线特殊。</li>
+          <li><strong>赤道惯性重力波</strong>（庞加莱波）——可东向和西向传播，频率较高。</li>
+        </ol></div>
     </div>
   </div><div class="qa-card">
     <button class="toggle" aria-label="toggle">▾</button>
-    <span class="q-num">15</span>
+    <span class="q-num">19</span>
     <div class="q-text-wrap">
-      <div class="q-text">How does Ekman pumping connect to the Sverdrup interior flow? Explain using potential vorticity arguments.</div>
-      <div class="q-cn">埃克曼抽吸如何与斯维尔德鲁普内区流联系起来？用位涡的观点解释。</div>
+      <div class="q-text">What are the types of continental-shelf long waves, and what are their propagation characteristics?</div>
+      <div class="q-cn">陆架长波有哪几种，其传播有什么特点？</div>
     </div>
     <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><ul>
-          <li><strong>Ekman pumping (w<sub>E</sub>)</strong>: vertical velocity at the base of the wind-driven Ekman layer, w<sub>E</sub> = curl(τ) / (ρf). In the NH subtropical gyre, the (negative) clockwise wind curl drives <strong>downward</strong> Ekman pumping.</li>
-          <li><strong>Sverdrup balance</strong>: the interior geostrophic transport satisfies βV = curl(τ)/ρ — the vertically integrated meridional transport equals the wind stress curl divided by ρβ.</li>
-        </ul>
-        <p><strong>PV argument:</strong></p>
+      <div class="a-en"><div class="lang-tag">EN</div><p>Continental-shelf long waves are low-frequency, long-wavelength motions trapped along the coast by the combination of bathymetry and the Coriolis effect. The main types:</p>
+        <ol>
+          <li><strong>Continental shelf waves (barotropic)</strong>
+            <ul>
+              <li><strong>Restoring mechanism:</strong> topographic β-effect — the change of f/h with cross-shelf distance.</li>
+              <li><strong>Propagation:</strong> with the coast on the <strong>right</strong> in the Northern Hemisphere (poleward along eastern boundaries, equatorward along western boundaries).</li>
+              <li>Non-dispersive or weakly dispersive; periods of days to weeks; energy trapped on the shelf.</li>
+            </ul>
+          </li>
+          <li><strong>Coastal Kelvin waves</strong>
+            <ul>
+              <li><strong>Restoring mechanism:</strong> gravity + Coriolis, trapped against a vertical wall coast.</li>
+              <li><strong>Propagation:</strong> with the coast on the <strong>right</strong> in the NH; phase speed c = √(gH), non-dispersive alongshore.</li>
+              <li>Amplitude decays exponentially offshore (e-folding scale = Rossby radius).</li>
+            </ul>
+          </li>
+          <li><strong>Coastally trapped waves (general category)</strong>
+            <ul>
+              <li>Includes shelf waves, coastal Kelvin waves, and their continuous modes.</li>
+              <li>All share: energy propagates with the coast on the right (NH); amplitude maximum nearshore.</li>
+            </ul>
+          </li>
+        </ol></div>
+      <div class="a-cn"><div class="lang-tag">中文</div><p>陆架长波是受地形与科氏力共同作用而被沿岸捕获的低频长波长运动。主要类型：</p>
+        <ol>
+          <li><strong>陆架波（正压）</strong>
+            <ul>
+              <li><strong>恢复机制：</strong>地形 β 效应——f/h 沿岸方向的变化。</li>
+              <li><strong>传播方向：</strong>北半球沿岸<strong>右侧为陆</strong>传播（东边界向极、西边界向赤道）。</li>
+              <li>非频散或弱频散；周期数天至数周；能量被限制在陆架上。</li>
+            </ul>
+          </li>
+          <li><strong>沿岸开尔文波</strong>
+            <ul>
+              <li><strong>恢复机制：</strong>重力 + 科氏力，被垂直岸壁捕获。</li>
+              <li><strong>传播方向：</strong>北半球沿岸<strong>右侧为陆</strong>传播；相速度 c = √(gH)，沿岸非频散。</li>
+              <li>振幅向外海指数衰减（e 折尺度 = 罗斯贝半径）。</li>
+            </ul>
+          </li>
+          <li><strong>沿岸捕获波（广义）</strong>
+            <ul>
+              <li>包括陆架波、沿岸开尔文波及其连续模态。</li>
+              <li>共性：能量沿右侧有岸的方向传播（北半球）；振幅近岸最大。</li>
+            </ul>
+          </li>
+        </ol></div>
+    </div>
+  </div><div class="qa-card">
+    <button class="toggle" aria-label="toggle">▾</button>
+    <span class="q-num">20</span>
+    <div class="q-text-wrap">
+      <div class="q-text">What are the similarities and differences between seiche (standing wave in a bay) and progressive gravity waves?</div>
+      <div class="q-cn">海湾静振与重力波有什么异同？</div>
+    </div>
+    <div class="a-body">
+      <div class="a-en"><div class="lang-tag">EN</div><p><strong>Similarities:</strong></p>
         <ul>
-          <li>In the ocean interior, potential vorticity is approximately conserved: D(f/h)/Dt ≈ 0 (neglecting relative vorticity and mixing).</li>
-          <li>In the subtropical gyre, downward Ekman pumping pushes surface water into the interior — the water column is <strong>squashed</strong> (h decreases).</li>
-          <li>To conserve PV (f/h ≈ constant), f must <strong>decrease</strong> as h decreases.</li>
-          <li>f decreases toward the equator, so parcels move <strong>equatorward</strong> — this is the Sverdrup interior flow.</li>
-          <li>The gyre closes via a narrow, fast <strong>western boundary current</strong> (Kuroshio, Gulf Stream) that returns water poleward.</li>
-        </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><ul>
-          <li><strong>埃克曼抽吸（w<sub>E</sub>）</strong>：风生埃克曼输运的辐合/辐散在埃克曼层底产生的垂直速度，w<sub>E</sub> = curl(τ) / (ρf)。在北半球副热带环流中，风应力旋度为负（顺时针），产生<strong>向下</strong>的埃克曼抽吸。</li>
-          <li><strong>斯维尔德鲁普平衡</strong>：内区地转输运满足 βV = curl(τ)/ρ，即经向整层输运等于风应力旋度除以 ρβ。</li>
+          <li>Both are <strong>gravity-driven</strong> oscillations of the water surface.</li>
+          <li>Both satisfy the same governing equations (shallow-water or potential-flow equations) with appropriate boundary conditions.</li>
+          <li>Both involve the exchange between potential energy (surface elevation) and kinetic energy (fluid motion).</li>
         </ul>
-        <p><strong>位涡解释：</strong></p>
+        <p><strong>Differences:</strong></p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:8px 0;">
+          <thead><tr style="background:var(--foam);">
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Feature</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Progressive gravity wave</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Seiche (standing wave)</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Propagation</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Travels in a direction</td>
+                <td style="padding:6px;border:1px solid var(--line);">Stationary — nodes &amp; antinodes fixed in space</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Energy</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Energy propagates with group velocity</td>
+                <td style="padding:6px;border:1px solid var(--line);">Energy trapped in the basin; no net propagation</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Formation</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Wind, seismic disturbance, etc.</td>
+                <td style="padding:6px;border:1px solid var(--line);">Resonance of a closed/partially closed basin</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Period</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Determined by wavelength &amp; depth (dispersive)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Determined by basin geometry (natural modes)</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Particle motion</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Closed orbits (circles/ellipses)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Back-and-forth oscillation</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Connection:</strong> a standing wave (seiche) can be viewed as the superposition of two progressive waves of equal amplitude traveling in opposite directions.</p></div>
+      <div class="a-cn"><div class="lang-tag">中文</div><p><strong>相同点：</strong></p>
         <ul>
-          <li>大洋内区位涡近似守恒：D(f/h)/Dt ≈ 0（忽略相对涡度和混合）。</li>
-          <li>在副热带环流中，向下的埃克曼抽吸把表层水压入内区——水柱被<strong>压扁</strong>（h 减小）。</li>
-          <li>为保持位涡 f/h 近似不变，f 必须随 h 减小而<strong>减小</strong>。</li>
-          <li>f 向赤道方向减小，因此水团向<strong>赤道</strong>方向流动——这就是斯维尔德鲁普内区流。</li>
-          <li>环流通过狭窄而快速的<strong>西边界流</strong>（如黑潮、湾流）向极地方向回流，从而闭合整个副热带环流圈。</li>
+          <li>都是<strong>重力驱动</strong>的水面振荡。</li>
+          <li>都满足相同的控制方程（浅水方程或势流方程）及相应边界条件。</li>
+          <li>都涉及势能（水面抬升）和动能（流体运动）之间的相互转换。</li>
+        </ul>
+        <p><strong>不同点：</strong></p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:8px 0;">
+          <thead><tr style="background:var(--foam);">
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">特征</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">前进重力波</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">静振（驻波）</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>传播</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">向某方向传播</td>
+                <td style="padding:6px;border:1px solid var(--line);">静止——波节、波腹位置固定</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>能量</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">能量以群速度传播</td>
+                <td style="padding:6px;border:1px solid var(--line);">能量被限制在海湾内，无净传播</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>形成</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">风、地震扰动等</td>
+                <td style="padding:6px;border:1px solid var(--line);">封闭/半封闭海盆的共振</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>周期</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">由波长和水深决定（频散）</td>
+                <td style="padding:6px;border:1px solid var(--line);">由海盆几何形状决定（固有模态）</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>质点运动</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">闭合轨道（圆/椭圆）</td>
+                <td style="padding:6px;border:1px solid var(--line);">往复振荡</td></tr>
+          </tbody>
+        </table>
+        <p><strong>联系：</strong>驻波（静振）可看作两列等幅反向传播的前进波叠加而成。</p></div>
+    </div>
+  </div><div class="qa-card">
+    <button class="toggle" aria-label="toggle">▾</button>
+    <span class="q-num">21</span>
+    <div class="q-text-wrap">
+      <div class="q-text">What are the basic conditions for internal waves to occur in the ocean?</div>
+      <div class="q-cn">海洋内波发生的基本条件是什么？</div>
+    </div>
+    <div class="a-body">
+      <div class="a-en"><div class="lang-tag">EN</div><p>Internal waves occur within the density-stratified interior of the ocean. The basic conditions are:</p>
+        <ol>
+          <li><strong>Stable stratification</strong> — density increases with depth (dρ/dz &lt; 0 in the z-up convention). This provides the buoyancy restoring force.
+            <ul>
+              <li>Quantified by the <strong>Brunt–Väisälä frequency</strong>: N = √(−(g/ρ)·dρ/dz).</li>
+              <li>N must be real and positive — the fluid must be <strong>statically stable</strong>.</li>
+            </ul>
+          </li>
+          <li><strong>A disturbance / forcing</strong> that displaces fluid parcels from their equilibrium level. Common sources:
+            <ul>
+              <li>Flow over bottom topography (tide over a ridge, current over a sill).</li>
+              <li>Wind stress and inertial oscillations in the mixed layer base.</li>
+              <li>Interaction of surface waves with the thermocline.</li>
+              <li>Geostrophic adjustment and mesoscale eddy processes.</li>
+            </ul>
+          </li>
+          <li><strong>Frequency condition</strong> — the wave frequency ω must satisfy f &lt; ω &lt; N (for inertia–gravity internal waves).
+            <ul>
+              <li>If ω &gt; N: stratification cannot provide enough restoring force; no wave propagation.</li>
+              <li>If ω &lt; f: rotation dominates; the motion becomes quasi-geostrophic rather than wave-like.</li>
+            </ul>
+          </li>
+        </ol>
+        <p><strong>Why the pycnocline / thermocline matters:</strong> the strongest density gradients (largest N) occur at the pycnocline, so internal waves are most intense there and often propagate along it.</p></div>
+      <div class="a-cn"><div class="lang-tag">中文</div><p>内波发生在密度层化的海洋内部。基本条件：</p>
+        <ol>
+          <li><strong>稳定层结</strong>——密度随深度增大（z 向上时 dρ/dz &lt; 0），提供浮力恢复力。
+            <ul>
+              <li>用<strong>布伦特-维萨拉频率</strong> N = √(−(g/ρ)·dρ/dz) 量化。</li>
+              <li>N 必须为正实数——流体必须<strong>静力稳定</strong>。</li>
+            </ul>
+          </li>
+          <li><strong>扰动 / 强迫源</strong>，将流体微团推离平衡位置。常见来源：
+            <ul>
+              <li>底地形上的流动（潮汐过海脊、流过海槛）。</li>
+              <li>风应力与混合层底的惯性振荡。</li>
+              <li>表面波与温跃层的相互作用。</li>
+              <li>地转调整与中尺度涡过程。</li>
+            </ul>
+          </li>
+          <li><strong>频率条件</strong>——波频率 ω 满足 f &lt; ω &lt; N（惯性重力内波）。
+            <ul>
+              <li>若 ω &gt; N：层结提供的恢复力不足，无法传播。</li>
+              <li>若 ω &lt; f：旋转占主导，运动呈准地转而非波动形式。</li>
+            </ul>
+          </li>
+        </ol>
+        <p><strong>为何跃层重要：</strong>密度梯度最强（N 最大）的地方在密度跃层/温跃层，因此内波在此最强，且常沿跃层传播。</p></div>
+    </div>
+  </div><div class="qa-card">
+    <button class="toggle" aria-label="toggle">▾</button>
+    <span class="q-num">22</span>
+    <div class="q-text-wrap">
+      <div class="q-text">What is the generation mechanism of tsunamis? Is their long-distance propagation affected by the Coriolis force? Why?</div>
+      <div class="q-cn">海啸的发生机制是什么？长距离传输是否受科氏力的影响？为什么？</div>
+    </div>
+    <div class="a-body">
+      <div class="a-en"><div class="lang-tag">EN</div><p><strong>Generation mechanism:</strong></p>
+        <ul>
+          <li>Tsunamis are generated by <strong>sudden, large-scale vertical displacement of the seafloor</strong>, which displaces the overlying water column and sets up long surface gravity waves.</li>
+          <li>Common triggers:
+            <ul>
+              <li><strong>Submarine earthquakes</strong> (fault slip) — the dominant cause (~80% of tsunamis).</li>
+              <li><strong>Submarine landslides</strong> (volcanic flank collapse, sediment slides).</li>
+              <li><strong>Volcanic eruptions</strong> (caldera collapse, pyroclastic flows into water).</li>
+              <li><strong>Meteorite impacts</strong> (very rare).</li>
+            </ul>
+          </li>
+        </ul>
+        <p><strong>Coriolis effect on long-distance propagation — YES, but modest:</strong></p>
+        <ul>
+          <li>Tsunamis are <strong>shallow-water waves</strong> (wavelength ~100–500 km &gt;&gt; ocean depth ~4 km), so c = √(gH) ≈ 700–900 km/h.</li>
+          <li>Their <strong>periods are 10 min to ~1 hour</strong> — much shorter than the inertial period at mid-latitudes (~12–24 h), so <strong>the Coriolis effect is weak</strong> over one wave cycle.</li>
+          <li>However, over <strong>ocean-basin scales (hours to days)</strong>, the cumulative effect of the Coriolis force is not entirely negligible: it can gradually deflect the propagation direction and influence the structure of the wave field (e.g., by generating Coriolis-modified waves or by affecting how tsunamis refract around ocean basins).</li>
+          <li><strong>Bottom line:</strong> for first-order tsunami travel-time forecasting, the Coriolis effect is usually ignored (shallow-water non-rotating theory is sufficient). For detailed basin-scale modeling and coastal amplification, rotation may be included.</li>
         </ul></div>
+      <div class="a-cn"><div class="lang-tag">中文</div><p><strong>发生机制：</strong></p>
+        <ul>
+          <li>海啸由海底<strong>突然的、大尺度的垂直位移</strong>产生，使上覆水柱位移并激发长表面重力波。</li>
+          <li>常见触发因素：
+            <ul>
+              <li><strong>海底地震</strong>（断层滑动）——最主要的原因（约 80% 的海啸）。</li>
+              <li><strong>海底滑坡</strong>（火山侧翼坍塌、沉积物滑塌）。</li>
+              <li><strong>火山喷发</strong>（破火山口坍塌、火山碎屑流入水）。</li>
+              <li><strong>陨石撞击</strong>（极罕见）。</li>
+            </ul>
+          </li>
+        </ul>
+        <p><strong>长距离传输中科氏力的影响——有，但较弱：</strong></p>
+        <ul>
+          <li>海啸是<strong>浅水波</strong>（波长 ~100–500 km &gt;&gt; 海深 ~4 km），所以 c = √(gH) ≈ 700–900 km/h。</li>
+          <li>其<strong>周期为 10 分钟到约 1 小时</strong>——远短于中纬度惯性周期（~12–24 小时），因此在一个波周期内<strong>科氏效应很弱</strong>。</li>
+          <li>然而，在<strong>大洋尺度（数小时到数天）</strong>的传播中，科氏力的累积效应并非完全可以忽略：它可以逐渐偏转传播方向，并影响波场结构（例如产生科氏修正波或影响海啸在洋盆中的折射方式）。</li>
+          <li><strong>结论：</strong>在一级海啸走时预报中，通常忽略科氏力（非旋转浅水理论已足够）。在详细的洋盆尺度模拟和近岸放大研究中，旋转效应可能会被纳入。<p></p>
+        </li></ul></div>
     </div>
   </div></div>
-  </section>
 
-  <!-- ============== Topics & Textbook Illustrations Panel ============== -->
+    <!-- Comprehensive Review Quiz -->
+    <div class="sec-head" style="margin-top:36px;">
+      <h2>🎯 Comprehensive Review Quiz · 综合检验</h2>
+      <p>Test your mastery — answers are hidden, click to reveal · 检验学习成果，答案点击展开</p>
+    </div>
+
+    <div class="quiz-grid">
+      <div class="quiz-card">
+        <div class="quiz-q">
+          <span class="quiz-num">1</span>
+          <div>
+            <strong>Heat Budget · 热收支</strong>
+            <p>Which heat budget term is typically the largest in magnitude at the sea surface, and which term is most responsible for cooling the ocean?</p>
+            <p class="cn">在海面热收支中，哪个项的量级通常最大？哪个项对海洋冷却贡献最大？</p>
+          </div>
+        </div>
+        <button class="quiz-toggle" onclick="toggleQuiz(this)">💡 Show answer · 显示答案</button>
+        <div class="quiz-a">
+          <div class="lang-tag">EN</div>
+          <p><strong>Qs (shortwave solar radiation)</strong> is typically the largest — the primary energy input to the ocean. <strong>Qe (latent heat / evaporation)</strong> is the dominant cooling term — it carries away vast amounts of heat via vaporization.</p>
+          <div class="lang-tag" style="background:var(--accent);">中文</div>
+          <p><strong>Qs（短波太阳辐射）</strong>量级最大——是海洋的主要能量输入。<strong>Qe（潜热/蒸发）</strong>是主导的冷却项——通过汽化带走大量热量。</p>
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-q">
+          <span class="quiz-num">2</span>
+          <div>
+            <strong>Mixed Layer · 混合层</strong>
+            <p>Why does the mixed layer deepen in winter, and which process (wind mixing vs. cooling) can drive a deeper mixed layer?</p>
+            <p class="cn">为什么冬季混合层加深？风混合和冷却哪个能驱动更深的混合层？</p>
+          </div>
+        </div>
+        <button class="quiz-toggle" onclick="toggleQuiz(this)">💡 Show answer · 显示答案</button>
+        <div class="quiz-a">
+          <div class="lang-tag">EN</div>
+          <p>In winter, stronger cooling increases surface water density, making it unstable and prone to sinking — this is <strong>convective mixing</strong>. <strong>Cooling-driven deep convection</strong> can reach much deeper (hundreds to ~1000 m) than wind mixing alone (~10–100 m), because dense water from the surface can sink all the way down until it finds water of equal density.</p>
+          <div class="lang-tag" style="background:var(--accent);">中文</div>
+          <p>冬季更强的冷却增大了表层水密度，使其不稳定而下沉——这是<strong>对流混合</strong>。<strong>冷却驱动的深对流</strong>可比单纯风混合（~10–100 m）深得多（数百米至约 1000 m），因为高密度表层水可以一直下沉到等密度面为止。</p>
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-q">
+          <span class="quiz-num">3</span>
+          <div>
+            <strong>Geostrophy · 地转流</strong>
+            <p>In the Northern Hemisphere, if you face downstream of a geostrophic current, is the high-pressure side on your left or right? Why?</p>
+            <p class="cn">北半球，你面朝地转流流向，高压在你的左侧还是右侧？为什么？</p>
+          </div>
+        </div>
+        <button class="quiz-toggle" onclick="toggleQuiz(this)">💡 Show answer · 显示答案</button>
+        <div class="quiz-a">
+          <div class="lang-tag">EN</div>
+          <p><strong>On the right.</strong> In geostrophic balance, the Coriolis force (which deflects to the right in the NH) exactly balances the pressure gradient force (which points from high to low pressure). The flow runs <em>parallel</em> to isobars — high pressure on the right, low on the left.</p>
+          <div class="lang-tag" style="background:var(--accent);">中文</div>
+          <p><strong>右侧。</strong>在地转平衡中，科氏力（北半球偏右）与压强梯度力（由高指向低）精确平衡。流动<strong>平行</strong>于等压线——高压在右，低压在左。</p>
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-q">
+          <span class="quiz-num">4</span>
+          <div>
+            <strong>Potential Vorticity · 位涡</strong>
+            <p>If a water column is stretched (thickens) in the Northern Hemisphere, must it move equatorward or poleward to conserve potential vorticity? Explain.</p>
+            <p class="cn">北半球水柱被拉长（变厚）时，为保持位涡守恒，它应向赤道还是向极地移动？解释原因。</p>
+          </div>
+        </div>
+        <button class="quiz-toggle" onclick="toggleQuiz(this)">💡 Show answer · 显示答案</button>
+        <div class="quiz-a">
+          <div class="lang-tag">EN</div>
+          <p><strong>Poleward.</strong> PV ≈ f/h = constant. When the column is stretched (h increases), f must also increase to keep PV constant. Since f increases with latitude, the column moves toward the poles (where f is larger).</p>
+          <div class="lang-tag" style="background:var(--accent);">中文</div>
+          <p><strong>向极地移动。</strong>位涡 PV ≈ f/h = 常数。当水柱被拉长（h 增大）时，f 也必须增大以保持 PV 守恒。由于 f 随纬度增大而增大，水柱向极地移动（那里 f 更大）。</p>
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-q">
+          <span class="quiz-num">5</span>
+          <div>
+            <strong>Sverdrup Balance · 斯维尔德鲁普平衡</strong>
+            <p>What is the chain of causality that connects wind stress to the subtropical gyre circulation? Name the key steps.</p>
+            <p class="cn">风应力到副热带涡旋环流的因果链是什么？说出关键步骤。</p>
+          </div>
+        </div>
+        <button class="quiz-toggle" onclick="toggleQuiz(this)">💡 Show answer · 显示答案</button>
+        <div class="quiz-a">
+          <div class="lang-tag">EN</div>
+          <p><strong>Wind → Ekman transport → convergence/divergence → Ekman pumping → column stretching/squashing → PV conservation → latitude change → Sverdrup transport → subtropical gyre.</strong></p>
+          <p>In the subtropical gyre (NH): westerlies + trade winds → Ekman transport converges in mid-ocean → downward Ekman pumping → water columns are squashed → to conserve PV, they move equatorward → southward Sverdrup interior flow → returns poleward via a western boundary current (Kuroshio / Gulf Stream).</p>
+          <div class="lang-tag" style="background:var(--accent);">中文</div>
+          <p><strong>风 → 埃克曼输送 → 辐合/辐散 → 埃克曼泵 → 水柱拉长/压扁 → 位涡守恒 → 改变纬度 → 斯维尔德鲁普输送 → 副热带涡旋。</strong></p>
+          <p>北半球副热带涡旋：西风带 + 信风带 → 埃克曼输送在大洋中部辐合 → 向下的埃克曼抽吸 → 水柱被压扁 → 为保持位涡守恒，水柱向赤道移动 → 南向的斯维尔德鲁普内区流 → 通过西边界流（黑潮/湾流）向极回流。</p>
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-q">
+          <span class="quiz-num">6</span>
+          <div>
+            <strong>Ocean Waves · 海洋波浪</strong>
+            <p>What is the difference between phase speed and group speed? Why is group speed important?</p>
+            <p class="cn">相速度和群速度有什么区别？为什么群速度很重要？</p>
+          </div>
+        </div>
+        <button class="quiz-toggle" onclick="toggleQuiz(this)">💡 Show answer · 显示答案</button>
+        <div class="quiz-a">
+          <div class="lang-tag">EN</div>
+          <p><strong>Phase speed (c = ω/k)</strong> is the speed at which individual wave crests travel. <strong>Group speed (c<sub>g</sub> = dω/dk)</strong> is the speed at which wave energy propagates, and also the speed at which wave groups / envelopes move.</p>
+          <p>Group speed is important because <strong>energy (and information) travels at the group speed</strong>, not the phase speed. For dispersive waves like deep-water gravity waves, c<sub>g</sub> = c/2 — energy moves at half the speed of the crests.</p>
+          <div class="lang-tag" style="background:var(--accent);">中文</div>
+          <p><strong>相速度（c = ω/k）</strong>是单个波峰传播的速度。<strong>群速度（c<sub>g</sub> = dω/dk）</strong>是波能量传播的速度，也是波群/波包移动的速度。</p>
+          <p>群速度重要是因为<strong>能量（和信息）以群速度传播</strong>，而非相速度。对于深水重力波等频散波，c<sub>g</sub> = c/2——能量以波峰速度的一半传播。</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
   <section class="panel" id="panel-topics">
     <div class="sec-head">
       <h2>📚 Topics &amp; Textbook Illustrations · 专题与教材图解</h2>
@@ -1790,6 +2061,11 @@
           <span class="gc-icon">🧠</span>
           <div class="gc-title">Knowledge System · 知识体系</div>
           <div class="gc-sub">动力海洋学九大概念递进 · 9 concepts in progression</div>
+        </a>
+        <a class="guide-card" href="#topic-waves" onclick="scrollToTopic('topic-waves')">
+          <span class="gc-icon">🌊</span>
+          <div class="gc-title">Ocean Waves · 海洋波浪</div>
+          <div class="gc-sub">二八原则学波浪核心 · Pareto 80/20 wave guide</div>
         </a>
         <a class="guide-card" href="#topic-textbook" onclick="scrollToTopic('topic-textbook')">
           <span class="gc-icon">📕</span>
@@ -1953,6 +2229,512 @@
         📈 <strong>Progression logic · 递进逻辑：</strong>从最简单的地转平衡出发，逐步加入摩擦、层结、涡度、位涡守恒、波动、风生环流、西边界流，最终到海气耦合的 ENSO——每一步都在前一步的基础上增加一层物理现实。
         <em>Starting from the simplest geostrophic balance, we progressively add friction, stratification, vorticity, PV conservation, waves, wind-driven circulation, western boundary currents, and finally air–sea coupled ENSO — each step adds one more layer of physical reality on top of the previous.</em>
       </p>
+    </div>
+
+    <!-- Ocean Waves (Pareto Principle) -->
+    <div class="sec-head topic-section" id="topic-waves" style="margin-top:48px;">
+      <h2>🌊 Ocean Waves · 海洋波浪（二八原则）</h2>
+      <p>Master the 20% that covers 80% of the global wave-mechanics curriculum · 掌握全球波浪课程 80% 的核心内容</p>
+    </div>
+
+    <div class="image-explainer">
+      <!-- Core Quick-Look: Five Pillars -->
+      <div style="text-align:center;margin-bottom:6px;">
+        <span style="display:inline-block;background:linear-gradient(135deg,var(--sun),#ff9a3c);color:#fff;padding:6px 18px;border-radius:20px;font-size:0.85rem;font-weight:700;letter-spacing:0.5px;box-shadow:0 2px 10px rgba(255,179,71,0.35);">
+          ⚡ 20% Core · 核心速览
+        </span>
+      </div>
+      <h3 style="text-align:center;margin:12px 0 4px;color:var(--ocean-deep);">The 20% That Gets You 80% · 五个核心抓手</h3>
+      <p style="text-align:center;color:var(--muted);font-size:0.88rem;margin:0 0 16px;">
+        <em>Master these five, and you have the backbone of any wave-mechanics course · 掌握这五点，就抓住了波浪力学课程的主干</em>
+      </p>
+
+      <div class="explain-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:8px;">
+        <div class="explain-item" style="text-align:center;">
+          <div class="ei-label" style="font-size:0.85rem;">① Wave Properties · 波浪状态量</div>
+          <div class="ei-text" style="text-align:left;">
+            <p style="margin:8px 0 0;font-size:0.85rem;">First identify <strong>wave height, period/frequency, wavelength/wavenumber, direction, and water depth</strong>. Classify as regular/irregular and deep/shallow before calculating anything.
+            <span class="cn">先认清波高、周期/频率、波长/波数、传播方向与水深；先判定规则/不规则、深/浅水，再进入计算。</span></p>
+          </div>
+        </div>
+        <div class="explain-item" style="text-align:center;">
+          <div class="ei-label" style="font-size:0.85rem;">② Linear Waves &amp; Dispersion · 线性波与色散</div>
+          <div class="ei-text" style="text-align:left;">
+            <p style="margin:8px 0 0;font-size:0.85rem;">Understand the small-amplitude / potential-flow assumptions, boundary conditions, and the <strong>dispersion relation</strong> that links frequency, wavenumber, and depth.
+            <span class="cn">理解小振幅/势流假设、边界条件及色散关系——它把频率、波数与水深联系起来。</span></p>
+          </div>
+        </div>
+        <div class="explain-item" style="text-align:center;">
+          <div class="ei-label" style="font-size:0.85rem;">③ Depth &amp; Propagation · 深浅水与传播</div>
+          <div class="ei-text" style="text-align:left;">
+            <p style="margin:8px 0 0;font-size:0.85rem;">Distinguish <strong>deep, intermediate, and shallow water</strong>. Know <strong>phase speed vs. group speed</strong>, and connect them to particle motion, pressure, and wave energy.
+            <span class="cn">区分深水、过渡水深和浅水，分清相速与群速，并联系粒子运动、压力和波能。</span></p>
+          </div>
+        </div>
+        <div class="explain-item" style="text-align:center;">
+          <div class="ei-label" style="font-size:0.85rem;">④ Nearshore Processes · 近岸四过程</div>
+          <div class="ei-text" style="text-align:left;">
+            <p style="margin:8px 0 0;font-size:0.85rem;"><strong>Shoaling, refraction, diffraction, and breaking</strong> — the four key transformations as waves approach the coast. The bridge from offshore theory to coastal engineering.
+            <span class="cn">浅化、折射、绕射、破碎——是从外海波理论走向海岸过程的关键。</span></p>
+          </div>
+        </div>
+        <div class="explain-item" style="text-align:center;grid-column:1/-1;">
+          <div class="ei-label" style="font-size:0.85rem;">⑤ Statistical Description · 统计表达</div>
+          <div class="ei-text" style="text-align:left;">
+            <p style="margin:8px 0 0;font-size:0.85rem;">Real seas are irregular — move from time-domain wave trains to <strong>frequency-domain wave spectra</strong>. Understand how the regular-wave model relates to statistical descriptions of real sea states.
+            <span class="cn">真实海况不规则——从时域波列转到频域波谱，理解规则波模型与不规则海况统计描述的关系。</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Knowledge Chain Flow -->
+      <div style="margin:20px 0 8px;">
+        <h4 style="margin:0 0 10px;text-align:center;color:var(--ocean-deep);">🔗 The Knowledge Chain · 把它们连成一条链</h4>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;font-size:0.78rem;">
+          <span class="chain-node">状态量与水深<br><small>Properties &amp; depth</small></span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">线性波/色散<br><small>Linear / dispersion</small></span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">相速·群速·深浅水<br><small>c, c<sub>g</sub>, depth</small></span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">浅化·折射·绕射·破碎<br><small>Nearshore processes</small></span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">波谱/不规则海况<br><small>Spectra / irregular</small></span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">预测与工程<br><small>Prediction / engineering</small></span>
+        </div>
+      </div>
+
+      <!-- What to defer -->
+      <div class="eof-hint" style="margin-top:14px;background:#fff7e6;border-color:var(--sun);">
+        ⏸️ <strong>What can wait · 这一步可以暂缓：</strong>高阶非线性、孤立波、船波、复变函数法、波浪-结构耦合、极值理论和数值模型属于后续分支；先掌握线性理论及谱分析基础，再按研究或工程方向补入。
+        <em>Advanced nonlinear theory, solitary waves, ship waves, complex-variable methods, wave–structure interaction, extreme-value theory, and numerical models are later branches. Master linear theory and spectral basics first, then add topics by research/engineering need.</em>
+      </div>
+
+      <!-- Wave Types Table (全景图) -->
+      <h3 style="margin:28px 0 4px;color:var(--ocean-deep);text-align:center;">🗂️ Panoramic View: Ocean &amp; Atmospheric Waves · 全景图：海洋与大气主要波动</h3>
+      <p style="text-align:center;color:var(--muted);font-size:0.88rem;margin:0 0 14px;">
+        <em>Quick comparison of all major wave types — restoring force, dispersion, and energy scale · 所有主要波型的快速对比——恢复力、频散关系与能量水平</em>
+      </p>
+
+      <div class="wave-table-wrap">
+        <table class="wave-table" border="0" cellpadding="0" cellspacing="0">
+          <caption style="font-weight:bold;font-size:0.95rem;margin-bottom:10px;color:var(--ocean-deep);">
+            海洋与大气主要波动类型及特征汇总（含频散关系）
+          </caption>
+          <thead>
+            <tr style="background:var(--ocean-deep);color:#fff;">
+              <th>波类型 Wave Type</th>
+              <th>所属圈层 Domain</th>
+              <th>恢复力 Restoring Force</th>
+              <th>频散关系 Dispersion Relation</th>
+              <th>传输特性 Propagation</th>
+              <th>能量水平 Energy</th>
+              <th>质量输运 Mass Transport</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="wave-sec-head"><td colspan="7">▌ 海洋波动 Ocean Waves</td></tr>
+            <tr>
+              <td><strong>毛细波</strong><br><small>Capillary waves</small></td>
+              <td>海洋（海气界面）</td>
+              <td>液体表面张力</td>
+              <td>ω² = (T/ρ)k³</td>
+              <td>毫米-厘米级短波，相速度随波长减小而增大</td>
+              <td>低</td>
+              <td>极弱</td>
+            </tr>
+            <tr>
+              <td><strong>风浪</strong><br><small>Wind-generated gravity waves</small></td>
+              <td>海洋（海气界面）</td>
+              <td>重力</td>
+              <td>深水：ω² = gk<br>浅水：ω = k√(gh)</td>
+              <td>局地风场驱动，群速度慢于相速度</td>
+              <td>中-高</td>
+              <td>中等（斯托克斯漂移）</td>
+            </tr>
+            <tr>
+              <td><strong>涌浪</strong><br><small>Swell</small></td>
+              <td>海洋（海气界面）</td>
+              <td>重力</td>
+              <td>深水：ω² = gk</td>
+              <td>脱离风区自由传播，长波衰减慢，可跨洋数千公里</td>
+              <td>中-高</td>
+              <td>较弱</td>
+            </tr>
+            <tr>
+              <td><strong>海洋内重力波</strong><br><small>Internal gravity waves</small></td>
+              <td>海洋内部</td>
+              <td>约化重力（浮力）</td>
+              <td>ω = N·cosθ</td>
+              <td>沿密度跃层传播，相速度与群速度垂直分量反向</td>
+              <td>中-高</td>
+              <td>较强（垂向混合）</td>
+            </tr>
+            <tr>
+              <td><strong>潮汐波</strong><br><small>Tidal waves</small></td>
+              <td>海洋（全球）</td>
+              <td>天体引潮力 + 重力</td>
+              <td>ω = k√(gh)（浅水波，非频散）</td>
+              <td>超长周期长波，沿陆架与边界传播，全球共振</td>
+              <td>高</td>
+              <td>强（潮流）</td>
+            </tr>
+            <tr>
+              <td><strong>海啸波</strong><br><small>Tsunami</small></td>
+              <td>海洋（全水深）</td>
+              <td>重力</td>
+              <td>ω = k√(gh)（非频散）</td>
+              <td>超长波长，深海传播 700-900 km/h，能量衰减极微</td>
+              <td>极高</td>
+              <td>极强（近岸涌升）</td>
+            </tr>
+            <tr>
+              <td><strong>海洋开尔文波</strong><br><small>Ocean Kelvin waves</small></td>
+              <td>海洋（沿岸/赤道）</td>
+              <td>重力 + 科里奥利力</td>
+              <td>ω = k√(gH)（沿岸捕获，非频散）</td>
+              <td>沿岸/赤道捕获，能量沿边界集中</td>
+              <td>中-高</td>
+              <td>较强</td>
+            </tr>
+            <tr>
+              <td><strong>海洋罗斯贝波</strong><br><small>Ocean Rossby waves</small></td>
+              <td>海洋（大尺度）</td>
+              <td>科氏力纬度梯度（β效应）</td>
+              <td>ω = −βk / (k² + l² + f₀²/(gH))</td>
+              <td>大尺度西向传播，相速度极慢（每天数公里）</td>
+              <td>低-中</td>
+              <td>弱</td>
+            </tr>
+            <tr>
+              <td><strong>海洋惯性波</strong><br><small>Inertial oscillations</small></td>
+              <td>海洋（上层）</td>
+              <td>科里奥利力</td>
+              <td>ω ≈ f</td>
+              <td>近圆周水平振荡，局地性强，风场脉冲激发</td>
+              <td>低-中</td>
+              <td>弱</td>
+            </tr>
+            <tr class="wave-sec-head"><td colspan="7">▌ 大气波动 Atmospheric Waves</td></tr>
+            <tr>
+              <td><strong>大气声波</strong><br><small>Acoustic waves</small></td>
+              <td>大气</td>
+              <td>压力梯度力</td>
+              <td>ω² = cₛ²k²（非频散纵波）</td>
+              <td>声速约 340 m/s，能量快速衰减</td>
+              <td>低</td>
+              <td>极弱</td>
+            </tr>
+            <tr>
+              <td><strong>大气内重力波</strong><br><small>Atmospheric internal gravity waves</small></td>
+              <td>大气</td>
+              <td>重力 + 浮力</td>
+              <td>ω = N·cosθ</td>
+              <td>可水平+垂直传播，能量可上传至平流层</td>
+              <td>中</td>
+              <td>中等</td>
+            </tr>
+            <tr>
+              <td><strong>大气惯性重力波</strong><br><small>Inertia–gravity waves</small></td>
+              <td>大气</td>
+              <td>重力 + 科里奥利力</td>
+              <td>ω² = f² + N²k²/m²</td>
+              <td>旋转大气中传播，中纬度广泛存在</td>
+              <td>中</td>
+              <td>中等</td>
+            </tr>
+            <tr>
+              <td><strong>大气罗斯贝波</strong><br><small>Atmospheric Rossby waves</small></td>
+              <td>大气（中纬度）</td>
+              <td>β 效应</td>
+              <td>ω = −βk / (k² + l² + f₀²/(gH))</td>
+              <td>大尺度缓慢东移，波长数千公里</td>
+              <td>高</td>
+              <td>强</td>
+            </tr>
+            <tr>
+              <td><strong>大气赤道开尔文波</strong><br><small>Equatorial Kelvin waves</small></td>
+              <td>大气（赤道）</td>
+              <td>重力 + 科里奥利力</td>
+              <td>ω = k√(gH)（东传，非频散）</td>
+              <td>赤道捕获，东向传播，周期数天至数十天</td>
+              <td>中-高</td>
+              <td>较强</td>
+            </tr>
+            <tr>
+              <td><strong>兰姆波</strong><br><small>Lamb waves</small></td>
+              <td>大气（低层）</td>
+              <td>重力 + 压力梯度力</td>
+              <td>ω² = gk + cₛ²k²（重力-声波耦合）</td>
+              <td>水平传播，衰减小，可远距离传输</td>
+              <td>中</td>
+              <td>中等</td>
+            </tr>
+            <tr>
+              <td><strong>大气潮汐波</strong><br><small>Atmospheric tides</small></td>
+              <td>大气（全球）</td>
+              <td>太阳辐射加热（主）+ 引潮力（次）</td>
+              <td>固定天文周期</td>
+              <td>全球尺度周期波动，具有固定日/半日周期</td>
+              <td>中</td>
+              <td>中等</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="wave-table-note">
+          <strong>符号说明 · Notation：</strong>
+          ω 角频率 · k 纬向波数 · l 经向波数 · m 垂直波数 · g 重力加速度 · h 水深 · H 等效深度 · T 表面张力 · ρ 密度 · f/f₀ 科氏参数 · β 科氏力梯度 · N 布伦特-维萨拉频率 · cₛ 声速 · θ 波矢与水平夹角
+        </div>
+      </div>
+
+      <!-- Detailed Sections (Accordion) -->
+      <h3 style="margin:28px 0 4px;color:var(--ocean-deep);text-align:center;">📖 The 80% Common Trunk · 80% 共同主干</h3>
+      <p style="text-align:center;color:var(--muted);font-size:0.88rem;margin:0 0 14px;">
+        <em>Click a section to expand · 点击展开各节</em>
+      </p>
+
+      <div class="wave-accordion">
+        <div class="wave-acc-item">
+          <button class="wave-acc-header" onclick="toggleWaveAcc(this)">
+            <span class="wa-icon">📐</span>
+            <span><strong>1. Wave Description &amp; Basic Concepts · 波浪描述与基础概念</strong></span>
+            <span class="wa-arrow">▸</span>
+          </button>
+          <div class="wave-acc-body">
+            <div class="wave-acc-content">
+              <p><strong>What you learn · 学习内容：</strong>Learn to read a wave — wave height, period, wavelength, frequency, wavenumber, direction, water depth, and surface elevation. Classify waves as regular/irregular, deep/shallow water. This is the common language for all subsequent equations and engineering calculations.</p>
+              <p class="cn"><strong>核心要点：</strong>先能读懂波形：波高、周期、波长、频率、波数、传播方向、水深与波面位置；厘清规则波/不规则波、深水/浅水等分类，并明确研究对象是海面重力波。它是后续方程与工程计算的共同语言。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wave-acc-item">
+          <button class="wave-acc-header" onclick="toggleWaveAcc(this)">
+            <span class="wa-icon">📝</span>
+            <span><strong>2. Governing Equations &amp; Linear Wave Theory · 控制方程与线性波理论</strong></span>
+            <span class="wa-arrow">▸</span>
+          </button>
+          <div class="wave-acc-body">
+            <div class="wave-acc-content">
+              <p><strong>What you learn · 学习内容：</strong>Understand the framework of mass and momentum conservation, free-surface and seabed boundary conditions, and the potential-flow assumption common in water-wave mechanics. Master the derivation logic and applicability conditions of small-amplitude (Airy) waves. The key at the introductory level is not memorizing formulas but knowing what questions each simplifying assumption allows you to answer.</p>
+              <p class="cn"><strong>核心要点：</strong>理解质量与动量守恒的基本框架、自由表面和海底边界条件，以及水波力学中常见的势流/速度势假设；掌握小振幅（Airy）波的推导逻辑和适用条件。入门阶段的关键不是背公式，而是知道每个简化假设允许回答什么问题。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wave-acc-item">
+          <button class="wave-acc-header" onclick="toggleWaveAcc(this)">
+            <span class="wa-icon">📊</span>
+            <span><strong>3. Dispersion Relation &amp; Wave Kinematics/Dynamics · 色散关系与波浪运动学</strong></span>
+            <span class="wa-arrow">▸</span>
+          </button>
+          <div class="wave-acc-body">
+            <div class="wave-acc-content">
+              <p><strong>What you learn · 学习内容：</strong>Master the dispersion relation between angular frequency, wavenumber, and water depth — and from it distinguish phase speed from group speed. Explain particle orbits, velocity/acceleration, pressure variations, and wave energy. Deep, intermediate, and shallow water change the wave structure — this is the core link between theory and sea-state judgment.</p>
+              <p class="cn"><strong>核心要点：</strong>掌握角频率、波数、水深之间的色散关系，并由此区分相速与群速；能解释粒子轨迹、速度/加速度、压力变化及波能。深水、过渡水深和浅水条件会改变波浪运动结构，是连接理论与海况判断的核心。</p>
+              <div class="mini-eq">
+                <span class="hl">Deep water 深水：</span>ω² = gk &nbsp;&nbsp; c = √(g/k) &nbsp;&nbsp; c<sub>g</sub> = c/2<br>
+                <span class="hl">Shallow water 浅水：</span>ω = k√(gh) &nbsp;&nbsp; c = √(gh) &nbsp;&nbsp; c<sub>g</sub> = c (non-dispersive 非频散)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wave-acc-item">
+          <button class="wave-acc-header" onclick="toggleWaveAcc(this)">
+            <span class="wa-icon">🏖️</span>
+            <span><strong>4. Wave Propagation &amp; Nearshore Transformation · 波浪传播与近岸变形</strong></span>
+            <span class="wa-arrow">▸</span>
+          </button>
+          <div class="wave-acc-body">
+            <div class="wave-acc-content">
+              <p><strong>What you learn · 学习内容：</strong>Understand how waves change when they enter varying water depth or interact with bathymetry: <strong>shoaling, refraction, diffraction, and breaking</strong>. This module connects offshore linear-wave theory to coastal engineering problems.</p>
+              <p class="cn"><strong>核心要点：</strong>理解波浪进入变化水深或受地形影响时的<strong>浅化（shoaling）、折射、绕射及破碎</strong>。该模块把外海规则波理论接到海岸工程问题上。</p>
+              <ul>
+                <li><strong>Shoaling · 浅化：</strong>波进入浅水，能量聚集，波高增大。</li>
+                <li><strong>Refraction · 折射：</strong>波峰线随水深变化而弯曲，趋向平行于等深线。</li>
+                <li><strong>Diffraction · 绕射：</strong>波绕过障碍物（如防波堤）传播到后方。</li>
+                <li><strong>Breaking · 破碎：</strong>波高超过极限，波浪破碎，能量耗散。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="wave-acc-item">
+          <button class="wave-acc-header" onclick="toggleWaveAcc(this)">
+            <span class="wa-icon">📈</span>
+            <span><strong>5. Irregular Waves &amp; Wave Spectra · 不规则波与波谱</strong></span>
+            <span class="wa-arrow">▸</span>
+          </button>
+          <div class="wave-acc-body">
+            <div class="wave-acc-content">
+              <p><strong>What you learn · 学习内容：</strong>Real seas are usually not a single sine wave — recognize wave groups and irregularity from time series, then move to the frequency domain to understand wave spectra and their statistical description of sea states.</p>
+              <p class="cn"><strong>核心要点：</strong>真实海况通常不是单一正弦波，因此要从时间序列认识波群与不规则性，并转到频域理解波谱及其对海况的统计描述。</p>
+              <p><strong>Key statistical parameters · 关键统计量：</strong>significant wave height H<sub>s</sub> (H<sub>1/3</sub>), peak period T<sub>p</sub>, mean period, wave spectrum S(f), zero-crossing analysis.</p>
+              <p class="cn">有义波高 H<sub>s</sub>、峰周期 T<sub>p</sub>、平均周期、波谱 S(f)、过零分析等。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wave-acc-item">
+          <button class="wave-acc-header" onclick="toggleWaveAcc(this)">
+            <span class="wa-icon">🔧</span>
+            <span><strong>6. From Theory to Prediction &amp; Engineering · 理论到预测与工程应用</strong></span>
+            <span class="wa-arrow">▸</span>
+          </button>
+          <div class="wave-acc-body">
+            <div class="wave-acc-content">
+              <p><strong>What you learn · 学习内容：</strong>Apply wave properties, shallow-water transformation, and irregular-wave statistics to sea-state estimation and engineering judgment — including wave forecasting, hindcasting, and the use of theoretical wave spectra.</p>
+              <p class="cn"><strong>核心要点：</strong>将波浪性质、浅水变形与不规则波统计用于海况估计和工程判断，包括波浪预报、后报与理论波谱的应用。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Path (Step Bar) -->
+      <h3 style="margin:28px 0 4px;color:var(--ocean-deep);text-align:center;">🛤️ Recommended Learning Path · 建议学习顺序</h3>
+      <p style="text-align:center;color:var(--muted);font-size:0.88rem;margin:0 0 14px;">
+        <em>Six stages from prerequisites to advanced topics · 从先修到专题的六个阶段</em>
+      </p>
+
+      <div class="learn-path">
+        <div class="lp-step">
+          <div class="lp-num">A</div>
+          <div class="lp-content">
+            <strong>Fluid mechanics &amp; math tools</strong>
+            <span class="cn">流体力学与数学工具：守恒方程、势流基础、微分方程、边界条件</span>
+          </div>
+        </div>
+        <div class="lp-line"></div>
+        <div class="lp-step">
+          <div class="lp-num">B</div>
+          <div class="lp-content">
+            <strong>Wave description</strong>
+            <span class="cn">建立波浪描述：波高、周期、波长、频率、波数、水深、波向</span>
+          </div>
+        </div>
+        <div class="lp-line"></div>
+        <div class="lp-step">
+          <div class="lp-num">C</div>
+          <div class="lp-content">
+            <strong>Linear regular waves</strong>
+            <span class="cn">推导线性规则波：边界条件、速度势、色散关系、相速/群速、粒子运动、压力与能量</span>
+          </div>
+        </div>
+        <div class="lp-line"></div>
+        <div class="lp-step">
+          <div class="lp-num">D</div>
+          <div class="lp-content">
+            <strong>Depth effects &amp; nearshore</strong>
+            <span class="cn">掌握水深效应与近岸过程：深水/浅水分区、浅化、折射、绕射、破碎</span>
+          </div>
+        </div>
+        <div class="lp-line"></div>
+        <div class="lp-step">
+          <div class="lp-num">E</div>
+          <div class="lp-content">
+            <strong>Real sea states</strong>
+            <span class="cn">从单一规则波转向真实海况：时域波列、随机波、频域波谱及预测/回算思路</span>
+          </div>
+        </div>
+        <div class="lp-line"></div>
+        <div class="lp-step">
+          <div class="lp-num">F</div>
+          <div class="lp-content">
+            <strong>Advanced topics</strong>
+            <span class="cn">按目标选择专题：非线性波、孤立波、船波、极端波统计、数值模型或结构响应</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="eof-hint" style="margin-top:14px;">
+        🧪 <strong>One-sentence test · 一句话检验是否抓住主干：</strong>你应能从波浪状态量出发，解释线性波如何传播、为什么群速与相速不同、波浪如何受水深/地形改变，以及怎样用统计或谱方法描述真实的不规则海况。
+        <em>You should be able to start from wave properties, explain how linear waves propagate, why group and phase speed differ, how waves change with depth/topography, and how to describe real irregular seas with statistics or spectra.</em>
+      </p>
+
+      <!-- Quick Self-Test -->
+      <h3 style="margin:28px 0 4px;color:var(--ocean-deep);text-align:center;">⚡ Quick Self-Test · 快速自测</h3>
+      <p style="text-align:center;color:var(--muted);font-size:0.88rem;margin:0 0 14px;">
+        <em>Four questions — no derivations needed, just understanding · 四问即抓住主干，无需展开推导</em>
+      </p>
+
+      <div class="wave-test-grid">
+        <div class="wave-test-item">
+          <button class="wave-test-q" onclick="toggleWaveTest(this)">
+            <span class="wt-num">Q1</span>
+            <span>Which quantities describe a wave? · 哪些量描述波？</span>
+            <span class="wt-arrow">▾</span>
+          </button>
+          <div class="wave-test-a">
+            Wave height H, period T (or frequency f), wavelength L (or wavenumber k), propagation direction, and water depth h.
+            <span class="cn">波高 H、周期 T（或频率 f）、波长 L（或波数 k）、传播方向和水深 h。</span>
+          </div>
+        </div>
+        <div class="wave-test-item">
+          <button class="wave-test-q" onclick="toggleWaveTest(this)">
+            <span class="wt-num">Q2</span>
+            <span>What does the dispersion relation connect? · 色散关系连接哪些量？</span>
+            <span class="wt-arrow">▾</span>
+          </button>
+          <div class="wave-test-a">
+            Angular frequency ω, wavenumber k, and water depth h (or equivalent depth H). It is the central equation that determines how the wave moves.
+            <span class="cn">角频率 ω、波数 k 和水深 h（或等效深度 H）。它是决定波浪如何运动的核心方程。</span>
+          </div>
+        </div>
+        <div class="wave-test-item">
+          <button class="wave-test-q" onclick="toggleWaveTest(this)">
+            <span class="wt-num">Q3</span>
+            <span>Why distinguish phase speed / group speed &amp; deep/shallow water? · 为什么区分相速/群速和深浅水？</span>
+            <span class="wt-arrow">▾</span>
+          </button>
+          <div class="wave-test-a">
+            Phase speed is how crests move; group speed is how <em>energy</em> (and information) travels. Water depth fundamentally changes the dispersion relation, particle orbits, and energy structure.
+            <span class="cn">相速度是波峰移动的速度；群速度是<strong>能量</strong>（和信息）传播的速度。水深从根本上改变频散关系、粒子轨道和能量结构。</span>
+          </div>
+        </div>
+        <div class="wave-test-item">
+          <button class="wave-test-q" onclick="toggleWaveTest(this)">
+            <span class="wt-num">Q4</span>
+            <span>Why use wave spectra for real irregular seas? · 真实不规则海况为什么要用波谱？</span>
+            <span class="wt-arrow">▾</span>
+          </button>
+          <div class="wave-test-a">
+            Because real seas are a superposition of many wave components with different frequencies and directions. A spectrum describes how wave energy is distributed across frequencies (and directions), giving a statistical summary that is far more useful than a single "wave height."
+            <span class="cn">因为真实海况是许多不同频率、不同方向波成分的叠加。波谱描述了波能量在不同频率（和方向）上的分布，给出比单一"波高"更有用的统计概览。</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resources -->
+      <h3 style="margin:28px 0 4px;color:var(--ocean-deep);text-align:center;">📚 Recommended Resources · 推荐资源</h3>
+      <p style="text-align:center;color:var(--muted);font-size:0.88rem;margin:0 0 14px;">
+        <em>Free lecture notes, textbooks, and course catalogs for further study · 免费讲义、教材与课程目录</em>
+      </p>
+
+      <div class="explain-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+        <div class="explain-item">
+          <div class="ei-label">🌟 Top Pick · 首选</div>
+          <div class="ei-text">
+            <p style="margin:6px 0 2px;"><strong>Aalborg University Lecture Notes</strong></p>
+            <p style="margin:0;font-size:0.82rem;color:var(--muted);">Andersen &amp; Frigaard (2011). "Lecture Notes for Water Wave Mechanics." 116 pages. Covers basics, nearshore, random waves.</p>
+          </div>
+        </div>
+        <div class="explain-item">
+          <div class="ei-label" style="background:#2e7d32;">📖 Textbook · 教材</div>
+          <div class="ei-text">
+            <p style="margin:6px 0 2px;"><strong>Holthuijsen (2007)</strong></p>
+            <p style="margin:0;font-size:0.82rem;color:var(--muted);">"Waves in Oceanic and Coastal Waters," Cambridge University Press. 404 pages. Comprehensive textbook.</p>
+          </div>
+        </div>
+        <div class="explain-item">
+          <div class="ei-label" style="background:#ff7e67;">🎓 Advanced · 进阶</div>
+          <div class="ei-text">
+            <p style="margin:6px 0 2px;"><strong>Generation &amp; Analysis of Random Waves</strong></p>
+            <p style="margin:0;font-size:0.82rem;color:var(--muted);">Liu &amp; Frigaard (1999), Aalborg University. Graduate-level supplement on random waves.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Textbook Link -->
@@ -2331,7 +3113,7 @@
   </section>
 
   <!-- ============== Classroom & Exit Ticket Panel ============== -->
-  <section class="panel active" id="panel-ticket">
+  <section class="panel" id="panel-ticket">
     <div class="sec-head">
       <h2>🎫 Classroom &amp; Exit Tickets · 课堂与出门票</h2>
       <p>Seven lectures of notes, reflections, and exit-ticket records · 七次课的课堂笔记、心得与出门票记录</p>
@@ -2344,7 +3126,7 @@
         <h3 class="lec-title">Course Introduction &amp; Fun Questions · 课程导论与趣味问题</h3>
       </div>
       <div class="lec-body">
-        <img class="image-main" src="lecture01.jpg" alt="Lecture 1 · 第一节课" />
+        <img class="image-main" src="lecture01.jpg" alt="Lecture 1 · 第一节课">
         <div class="lec-text">
           <p><strong>Content · 课程内容：</strong>Starting from many interesting questions (e.g., do penguins live at the South Pole or the equator? Why would penguins go to warmer waters?), the lecture introduced physical oceanography concepts such as <strong>upwelling</strong>. We also learned useful tools like <strong>Mita Search</strong> and <strong>Earth NullSchool</strong>, and gained a clear understanding of what this course is about and the expected level of participation.</p>
           <p class="cn">从许多有趣的问题切入（比如企鹅生活在南极还是赤道、企鹅为什么会去暖和的海域），讲解了物理海洋学的知识（比如<strong>上升流</strong>）；学习了有用的工具（比如<strong>秘塔搜索</strong>、<strong>earth nullschool</strong>）；了解了本课程要做什么，需要参与的程度。</p>
@@ -2362,7 +3144,7 @@
         <h3 class="lec-title">Physical Properties &amp; Typical Distribution · 物理性质与典型分布</h3>
       </div>
       <div class="lec-body">
-        <img class="image-main" src="lecture02.png" alt="Descriptive Physical Oceanography Assignment 1 · 描述性物理海洋作业1" />
+        <img class="image-main" src="lecture02.png" alt="Descriptive Physical Oceanography Assignment 1 · 描述性物理海洋作业1">
         <div class="lec-text">
           <p><strong>Content · 课程内容：</strong>This lecture covered concepts such as <strong>potential temperature</strong>, <strong>mixing cabbeling</strong>, and <strong>salt fingers</strong>. We learned about the CTD (Conductivity-Temperature-Depth) profiler and practiced reading oceanographic sections and solving problems.</p>
           <p class="cn">本节课学习了<strong>位温</strong>、<strong>混合增密</strong>、<strong>盐指</strong>等概念，了解了<strong>温盐深（CTD）</strong>观测，进行了读图与做题。</p>
@@ -2446,8 +3228,8 @@
       </div>
       <div class="lec-body">
         <div class="lec-img-row">
-          <img class="image-main" src="lecture07a.jpg" alt="Lecture 7 diagram A · 第七节课图A" />
-          <img class="image-main" src="lecture07b.jpg" alt="Lecture 7 diagram B · 第七节课图B" />
+          <img class="image-main" src="lecture07a.jpg" alt="Lecture 7 diagram A · 第七节课图A">
+          <img class="image-main" src="lecture07b.jpg" alt="Lecture 7 diagram B · 第七节课图B">
         </div>
         <div class="lec-text">
           <p><strong>Content · 课程内容：</strong>In this lecture we built a <strong>knowledge map of dynamical oceanography</strong>, revisited <strong>potential vorticity conservation</strong> from a mathematical perspective, and solved example problems like the ones shown above. We also learned about various types of <strong>long waves</strong> and practiced PV conservation using Earth NullSchool.</p>
@@ -2881,6 +3663,307 @@ const qaData = [
           <li>f 向赤道方向减小，因此水团向<strong>赤道</strong>方向流动——这就是斯维尔德鲁普内区流。</li>
           <li>环流通过狭窄而快速的<strong>西边界流</strong>（如黑潮、湾流）向极地方向回流，从而闭合整个副热带环流圈。</li>
         </ul>`
+  },
+  // ==================== Wave Reflection Questions (思考题) ====================
+  {
+    q: "Under what conditions can the Coriolis force be neglected for gravity waves?",
+    qcn: "在什么条件下重力波可以不考虑科氏力的作用？",
+    a: `<p>The Coriolis effect can be neglected when the wave's <strong>period is much shorter</strong> than the local inertial period (i.e., T<sub>wave</sub> &lt;&lt; 2π/f), or equivalently, when the <strong>wave frequency ω is much larger than f</strong> (ω &gt;&gt; f).</p>
+        <ul>
+          <li><strong>Short-period surface gravity waves</strong> (wind waves, swell): typical periods of seconds to ~20 s — far shorter than inertial periods of hours to days.</li>
+          <li><strong>Small spatial scale</strong> relative to the Rossby radius of deformation.</li>
+          <li><strong>Rule of thumb:</strong> if the wave period &lt; 1/10 of the local inertial period, the Coriolis deflection during one wave cycle is negligible.</li>
+        </ul>
+        <p>Conversely, for <strong>long waves</strong> (tsunamis, tides, Rossby waves, Kelvin waves) with periods of hours to days/years, the Coriolis force becomes important and cannot be ignored.</p>`,
+    acn: `<p>当波的<strong>周期远小于</strong>当地惯性周期（T<sub>波</sub> &lt;&lt; 2π/f），或者说<strong>波频率 ω 远大于 f</strong>（ω &gt;&gt; f）时，科氏力可以忽略。</p>
+        <ul>
+          <li><strong>短周期表面重力波</strong>（风浪、涌浪）：周期几秒到约 20 秒，远小于数小时到数天的惯性周期。</li>
+          <li>空间尺度<strong>远小于</strong>罗斯贝变形半径。</li>
+          <li><strong>经验法则：</strong>如果波周期小于当地惯性周期的 1/10，则一个波周期内的科氏偏转可以忽略不计。</li>
+        </ul>
+        <p>反之，对于<strong>长波</strong>（海啸、潮汐、罗斯贝波、开尔文波等），周期为数小时到数天/年，科氏力变得重要，不能忽略。</p>`
+  },
+  {
+    q: "Are gravity waves, inertia–gravity waves, and Rossby waves dispersive? Why?",
+    qcn: "重力波、惯性重力波和罗斯贝波是否弥散？为什么？",
+    a: `<p><strong>① Surface gravity waves — dispersive</strong></p>
+        <ul>
+          <li>Dispersion relation (deep water): ω² = gk</li>
+          <li>Phase speed c = ω/k = √(g/k), which <strong>depends on k</strong> — different wavelengths travel at different speeds.</li>
+          <li>Group speed c<sub>g</sub> = dω/dk = c/2 — energy propagates at half the phase speed.</li>
+        </ul>
+        <p><strong>② Inertia–gravity waves — dispersive</strong></p>
+        <ul>
+          <li>Dispersion relation: ω² = f² + N²k²/m² (or ω² = f² + gHk² for shallow water with rotation)</li>
+          <li>Phase speed depends on wavenumber and the angle of propagation relative to the vertical — clearly dispersive.</li>
+        </ul>
+        <p><strong>③ Rossby waves — dispersive</strong></p>
+        <ul>
+          <li>Dispersion relation: ω = −βk / (k² + l² + f₀²/(gH))</li>
+          <li>Phase speed c = ω/k = −β / (k² + l² + f₀²/(gH)), which varies with wavenumber.</li>
+          <li>Longer waves propagate faster (westward), shorter waves slower — classic dispersion.</li>
+        </ul>
+        <p><strong>Exception:</strong> shallow-water gravity waves (ω = k√(gh)) are <em>non-dispersive</em> — all wavelengths travel at the same speed c = √(gh).</p>`,
+    acn: `<p><strong>① 表面重力波 — 频散（弥散）</strong></p>
+        <ul>
+          <li>频散关系（深水）：ω² = gk</li>
+          <li>相速度 c = ω/k = √(g/k)，<strong>依赖于波数 k</strong>——不同波长以不同速度传播。</li>
+          <li>群速度 c<sub>g</sub> = dω/dk = c/2 —— 能量以相速度的一半传播。</li>
+        </ul>
+        <p><strong>② 惯性重力波 — 频散（弥散）</strong></p>
+        <ul>
+          <li>频散关系：ω² = f² + N²k²/m²（或浅水旋转情况下 ω² = f² + gHk²）</li>
+          <li>相速度随波数和传播方向（与垂直夹角）变化——明显频散。</li>
+        </ul>
+        <p><strong>③ 罗斯贝波 — 频散（弥散）</strong></p>
+        <ul>
+          <li>频散关系：ω = −βk / (k² + l² + f₀²/(gH))</li>
+          <li>相速度 c = ω/k = −β / (k² + l² + f₀²/(gH))，随波数变化。</li>
+          <li>长波传播（西传）更快，短波更慢——典型频散。</li>
+        </ul>
+        <p><strong>例外：</strong>浅水波重力波（ω = k√(gh)）是<em>非频散</em>的——所有波长以相同速度 c = √(gh) 传播。</p>`
+  },
+  {
+    q: "What causes equatorial waveguides, and which wave types can exist there?",
+    qcn: "赤道波系形成波导的原因是什么？可以产生哪几种波动？",
+    a: `<p><strong>Cause of the equatorial waveguide:</strong></p>
+        <ul>
+          <li>The Coriolis parameter f = 2Ω·sinφ is <strong>zero at the equator</strong> and increases with latitude on both sides.</li>
+          <li>This creates a <strong>trapping mechanism</strong>: waves that try to propagate poleward encounter increasing f, which bends their energy back toward the equator (analogous to total internal reflection).</li>
+          <li>The effective waveguide width is set by the <strong>equatorial Rossby radius of deformation</strong>, R<sub>eq</sub> = √(gH) / β (typically ~200–300 km for the ocean thermocline).</li>
+        </ul>
+        <p><strong>Wave types in the equatorial waveguide:</strong></p>
+        <ol>
+          <li><strong>Equatorial Kelvin waves</strong> — eastward-propagating, trapped to the equator, non-dispersive, symmetric about the equator.</li>
+          <li><strong>Equatorial Rossby waves</strong> — westward-propagating, trapped, dispersive, symmetric.</li>
+          <li><strong>Mixed Rossby–gravity waves</strong> (Yanai waves) — eastward group velocity, unusual dispersion curve.</li>
+          <li><strong>Equatorial inertia–gravity waves</strong> (Poincaré waves) — east and west propagating, higher frequency.</li>
+        </ol>`,
+    acn: `<p><strong>赤道波导形成原因：</strong></p>
+        <ul>
+          <li>科里奥利参数 f = 2Ω·sinφ 在<strong>赤道处为零</strong>，向两侧随纬度增大。</li>
+          <li>这产生了<strong>捕获机制</strong>：试图向极地传播的波遇到不断增大的 f，其能量被折回赤道（类似于全内反射）。</li>
+          <li>波导宽度由<strong>赤道罗斯贝变形半径</strong> R<sub>eq</sub> = √(gH) / β 决定（海洋温跃层典型值约 200–300 km）。</li>
+        </ul>
+        <p><strong>赤道波系中的波动类型：</strong></p>
+        <ol>
+          <li><strong>赤道开尔文波</strong>——东向传播，被赤道捕获，非频散，关于赤道对称。</li>
+          <li><strong>赤道罗斯贝波</strong>——西向传播，被捕获，频散，对称。</li>
+          <li><strong>混合罗斯贝-重力波</strong>（Yanai 波）——群速度东向，频散曲线特殊。</li>
+          <li><strong>赤道惯性重力波</strong>（庞加莱波）——可东向和西向传播，频率较高。</li>
+        </ol>`
+  },
+  {
+    q: "What are the types of continental-shelf long waves, and what are their propagation characteristics?",
+    qcn: "陆架长波有哪几种，其传播有什么特点？",
+    a: `<p>Continental-shelf long waves are low-frequency, long-wavelength motions trapped along the coast by the combination of bathymetry and the Coriolis effect. The main types:</p>
+        <ol>
+          <li><strong>Continental shelf waves (barotropic)</strong>
+            <ul>
+              <li><strong>Restoring mechanism:</strong> topographic β-effect — the change of f/h with cross-shelf distance.</li>
+              <li><strong>Propagation:</strong> with the coast on the <strong>right</strong> in the Northern Hemisphere (poleward along eastern boundaries, equatorward along western boundaries).</li>
+              <li>Non-dispersive or weakly dispersive; periods of days to weeks; energy trapped on the shelf.</li>
+            </ul>
+          </li>
+          <li><strong>Coastal Kelvin waves</strong>
+            <ul>
+              <li><strong>Restoring mechanism:</strong> gravity + Coriolis, trapped against a vertical wall coast.</li>
+              <li><strong>Propagation:</strong> with the coast on the <strong>right</strong> in the NH; phase speed c = √(gH), non-dispersive alongshore.</li>
+              <li>Amplitude decays exponentially offshore (e-folding scale = Rossby radius).</li>
+            </ul>
+          </li>
+          <li><strong>Coastally trapped waves (general category)</strong>
+            <ul>
+              <li>Includes shelf waves, coastal Kelvin waves, and their continuous modes.</li>
+              <li>All share: energy propagates with the coast on the right (NH); amplitude maximum nearshore.</li>
+            </ul>
+          </li>
+        </ol>`,
+    acn: `<p>陆架长波是受地形与科氏力共同作用而被沿岸捕获的低频长波长运动。主要类型：</p>
+        <ol>
+          <li><strong>陆架波（正压）</strong>
+            <ul>
+              <li><strong>恢复机制：</strong>地形 β 效应——f/h 沿岸方向的变化。</li>
+              <li><strong>传播方向：</strong>北半球沿岸<strong>右侧为陆</strong>传播（东边界向极、西边界向赤道）。</li>
+              <li>非频散或弱频散；周期数天至数周；能量被限制在陆架上。</li>
+            </ul>
+          </li>
+          <li><strong>沿岸开尔文波</strong>
+            <ul>
+              <li><strong>恢复机制：</strong>重力 + 科氏力，被垂直岸壁捕获。</li>
+              <li><strong>传播方向：</strong>北半球沿岸<strong>右侧为陆</strong>传播；相速度 c = √(gH)，沿岸非频散。</li>
+              <li>振幅向外海指数衰减（e 折尺度 = 罗斯贝半径）。</li>
+            </ul>
+          </li>
+          <li><strong>沿岸捕获波（广义）</strong>
+            <ul>
+              <li>包括陆架波、沿岸开尔文波及其连续模态。</li>
+              <li>共性：能量沿右侧有岸的方向传播（北半球）；振幅近岸最大。</li>
+            </ul>
+          </li>
+        </ol>`
+  },
+  {
+    q: "What are the similarities and differences between seiche (standing wave in a bay) and progressive gravity waves?",
+    qcn: "海湾静振与重力波有什么异同？",
+    a: `<p><strong>Similarities:</strong></p>
+        <ul>
+          <li>Both are <strong>gravity-driven</strong> oscillations of the water surface.</li>
+          <li>Both satisfy the same governing equations (shallow-water or potential-flow equations) with appropriate boundary conditions.</li>
+          <li>Both involve the exchange between potential energy (surface elevation) and kinetic energy (fluid motion).</li>
+        </ul>
+        <p><strong>Differences:</strong></p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:8px 0;">
+          <thead><tr style="background:var(--foam);">
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Feature</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Progressive gravity wave</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Seiche (standing wave)</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Propagation</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Travels in a direction</td>
+                <td style="padding:6px;border:1px solid var(--line);">Stationary — nodes &amp; antinodes fixed in space</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Energy</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Energy propagates with group velocity</td>
+                <td style="padding:6px;border:1px solid var(--line);">Energy trapped in the basin; no net propagation</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Formation</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Wind, seismic disturbance, etc.</td>
+                <td style="padding:6px;border:1px solid var(--line);">Resonance of a closed/partially closed basin</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Period</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Determined by wavelength &amp; depth (dispersive)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Determined by basin geometry (natural modes)</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Particle motion</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Closed orbits (circles/ellipses)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Back-and-forth oscillation</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Connection:</strong> a standing wave (seiche) can be viewed as the superposition of two progressive waves of equal amplitude traveling in opposite directions.</p>`,
+    acn: `<p><strong>相同点：</strong></p>
+        <ul>
+          <li>都是<strong>重力驱动</strong>的水面振荡。</li>
+          <li>都满足相同的控制方程（浅水方程或势流方程）及相应边界条件。</li>
+          <li>都涉及势能（水面抬升）和动能（流体运动）之间的相互转换。</li>
+        </ul>
+        <p><strong>不同点：</strong></p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:8px 0;">
+          <thead><tr style="background:var(--foam);">
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">特征</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">前进重力波</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">静振（驻波）</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>传播</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">向某方向传播</td>
+                <td style="padding:6px;border:1px solid var(--line);">静止——波节、波腹位置固定</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>能量</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">能量以群速度传播</td>
+                <td style="padding:6px;border:1px solid var(--line);">能量被限制在海湾内，无净传播</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>形成</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">风、地震扰动等</td>
+                <td style="padding:6px;border:1px solid var(--line);">封闭/半封闭海盆的共振</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>周期</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">由波长和水深决定（频散）</td>
+                <td style="padding:6px;border:1px solid var(--line);">由海盆几何形状决定（固有模态）</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>质点运动</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">闭合轨道（圆/椭圆）</td>
+                <td style="padding:6px;border:1px solid var(--line);">往复振荡</td></tr>
+          </tbody>
+        </table>
+        <p><strong>联系：</strong>驻波（静振）可看作两列等幅反向传播的前进波叠加而成。</p>`
+  },
+  {
+    q: "What are the basic conditions for internal waves to occur in the ocean?",
+    qcn: "海洋内波发生的基本条件是什么？",
+    a: `<p>Internal waves occur within the density-stratified interior of the ocean. The basic conditions are:</p>
+        <ol>
+          <li><strong>Stable stratification</strong> — density increases with depth (dρ/dz &lt; 0 in the z-up convention). This provides the buoyancy restoring force.
+            <ul>
+              <li>Quantified by the <strong>Brunt–Väisälä frequency</strong>: N = √(−(g/ρ)·dρ/dz).</li>
+              <li>N must be real and positive — the fluid must be <strong>statically stable</strong>.</li>
+            </ul>
+          </li>
+          <li><strong>A disturbance / forcing</strong> that displaces fluid parcels from their equilibrium level. Common sources:
+            <ul>
+              <li>Flow over bottom topography (tide over a ridge, current over a sill).</li>
+              <li>Wind stress and inertial oscillations in the mixed layer base.</li>
+              <li>Interaction of surface waves with the thermocline.</li>
+              <li>Geostrophic adjustment and mesoscale eddy processes.</li>
+            </ul>
+          </li>
+          <li><strong>Frequency condition</strong> — the wave frequency ω must satisfy f &lt; ω &lt; N (for inertia–gravity internal waves).
+            <ul>
+              <li>If ω &gt; N: stratification cannot provide enough restoring force; no wave propagation.</li>
+              <li>If ω &lt; f: rotation dominates; the motion becomes quasi-geostrophic rather than wave-like.</li>
+            </ul>
+          </li>
+        </ol>
+        <p><strong>Why the pycnocline / thermocline matters:</strong> the strongest density gradients (largest N) occur at the pycnocline, so internal waves are most intense there and often propagate along it.</p>`,
+    acn: `<p>内波发生在密度层化的海洋内部。基本条件：</p>
+        <ol>
+          <li><strong>稳定层结</strong>——密度随深度增大（z 向上时 dρ/dz &lt; 0），提供浮力恢复力。
+            <ul>
+              <li>用<strong>布伦特-维萨拉频率</strong> N = √(−(g/ρ)·dρ/dz) 量化。</li>
+              <li>N 必须为正实数——流体必须<strong>静力稳定</strong>。</li>
+            </ul>
+          </li>
+          <li><strong>扰动 / 强迫源</strong>，将流体微团推离平衡位置。常见来源：
+            <ul>
+              <li>底地形上的流动（潮汐过海脊、流过海槛）。</li>
+              <li>风应力与混合层底的惯性振荡。</li>
+              <li>表面波与温跃层的相互作用。</li>
+              <li>地转调整与中尺度涡过程。</li>
+            </ul>
+          </li>
+          <li><strong>频率条件</strong>——波频率 ω 满足 f &lt; ω &lt; N（惯性重力内波）。
+            <ul>
+              <li>若 ω &gt; N：层结提供的恢复力不足，无法传播。</li>
+              <li>若 ω &lt; f：旋转占主导，运动呈准地转而非波动形式。</li>
+            </ul>
+          </li>
+        </ol>
+        <p><strong>为何跃层重要：</strong>密度梯度最强（N 最大）的地方在密度跃层/温跃层，因此内波在此最强，且常沿跃层传播。</p>`
+  },
+  {
+    q: "What is the generation mechanism of tsunamis? Is their long-distance propagation affected by the Coriolis force? Why?",
+    qcn: "海啸的发生机制是什么？长距离传输是否受科氏力的影响？为什么？",
+    a: `<p><strong>Generation mechanism:</strong></p>
+        <ul>
+          <li>Tsunamis are generated by <strong>sudden, large-scale vertical displacement of the seafloor</strong>, which displaces the overlying water column and sets up long surface gravity waves.</li>
+          <li>Common triggers:
+            <ul>
+              <li><strong>Submarine earthquakes</strong> (fault slip) — the dominant cause (~80% of tsunamis).</li>
+              <li><strong>Submarine landslides</strong> (volcanic flank collapse, sediment slides).</li>
+              <li><strong>Volcanic eruptions</strong> (caldera collapse, pyroclastic flows into water).</li>
+              <li><strong>Meteorite impacts</strong> (very rare).</li>
+            </ul>
+          </li>
+        </ul>
+        <p><strong>Coriolis effect on long-distance propagation — YES, but modest:</strong></p>
+        <ul>
+          <li>Tsunamis are <strong>shallow-water waves</strong> (wavelength ~100–500 km &gt;&gt; ocean depth ~4 km), so c = √(gH) ≈ 700–900 km/h.</li>
+          <li>Their <strong>periods are 10 min to ~1 hour</strong> — much shorter than the inertial period at mid-latitudes (~12–24 h), so <strong>the Coriolis effect is weak</strong> over one wave cycle.</li>
+          <li>However, over <strong>ocean-basin scales (hours to days)</strong>, the cumulative effect of the Coriolis force is not entirely negligible: it can gradually deflect the propagation direction and influence the structure of the wave field (e.g., by generating Coriolis-modified waves or by affecting how tsunamis refract around ocean basins).</li>
+          <li><strong>Bottom line:</strong> for first-order tsunami travel-time forecasting, the Coriolis effect is usually ignored (shallow-water non-rotating theory is sufficient). For detailed basin-scale modeling and coastal amplification, rotation may be included.</li>
+        </ul>`,
+    acn: `<p><strong>发生机制：</strong></p>
+        <ul>
+          <li>海啸由海底<strong>突然的、大尺度的垂直位移</strong>产生，使上覆水柱位移并激发长表面重力波。</li>
+          <li>常见触发因素：
+            <ul>
+              <li><strong>海底地震</strong>（断层滑动）——最主要的原因（约 80% 的海啸）。</li>
+              <li><strong>海底滑坡</strong>（火山侧翼坍塌、沉积物滑塌）。</li>
+              <li><strong>火山喷发</strong>（破火山口坍塌、火山碎屑流入水）。</li>
+              <li><strong>陨石撞击</strong>（极罕见）。</li>
+            </ul>
+          </li>
+        </ul>
+        <p><strong>长距离传输中科氏力的影响——有，但较弱：</strong></p>
+        <ul>
+          <li>海啸是<strong>浅水波</strong>（波长 ~100–500 km &gt;&gt; 海深 ~4 km），所以 c = √(gH) ≈ 700–900 km/h。</li>
+          <li>其<strong>周期为 10 分钟到约 1 小时</strong>——远短于中纬度惯性周期（~12–24 小时），因此在一个波周期内<strong>科氏效应很弱</strong>。</li>
+          <li>然而，在<strong>大洋尺度（数小时到数天）</strong>的传播中，科氏力的累积效应并非完全可以忽略：它可以逐渐偏转传播方向，并影响波场结构（例如产生科氏修正波或影响海啸在洋盆中的折射方式）。</li>
+          <li><strong>结论：</strong>在一级海啸走时预报中，通常忽略科氏力（非旋转浅水理论已足够）。在详细的洋盆尺度模拟和近岸放大研究中，旋转效应可能会被纳入。</p>
+        </ul>`
   }
 ];
 
@@ -2979,6 +4062,27 @@ function scrollToTopic(id) {
   }, 50);
 }
 
+/* ===================== Quiz Toggle ===================== */
+function toggleQuiz(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  answer.classList.toggle('open');
+  btn.textContent = isOpen ? '💡 Show answer · 显示答案' : '🔼 Hide answer · 收起答案';
+}
+
+/* ===================== Wave Module Interactions ===================== */
+function toggleWaveAcc(btn) {
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+function toggleWaveTest(btn) {
+  const answer = btn.nextElementSibling;
+  answer.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
 /* ===================== Calculator 2 (Topics panel) ===================== */
 document.getElementById('calcBtn2').addEventListener('click', () => {
   const dT = num('dT2'), depth = num('depth2'), area = num('area2'),
@@ -3013,6 +4117,7 @@ document.getElementById('resetBtn2').addEventListener('click', () => {
   document.getElementById('result2').classList.remove('show');
 });
 </script>
+
 
 
 
