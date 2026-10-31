@@ -1051,6 +1051,95 @@
   }
   .wave-test-a .cn { color: var(--muted); display: block; margin-top: 4px; }
 
+  /* Lecture "question & solution" box */
+  .doubt-box {
+    margin-top: 14px;
+    background: #fff8ec;
+    border-left: 4px solid var(--sun);
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .doubt-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #a8621b;
+    margin-bottom: 6px;
+  }
+  .doubt-box p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+
+  /* Story video */
+  .story-video-card {
+    background: linear-gradient(160deg, #ffffff, #f3fafd);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    border-left: 6px solid var(--ocean-mid);
+  }
+  .story-video-frame {
+    background: #06202f;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .story-video-frame video {
+    display: block;
+    width: 100%;
+    max-height: 70vh;
+    background: #06202f;
+  }
+  .story-video-caption {
+    margin: 12px 0 0;
+    font-size: 0.86rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .story-video-caption em { display: block; font-style: normal; font-size: 0.82rem; }
+
+  /* Story authorship */
+  .story-own-card {
+    margin-top: 24px;
+    background: linear-gradient(160deg, #fffdf7, #fff8ec);
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    border-left: 6px solid var(--sun);
+  }
+  .soc-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .soc-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--sun), #ff9a3c);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(255, 179, 71, 0.35);
+  }
+  .soc-head h3 {
+    margin: 0;
+    color: var(--ocean-deep);
+    font-size: 1.15rem;
+  }
+  .soc-body p {
+    margin: 0 0 10px;
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+  .soc-body p:last-child { margin-bottom: 0; }
+  .soc-body strong { color: #a8621b; }
+
   footer {
     text-align: center;
     color: var(--muted);
@@ -1076,13 +1165,13 @@
 
 <div class="wrap">
   <nav class="tabs" role="tablist">
-    <button class="tab-btn active" data-tab="qa" role="tab">
+    <button class="tab-btn" data-tab="qa" role="tab">
       <span class="icon">📖</span> 物理海洋问答
     </button>
     <button class="tab-btn" data-tab="topics" role="tab">
       <span class="icon">📚</span> 专题与教材图解
     </button>
-    <button class="tab-btn" data-tab="story" role="tab">
+    <button class="tab-btn active" data-tab="story" role="tab">
       <span class="icon">🎭</span> 故事会
     </button>
     <button class="tab-btn" data-tab="ticket" role="tab">
@@ -1091,7 +1180,7 @@
   </nav>
 
   <!-- ============== Q&A Panel ============== -->
-  <section class="panel active" id="panel-qa">
+  <section class="panel" id="panel-qa">
     <div class="sec-head">
       <h2>📖 Physical Oceanography Q&amp;A · 物理海洋问答</h2>
       <p>15 bilingual Q&amp;A on heat budget, mixed layer, thermocline, dynamics and more. · 15 道双语问答，涵盖热收支、混合层、温跃层、动力学等主题。</p>
@@ -1880,6 +1969,85 @@
     <button class="toggle" aria-label="toggle">▾</button>
     <span class="q-num">22</span>
     <div class="q-text-wrap">
+      <div class="q-text">What is the difference between internal waves and surface waves?</div>
+      <div class="q-cn">内波与表面波的区别是什么？</div>
+    </div>
+    <div class="a-body">
+      <div class="a-en"><div class="lang-tag">EN</div><p>Both are gravity waves in a stratified fluid, but they differ in nearly every physical respect:</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.88rem;margin:8px 0;">
+          <thead><tr style="background:var(--foam);">
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Aspect</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Surface wave</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Internal wave</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Interface</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Sea surface (water–air)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Interior density interface (pycnocline)</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Restoring force</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Gravity (density contrast ρ<sub>water</sub>/ρ<sub>air</sub> ≈ 1000)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Reduced gravity: g′ = g·Δρ/ρ, with Δρ/ρ ~ 10⁻³–10⁻²</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Typical amplitude</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Centimetres to ~10 m</td>
+                <td style="padding:6px;border:1px solid var(--line);">Tens of metres, sometimes 100+ m</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Phase speed</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">√(gH) or √(g/k), metres per second</td>
+                <td style="padding:6px;border:1px solid var(--line);">c ≈ √(g′H), often 0.1–3 m/s — much slower</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Observability</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Visible to the naked eye from shore or space</td>
+                <td style="padding:6px;border:1px solid var(--line);">Invisible at the surface; detected only by moorings, CTD, acoustic or satellite roughness signatures</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Frequency band</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">ω = √(gk), normally ω ≫ f</td>
+                <td style="padding:6px;border:1px solid var(--line);">Bounded: f &lt; ω &lt; N</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Energy</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Large; driven mainly by wind</td>
+                <td style="padding:6px;border:1px solid var(--line);">Smaller than surface waves, but comparable to or larger than the mean kinetic energy of the background flow; a key sink/source in the ocean energy budget</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Role in the ocean</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Air–sea exchange, coastal processes, upper-ocean mixing</td>
+                <td style="padding:6px;border:1px solid var(--line);">Vertical mixing, energy cascade, nutrient supply, acoustic propagation</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Why the difference matters:</strong> because the density contrast at an internal interface is ~1000 times weaker than at the surface, internal waves can attain large amplitudes while storing far less energy. They also travel slowly and cannot be seen from above — yet they are the main pathway by which energy and water properties are exchanged across the pycnocline.</p></div>
+      <div class="a-cn"><div class="lang-tag">中文</div><p>两者都是层结流体中的重力波，但在几乎所有物理性质上都不同：</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.88rem;margin:8px 0;">
+          <thead><tr style="background:var(--foam);">
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">对比项</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">表面波</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">内波</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>界面</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">海气界面（水–气）</td>
+                <td style="padding:6px;border:1px solid var(--line);">海洋内部的密度界面（密度跃层）</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>恢复力</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">重力（密度反差 ρ<sub>水</sub>/ρ<sub>气</sub> ≈ 1000）</td>
+                <td style="padding:6px;border:1px solid var(--line);">约化重力 g′ = g·Δρ/ρ，其中 Δρ/ρ ~ 10⁻³–10⁻²</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>典型振幅</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">几厘米至约 10 米</td>
+                <td style="padding:6px;border:1px solid var(--line);">数十米，有时可达 100 米以上</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>相速度</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">√(gH) 或 √(g/k)，量级为米每秒</td>
+                <td style="padding:6px;border:1px solid var(--line);">c ≈ √(g′H)，常为 0.1–3 m/s，明显更慢</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>可观测性</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">肉眼、岸边或卫星即可观测</td>
+                <td style="padding:6px;border:1px solid var(--line);">海面几乎不可见，只能靠锚系、CTD、声学或卫星粗糙度信号识别</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>频带</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">ω = √(gk)，通常 ω ≫ f</td>
+                <td style="padding:6px;border:1px solid var(--line);">受限：f &lt; ω &lt; N</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>能量</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">较大，主要由风驱动</td>
+                <td style="padding:6px;border:1px solid var(--line);">小于表面波，但与背景流平均动能相当甚至更大，是海洋能量收支中的关键源汇</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>在海洋中的作用</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">海气交换、海岸过程、上层海洋混合</td>
+                <td style="padding:6px;border:1px solid var(--line);">垂向混合、能量串级、营养盐输送、声传播</td></tr>
+          </tbody>
+        </table>
+        <p><strong>区别为何重要：</strong>密度界面的反差比海面弱约 1000 倍，因此内波能以很大的振幅存在，却携带远少的能量。它们传播缓慢、从海面看不见，却是能量与水性质跨越密度跃层交换的主要途径。</p></div>
+    </div>
+  </div><div class="qa-card">
+    <button class="toggle" aria-label="toggle">▾</button>
+    <span class="q-num">23</span>
+    <div class="q-text-wrap">
       <div class="q-text">What is the generation mechanism of tsunamis? Is their long-distance propagation affected by the Coriolis force? Why?</div>
       <div class="q-cn">海啸的发生机制是什么？长距离传输是否受科氏力的影响？为什么？</div>
     </div>
@@ -2066,6 +2234,11 @@
           <span class="gc-icon">🌊</span>
           <div class="gc-title">Ocean Waves · 海洋波浪</div>
           <div class="gc-sub">二八原则学波浪核心 · Pareto 80/20 wave guide</div>
+        </a>
+        <a class="guide-card" href="#topic-shallow" onclick="scrollToTopic('topic-shallow')">
+          <span class="gc-icon">🌊</span>
+          <div class="gc-title">Shallow-Water Waves · 浅水小振幅波动</div>
+          <div class="gc-sub">重力波/邦加莱/开尔文/罗斯贝 · gravity, Poincaré, Kelvin, Rossby</div>
         </a>
         <a class="guide-card" href="#topic-textbook" onclick="scrollToTopic('topic-textbook')">
           <span class="gc-icon">📕</span>
@@ -2737,6 +2910,189 @@
       </div>
     </div>
 
+    <!-- Shallow-Water Small-Amplitude Waves -->
+    <div class="sec-head topic-section" id="topic-shallow" style="margin-top:48px;">
+      <h2>🌊 Small-Amplitude Waves in Shallow Water · 浅水运动中的小振幅波动</h2>
+      <p>From the linear shallow-water equations to gravity, Poincaré, Kelvin and Rossby waves · 从线性浅水方程到重力波、邦加莱波、开尔文波与罗斯贝波</p>
+    </div>
+
+    <div class="image-explainer">
+      <h3>🧩 Core Background &amp; Parameters · 核心背景与参数说明</h3>
+      <div class="explain-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+        <div class="explain-item">
+          <div class="ei-label">Shallow Water · 浅水运动</div>
+          <div class="ei-text">
+            <p style="margin:6px 0 0;font-size:0.86rem;">Motion in which the fluid depth is much smaller than the wavelength (H ≪ λ). This approximation is extremely common in large-scale ocean and atmosphere dynamics.
+            <span class="cn">流体深度远小于波长的运动（H ≪ λ）。这种近似在海洋和大气的大尺度运动中非常常用。</span></p>
+          </div>
+        </div>
+        <div class="explain-item">
+          <div class="ei-label" style="background:#c0522a;">Small Amplitude · 小振幅</div>
+          <div class="ei-text">
+            <p style="margin:6px 0 0;font-size:0.86rem;">The wave amplitude is small relative to the fluid depth or wavelength, which allows the equations of motion to be <strong>linearised</strong> — and therefore solved.
+            <span class="cn">波动的振幅相对于流体深度或波长很小，这允许我们对运动方程进行<strong>线性化</strong>处理，从而使求解变得可行。</span></p>
+          </div>
+        </div>
+        <div class="explain-item">
+          <div class="ei-label" style="background:#2e7d32;">Coriolis Parameter · 科氏参数 f</div>
+          <div class="ei-text">
+            <p style="margin:6px 0 0;font-size:0.86rem;">f = 2Ω sinφ, where Ω is the Earth's angular velocity and φ is latitude. It represents the Coriolis effect produced by the Earth's rotation.
+            <span class="cn">f = 2Ω sinφ（Ω 为地球自转角速度，φ 为纬度），代表地球自转产生的科里奥利力。</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;margin-top:16px;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+          <thead>
+            <tr style="background:var(--ocean-deep);color:#fff;">
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">f 的取值 Value</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">近似 Approximation</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">适用情形 Applicability</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>f = 0</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">无旋转 · Non-rotating</td>
+              <td style="padding:8px;border:1px solid var(--line);">赤道附近，或考虑无旋转系统。<span class="cn">Near the equator, or a non-rotating system.</span></td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>f = C（常数）</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">f 平面 · f-plane</td>
+              <td style="padding:8px;border:1px solid var(--line);">水平范围不太大、纬度变化可忽略的区域。<span class="cn">Regions where the horizontal extent is modest and latitudinal change is negligible.</span></td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>f ≠ 常数</strong></td>
+              <td style="padding:8px;border:1px solid var(--line);">β 平面 · β-plane</td>
+              <td style="padding:8px;border:1px solid var(--line);">考虑纬度变化，引入 β 效应（f ≈ f₀ + βy）。<span class="cn">Latitudinal change included through the β effect (f ≈ f₀ + βy).</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:26px;">🔬 The Five Cases, Step by Step · 五个情形逐项解析</h3>
+
+      <div class="ex-steps">
+        <div class="ex-step">
+          <span class="ex-num" style="background:var(--ocean-deep);">0</span>
+          <div>
+            <strong>Equations of Motion · 运动方程</strong>
+            <p><strong>含义：</strong>这是整个分析的理论起点——从质量守恒（连续方程）与动量守恒（运动方程）出发，结合浅水假设与小振幅假设，得到线性化的控制方程组。</p>
+            <p><span class="cn">The theoretical starting point: mass conservation (continuity) and momentum conservation, combined with the shallow-water and small-amplitude assumptions, yield the linearised governing equations.</span></p>
+            <div class="mini-eq">
+              ∂u/∂t − f v = −g·∂η/∂x<br>
+              ∂v/∂t + f u = −g·∂η/∂y<br>
+              ∂η/∂t + H(∂u/∂x + ∂v/∂y) = 0
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-step">
+          <span class="ex-num" style="background:#13769b;">1</span>
+          <div>
+            <strong>f = 0 · 浅水重力波 Gravity Wave in Shallow Water</strong>
+            <p><strong>条件：</strong>不考虑地球自转（f = 0），流体无限宽广（无边界），且深度均匀。</p>
+            <p><strong>物理本质：</strong>最基础的波动。恢复力仅仅是<strong>重力</strong>——水面起伏引起压力梯度力变化。</p>
+            <p><strong>特点：</strong>非频散波，相速度只与深度有关，c = √(gH)，可向任意方向传播。在大气和海洋中，可视为海啸或潮汐波的简化模型。</p>
+            <div class="mini-eq">ω = k√(gH)　　c = √(gH)　　（非频散 non-dispersive）</div>
+            <p><span class="cn">No rotation, unbounded and uniformly deep fluid; gravity is the only restoring force; non-dispersive, c = √(gH); a simplified model for tsunamis and tides.</span></p>
+          </div>
+        </div>
+
+        <div class="ex-step">
+          <span class="ex-num" style="background:#c0522a;">2</span>
+          <div>
+            <strong>f = C · 邦加莱波 Poincaré (Inertia–Gravity) Wave</strong>
+            <p><strong>条件：</strong>考虑地球自转（f 为常数），流体仍无限宽广且等深。</p>
+            <p><strong>物理本质：</strong>加入地球自转后，恢复力不仅有重力，还有<strong>科里奥利力</strong>，因此又称<strong>惯性重力波</strong>。</p>
+            <p><strong>特点：</strong>科里奥利力使流体质点产生旋转运动，波为<strong>频散波</strong>（波速随波长变化）；频率必须大于 f。</p>
+            <div class="mini-eq">ω² = f² + gHk²　　（要求 ω &gt; f）</div>
+            <p><span class="cn">Rotation included with constant f in an unbounded, uniformly deep fluid; gravity plus Coriolis as restoring forces; dispersive, with ω² = f² + gHk².</span></p>
+          </div>
+        </div>
+
+        <div class="ex-step">
+          <span class="ex-num" style="background:#2e7d32;">3</span>
+          <div>
+            <strong>f = C · 开尔文波 Kelvin Wave</strong>
+            <p><strong>条件：</strong>考虑地球自转（f 为常数），但流体<strong>有水平边界</strong>（如海岸线、赤道或大洋侧壁）。</p>
+            <p><strong>物理本质：</strong>边界约束使流体在垂直于边界方向的速度为零；为满足该条件，科里奥利力在边界处被压力梯度力完美平衡（地转平衡）。</p>
+            <p><strong>特点：</strong>边界波，只能沿边界传播，振幅在垂直边界方向指数衰减；传播速度与非旋转浅水重力波相同（c = √(gH)），且<strong>非频散</strong>。</p>
+            <div class="mini-eq">ω = k√(gH)　　c = √(gH)　　（沿岸/赤道捕获 trapped）</div>
+            <p><span class="cn">Constant f with a horizontal boundary; Coriolis balanced by pressure gradient at the wall; propagates only along the boundary with exponential offshore decay; non-dispersive, c = √(gH).</span></p>
+          </div>
+        </div>
+
+        <div class="ex-step">
+          <span class="ex-num" style="background:#7b1fa2;">4</span>
+          <div>
+            <strong>f ≠ 常数 · 罗斯贝波 Rossby Wave</strong>
+            <p><strong>条件：</strong>考虑地球自转，且<strong>科里奥利参数 f 随纬度变化</strong>，即引入 β 效应（f ≈ f₀ + βy）。</p>
+            <p><strong>物理本质：</strong>大尺度大气与海洋动力学中最重要的波。恢复力是<strong>位涡守恒</strong>：流体质点南北移动时 f 发生变化，为保持位涡守恒，流体层厚度必须改变，从而产生波动。</p>
+            <p><strong>特点：</strong>又称行星波。传播方向高度<strong>不对称</strong>——总是相对于基本气流<strong>向西</strong>传播；频率远小于 f，且是强频散波。它是大气长波槽脊移动、天气系统变化的核心机制。</p>
+            <div class="mini-eq">ω = −βk / (k² + l² + f₀²/(gH))　　（西向传播 westward）</div>
+            <p><span class="cn">Constant f replaced by latitude-dependent f (β effect); potential-vorticity conservation is the restoring mechanism; westward-propagating, strongly dispersive — the planetary wave.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:26px;">📊 Side-by-Side Comparison · 四种波动对比</h3>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.84rem;min-width:680px;">
+          <thead>
+            <tr style="background:var(--foam);color:var(--ocean-deep);">
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">波动 Wave</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">恢复力 Restoring force</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">频散关系 Dispersion</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">频散性 Dispersive?</th>
+              <th style="padding:8px;border:1px solid var(--line);text-align:left;">传播 Propagation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>浅水重力波</strong><br><small>Shallow-water gravity</small></td>
+              <td style="padding:8px;border:1px solid var(--line);">重力 Gravity</td>
+              <td style="padding:8px;border:1px solid var(--line);">ω = k√(gH)</td>
+              <td style="padding:8px;border:1px solid var(--line);">否 No</td>
+              <td style="padding:8px;border:1px solid var(--line);">任意方向 Any direction</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>邦加莱波</strong><br><small>Poincaré / inertia–gravity</small></td>
+              <td style="padding:8px;border:1px solid var(--line);">重力 + 科氏力</td>
+              <td style="padding:8px;border:1px solid var(--line);">ω² = f² + gHk²</td>
+              <td style="padding:8px;border:1px solid var(--line);">是 Yes（ω &gt; f）</td>
+              <td style="padding:8px;border:1px solid var(--line);">任意方向，旋转偏转</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>开尔文波</strong><br><small>Kelvin</small></td>
+              <td style="padding:8px;border:1px solid var(--line);">重力 + 科氏力（边界平衡）</td>
+              <td style="padding:8px;border:1px solid var(--line);">ω = k√(gH)</td>
+              <td style="padding:8px;border:1px solid var(--line);">否 No</td>
+              <td style="padding:8px;border:1px solid var(--line);">仅沿边界，振幅指数衰减</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid var(--line);"><strong>罗斯贝波</strong><br><small>Rossby</small></td>
+              <td style="padding:8px;border:1px solid var(--line);">位涡守恒 PV conservation</td>
+              <td style="padding:8px;border:1px solid var(--line);">ω = −βk/(k²+l²+f₀²/(gH))</td>
+              <td style="padding:8px;border:1px solid var(--line);">是 Yes（强频散）</td>
+              <td style="padding:8px;border:1px solid var(--line);">西向 Westward</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="eof-hint" style="margin-top:16px;">
+        🧠 <strong>记忆主线 · The logic in one line：</strong>保持浅水、小振幅、线性化不变，只改变一个条件——<strong>是否旋转（f）、是否有边界、f 是否随纬度变化</strong>——就依次得到重力波、邦加莱波、开尔文波与罗斯贝波。
+        <em>Keep shallow water, small amplitude and linearisation fixed; change only rotation, boundaries and the latitudinal dependence of f, and the four wave types follow one after another.</em>
+      </p>
+
+      <div style="text-align:center;margin-top:18px;">
+        <img src="shallow-wave-diagram.webp" alt="原始讲义幻灯片 · Original lecture slide" style="max-width:100%;border:1px solid var(--line);border-radius:12px;">
+        <p style="font-size:0.78rem;color:var(--muted);margin:8px 0 0;">原始讲义幻灯片 · Original lecture slide</p>
+      </div>
+    </div>
+
     <!-- Textbook Link -->
     <div class="sec-head topic-section" id="topic-textbook" style="margin-top:36px;">
       <h2>📕 Textbook · 《物理海洋学》教材</h2>
@@ -3099,16 +3455,56 @@
   </section>
 
   <!-- ============== Story Panel ============== -->
-  <section class="panel" id="panel-story">
+  <section class="panel active" id="panel-story">
     <div class="sec-head">
       <h2>🎭 海洋故事会 · Ocean Story Club</h2>
-      <p>视频将在此处展示 · A story video will be shown here.</p>
+      <p>Marine Snow and the Pycnocline — a 90-second story · 海洋雪与密度跃层：一分半的故事</p>
     </div>
 
-    <div class="placeholder video-slot">
-      <span class="ph-icon">🎬</span>
-      <p class="ph-title">视频占位 · Video Coming Soon</p>
-      <p class="ph-sub">此处将放置您稍后上传的故事会视频</p>
+    <div class="story-video-card" style="width: 543px; height: 339.828px;">
+      <div class="story-video-frame">
+        <video controls="" preload="metadata" playsinline="" poster="">
+          <source src="marine_snow_pycnocline.mp4" type="video/mp4">
+          Your browser does not support the video tag. · 您的浏览器不支持视频播放。
+        </video>
+      </div>
+      <p class="story-video-caption">本视频由AI生成</p>
+    </div>
+
+    <div class="image-explainer" style="margin-top:24px;">
+      <h3>📖 What the Video Explains · 视频讲解的问题</h3>
+      <p>
+        <strong>Marine snow</strong> is the continuous shower of organic and inorganic particles — dead plankton, faecal pellets, mucus aggregates and mineral dust — that slowly sinks from the sunlit surface layer into the dark interior of the ocean. Because these aggregates form in the euphotic zone and settle at millimetre-per-second speeds, they constitute the ocean's own "snowfall" and supply the food on which deep-sea ecosystems depend.
+      </p>
+      <p class="cn">
+        <strong>海洋雪</strong>是由有机与无机颗粒——包括死亡浮游生物、粪粒、黏液聚集体和矿物粉尘——组成的持续"沉降雨"，从阳光照射的表层缓慢沉入黑暗的海洋内部。由于这些聚集体在真光层形成、并以每秒数毫米的速度下沉，它们构成了海洋自身的"降雪"，为深海生态系统提供食物来源。
+      </p>
+
+      <p style="margin-top:12px;">
+        The video concentrates on a single physical question: <strong>how does the pycnocline govern the fate of marine snow?</strong> The pycnocline is the thin layer in which density increases rapidly with depth, separating the lighter surface water from the denser deep water. A strong density gradient suppresses vertical exchange, so particles settling through it are slowed, retained and partly remineralised by bacteria; only a fraction of the original flux escapes into the abyss. Stratification therefore acts as a <strong>"gate"</strong> between the surface and the deep ocean, and ultimately controls the efficiency of the biological carbon pump — how much atmospheric carbon the ocean can sequester and store.
+      </p>
+      <p class="cn">
+        视频集中回答一个物理海洋学问题：<strong>密度跃层如何决定海洋雪的命运？</strong>密度跃层是密度随深度迅速增大的薄层，把较轻的表层水与较重的深层水隔开。强密度梯度抑制垂向交换，穿越其间的颗粒因此被减速、滞留，并被细菌部分再矿化；只有一小部分原始通量能够进入深渊。于是，层结成为表层与深海之间的<strong>"闸门"</strong>，最终决定生物碳泵的效率——即海洋能够固定并储存多少大气碳。
+      </p>
+
+      <div class="eof-hint" style="margin-top:14px;">
+        🌊 <strong>Why this is physical oceanography · 为什么这属于物理海洋学：</strong>
+        The story is not about biology alone. The sinking speed of an aggregate is set by its size, density and the water's viscosity (Stokes settling); whether it reaches the deep sea depends on stratification, vertical mixing and the depth of the winter mixed layer. Physics decides how much carbon is exported — biology decides how much is produced.
+        <em>沉降速度由颗粒尺度、密度与海水黏性决定（斯托克斯沉降），而能否到达深海则取决于层结、垂向混合与冬季混合层深度。物理决定"输出多少碳"，生物决定"生产多少碳"。</em>
+      </div>
+    </div>
+
+    <div class="story-own-card">
+      <div class="soc-head">
+        <span class="soc-badge">✍️ 我的创作手记</span>
+        <h3><br></h3>
+      </div>
+      <div class="soc-body">
+        <p>我发现，想要讲清楚一个与物理海洋学有关的问题对我这个门外汉来说很困难，因为我首先需要考虑我所了解的东西里哪些可以和物理海洋学不那么生硬地结合。我最终选择了本科时做过科普视频的<strong>海洋雪</strong>，并在 AI 的帮助下找到了这个概念与物理海洋学相关的部分。</p>
+        <p>我本来打算介绍海洋雪的概念，讲讲它对底层生态系统以及碳循环的重要意义，但这样时间就太长了，而且很容易拐到海洋生物学的范畴，因此我决定用一分半的视频<strong>只讲一个问题</strong>。</p>
+        <p>在实际制作中我发现，就算给 AI 加载了 <strong>Anatomy</strong> 和 <strong>text-motion</strong> skill（分别用于精美画面和画面文本匹配），也没法一下子制作出想象中光影变幻、眼花缭乱的视频。于是我调整模型、修改脚本，最终在积分用完前定下了如今的版本。</p>
+        <p>希望看完的朋友们会对海洋雪产生兴趣，并自行了解它。</p>
+      </div>
     </div>
   </section>
 
@@ -3116,7 +3512,7 @@
   <section class="panel" id="panel-ticket">
     <div class="sec-head">
       <h2>🎫 Classroom &amp; Exit Tickets · 课堂与出门票</h2>
-      <p>Seven lectures of notes, reflections, and exit-ticket records · 七次课的课堂笔记、心得与出门票记录</p>
+      <p>Nine lectures of notes, reflections, and exit-ticket records · 九次课的课堂笔记、心得与出门票记录</p>
     </div>
 
     <!-- Lecture 1 -->
@@ -3229,11 +3625,51 @@
       <div class="lec-body">
         <div class="lec-img-row">
           <img class="image-main" src="lecture07a.jpg" alt="Lecture 7 diagram A · 第七节课图A">
-          <img class="image-main" src="lecture07b.jpg" alt="Lecture 7 diagram B · 第七节课图B">
+          <img class="image-main" src="lecture07b.jpg" alt="Lecture 7 diagram B · 第七节课图B" style="width: 306px; height: 231.109px;">
         </div>
         <div class="lec-text">
           <p><strong>Content · 课程内容：</strong>In this lecture we built a <strong>knowledge map of dynamical oceanography</strong>, revisited <strong>potential vorticity conservation</strong> from a mathematical perspective, and solved example problems like the ones shown above. We also learned about various types of <strong>long waves</strong> and practiced PV conservation using Earth NullSchool.</p>
           <p class="cn">本节课建立了<strong>海洋动力学知识图谱</strong>，从数学角度再次学习<strong>位涡守恒</strong>，并解了如上例题。了解各种<strong>长波</strong>，用 earth nullschool 实践位涡守恒。</p>
+          <div class="doubt-box">
+            <div class="doubt-title">❓ 我的疑问与解决 · My Question &amp; Solution</div>
+            <p>我一开始看见数学公式就头大，看不懂每一个符号背后的物理含义；但是在老师的细致讲解下我成功解决了例题，画出了我不敢确信、但实际正确的结果。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lecture 8 -->
+    <div class="lecture-card">
+      <div class="lec-header">
+        <span class="lec-badge">Lecture 08</span>
+        <h3 class="lec-title">Gravity Waves, Tides &amp; Coastal Oceanography · 重力波、潮汐与海岸海洋学</h3>
+      </div>
+      <div class="lec-body">
+        <div class="lec-text">
+          <p><strong>Content · 课程内容：</strong>This lecture surveyed the various ocean wave types. We first built an overall picture of ocean waves, then distinguished them by several characteristics (such as <strong>restoring force</strong> and <strong>propagation properties</strong>). We learned that <strong>wave height</strong> is the most important wave parameter, and applied the Pareto (80/20) principle to the study of ocean waves.</p>
+          <p class="cn">本节课学习了各种海洋波动。首先对 ocean wave 有一个整体的了解，而后从几个特征（如<strong>恢复力</strong>、<strong>传输特性</strong>）的层面来区分。了解了<strong>波高</strong>是最重要的波浪参数。实践二八法则，学习了海洋波动。</p>
+          <div class="doubt-box">
+            <div class="doubt-title">❓ 我的疑问与解决 · My Question &amp; Solution</div>
+            <p>我本以为有效波高和群速会是最重要的波浪参数，没想到是朴实无华的波高。但随着老师讲解，我理解了参数是否重要要从人类生产生活角度考虑。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lecture 9 -->
+    <div class="lecture-card">
+      <div class="lec-header">
+        <span class="lec-badge">Lecture 09</span>
+        <h3 class="lec-title">Gravity Waves, Tides &amp; Coastal Oceanography · 重力波、潮汐与海岸海洋学</h3>
+      </div>
+      <div class="lec-body">
+        <div class="lec-text">
+          <p><strong>Content · 课程内容：</strong>This lecture examined <strong>rip currents</strong> and <strong>internal waves</strong>: how to escape a rip current, and how particle motion is produced by internal waves. We also learned about the frontiers of physical oceanography and which session of which conference our story projects could be submitted to.</p>
+          <p class="cn">本节课学习了<strong>离岸流</strong>、<strong>内波</strong>等，判断了遇到离岸流如何逃生、内波引起的质点运动。了解了物理海洋学前沿，以及我的故事会能投哪个会议的哪个模块。</p>
+          <div class="doubt-box">
+            <div class="doubt-title">❓ 我的疑问与解决 · My Question &amp; Solution</div>
+            <p>我本以为遇到离岸流应该潜入水底，没想到绕开才是最正确的选择。</p>
+          </div>
         </div>
       </div>
     </div>
@@ -3924,6 +4360,80 @@ const qaData = [
         <p><strong>为何跃层重要：</strong>密度梯度最强（N 最大）的地方在密度跃层/温跃层，因此内波在此最强，且常沿跃层传播。</p>`
   },
   {
+    q: "What is the difference between internal waves and surface waves?",
+    qcn: "内波与表面波的区别是什么？",
+    a: `<p>Both are gravity waves in a stratified fluid, but they differ in nearly every physical respect:</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.88rem;margin:8px 0;">
+          <thead><tr style="background:var(--foam);">
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Aspect</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Surface wave</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">Internal wave</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Interface</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Sea surface (water–air)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Interior density interface (pycnocline)</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Restoring force</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Gravity (density contrast ρ<sub>water</sub>/ρ<sub>air</sub> ≈ 1000)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Reduced gravity: g′ = g·Δρ/ρ, with Δρ/ρ ~ 10⁻³–10⁻²</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Typical amplitude</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Centimetres to ~10 m</td>
+                <td style="padding:6px;border:1px solid var(--line);">Tens of metres, sometimes 100+ m</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Phase speed</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">√(gH) or √(g/k), metres per second</td>
+                <td style="padding:6px;border:1px solid var(--line);">c ≈ √(g′H), often 0.1–3 m/s — much slower</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Observability</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Visible to the naked eye from shore or space</td>
+                <td style="padding:6px;border:1px solid var(--line);">Invisible at the surface; detected only by moorings, CTD, acoustic or satellite roughness signatures</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Frequency band</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">ω = √(gk), normally ω ≫ f</td>
+                <td style="padding:6px;border:1px solid var(--line);">Bounded: f &lt; ω &lt; N</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Energy</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Large; driven mainly by wind</td>
+                <td style="padding:6px;border:1px solid var(--line);">Smaller than surface waves, but comparable to or larger than the mean kinetic energy of the background flow; a key sink/source in the ocean energy budget</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Role in the ocean</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">Air–sea exchange, coastal processes, upper-ocean mixing</td>
+                <td style="padding:6px;border:1px solid var(--line);">Vertical mixing, energy cascade, nutrient supply, acoustic propagation</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Why the difference matters:</strong> because the density contrast at an internal interface is ~1000 times weaker than at the surface, internal waves can attain large amplitudes while storing far less energy. They also travel slowly and cannot be seen from above — yet they are the main pathway by which energy and water properties are exchanged across the pycnocline.</p>`,
+    acn: `<p>两者都是层结流体中的重力波，但在几乎所有物理性质上都不同：</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.88rem;margin:8px 0;">
+          <thead><tr style="background:var(--foam);">
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">对比项</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">表面波</th>
+            <th style="padding:6px;border:1px solid var(--line);text-align:left;">内波</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>界面</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">海气界面（水–气）</td>
+                <td style="padding:6px;border:1px solid var(--line);">海洋内部的密度界面（密度跃层）</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>恢复力</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">重力（密度反差 ρ<sub>水</sub>/ρ<sub>气</sub> ≈ 1000）</td>
+                <td style="padding:6px;border:1px solid var(--line);">约化重力 g′ = g·Δρ/ρ，其中 Δρ/ρ ~ 10⁻³–10⁻²</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>典型振幅</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">几厘米至约 10 米</td>
+                <td style="padding:6px;border:1px solid var(--line);">数十米，有时可达 100 米以上</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>相速度</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">√(gH) 或 √(g/k)，量级为米每秒</td>
+                <td style="padding:6px;border:1px solid var(--line);">c ≈ √(g′H)，常为 0.1–3 m/s，明显更慢</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>可观测性</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">肉眼、岸边或卫星即可观测</td>
+                <td style="padding:6px;border:1px solid var(--line);">海面几乎不可见，只能靠锚系、CTD、声学或卫星粗糙度信号识别</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>频带</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">ω = √(gk)，通常 ω ≫ f</td>
+                <td style="padding:6px;border:1px solid var(--line);">受限：f &lt; ω &lt; N</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>能量</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">较大，主要由风驱动</td>
+                <td style="padding:6px;border:1px solid var(--line);">小于表面波，但与背景流平均动能相当甚至更大，是海洋能量收支中的关键源汇</td></tr>
+            <tr><td style="padding:6px;border:1px solid var(--line);"><strong>在海洋中的作用</strong></td>
+                <td style="padding:6px;border:1px solid var(--line);">海气交换、海岸过程、上层海洋混合</td>
+                <td style="padding:6px;border:1px solid var(--line);">垂向混合、能量串级、营养盐输送、声传播</td></tr>
+          </tbody>
+        </table>
+        <p><strong>区别为何重要：</strong>密度界面的反差比海面弱约 1000 倍，因此内波能以很大的振幅存在，却携带远少的能量。它们传播缓慢、从海面看不见，却是能量与水性质跨越密度跃层交换的主要途径。</p>`
+  },
+  {
     q: "What is the generation mechanism of tsunamis? Is their long-distance propagation affected by the Coriolis force? Why?",
     qcn: "海啸的发生机制是什么？长距离传输是否受科氏力的影响？为什么？",
     a: `<p><strong>Generation mechanism:</strong></p>
@@ -4118,6 +4628,8 @@ document.getElementById('resetBtn2').addEventListener('click', () => {
   document.getElementById('result2').classList.remove('show');
 });
 </script>
+
+
 
 
 
