@@ -1148,6 +1148,57 @@
   }
   footer a { color: var(--ocean-mid); text-decoration: none; }
 
+  /* AI disclaimer */
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-disclaimer {
+    text-align: left;
+    margin: 0 auto 18px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--sun);
+    box-shadow: 0 2px 10px rgba(10, 42, 67, 0.06);
+  }
+  .footer-disclaimer .fd-title {
+    display: block;
+    color: var(--ocean-deep);
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+  }
+  .footer-disclaimer p {
+    margin: 0 0 6px;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .footer-disclaimer p:last-child { margin-bottom: 0; }
+  .footer-disclaimer .fd-model { color: var(--ink); }
+  .footer-disclaimer .fd-model strong { color: var(--ocean); }
+  .footer-meta {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  /* Math typography — pi-markdown-preview recipe */
+  .math-display {
+    font-family: "Latin Modern Math", "Cambria Math", "Times New Roman", serif;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .math-display mjx-container[display="true"] {
+    display: block;
+    margin: 0.3em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .mini-eq mjx-container[display="true"],
+  .formula mjx-container[display="true"] { margin: 0.15em 0; }
+  .math-inline { white-space: nowrap; }
+  .math-display.math-fallback { font-size: 0.95rem; line-height: 1.9; white-space: normal; }
+  mjx-container { color: inherit; }
+
   @media (max-width: 600px) {
     .hero h1 { font-size: 1.7rem; }
     .tab-btn { font-size: 0.9rem; padding: 10px; }
@@ -1562,7 +1613,7 @@
       <div class="q-cn">计算北极、北纬 30°、赤道和南极处惯性振荡的周期。</div>
     </div>
     <div class="a-body">
-      <div class="a-en"><div class="lang-tag">EN</div><p>Period of inertial oscillations: <strong>T = 2π / f</strong>, where <strong>f = 2Ω·sinφ</strong> is the Coriolis parameter.<br>
+      <div class="a-en"><div class="lang-tag">EN</div><p>Period of inertial oscillations: <strong>T = 2π / f</strong>, where <strong>\(f = 2\Omega\sin\varphi\)</strong> is the Coriolis parameter.<br>
         Earth's angular velocity Ω ≈ 7.292 × 10⁻⁵ rad/s</p>
         <ul>
           <li><strong>North Pole (90°N)</strong>: f = 2Ω ≈ 1.458×10⁻⁴ s⁻¹, period T ≈ <strong>12 hours</strong> (half a sidereal day, counterclockwise)</li>
@@ -1570,7 +1621,7 @@
           <li><strong>Equator (0°)</strong>: f = 0, period T → <strong>infinity</strong> (no inertial oscillations at the equator)</li>
           <li><strong>South Pole (90°S)</strong>: f = −2Ω, |f| = 2Ω, period T ≈ <strong>12 hours</strong> (clockwise — opposite sense to NH)</li>
         </ul></div>
-      <div class="a-cn"><div class="lang-tag">中文</div><p>惯性振荡周期公式：<strong>T = 2π / f</strong>，其中 <strong>f = 2Ω·sinφ</strong> 为科里奥利参数。<br>
+      <div class="a-cn"><div class="lang-tag">中文</div><p>惯性振荡周期公式：<strong>T = 2π / f</strong>，其中 <strong>\(f = 2\Omega\sin\varphi\)</strong> 为科里奥利参数。<br>
         地球自转角速度 Ω ≈ 7.292 × 10⁻⁵ rad/s</p>
         <ul>
           <li><strong>北极（90°N）</strong>：f = 2Ω ≈ 1.458×10⁻⁴ s⁻¹，周期 T ≈ <strong>12 小时</strong>（约半个恒星日，逆时针旋转）</li>
@@ -1629,20 +1680,20 @@
     <div class="a-body">
       <div class="a-en"><div class="lang-tag">EN</div><p>Potential vorticity (PV) combines three ingredients:</p>
         <ol>
-          <li><strong>Planetary vorticity (f)</strong> — vorticity from Earth's rotation, i.e. the Coriolis parameter, which varies with latitude (f = 2Ω·sinφ).</li>
+          <li><strong>Planetary vorticity (f)</strong> — vorticity from Earth's rotation, i.e. the Coriolis parameter, which varies with latitude (\(f = 2\Omega\sin\varphi\)).</li>
           <li><strong>Relative vorticity (ζ)</strong> — the spin of a fluid parcel relative to the Earth, arising from horizontal shear and curvature of the flow.</li>
           <li><strong>Layer thickness / stratification (h or ∂ρ/∂z)</strong> — the vertical extent of the water column or the vertical density gradient, which captures the stretching or squashing of vortex tubes.</li>
         </ol>
-        <p>Simple form for a homogeneous layer: <strong>PV = (f + ζ) / h</strong><br>
-        Ertel form in stratified fluids (on isopycnals): <strong>PV = (f + ζ<sub>θ</sub>) · ∂ρ/∂z</strong></p></div>
+        <p>Simple form for a homogeneous layer: <strong>\(PV = (f+\zeta)/h\)</strong><br>
+        Ertel form in stratified fluids (on isopycnals): <strong>\(PV = (f+\zeta_\theta)\,\partial\rho/\partial z\)</strong></p></div>
       <div class="a-cn"><div class="lang-tag">中文</div><p>位势涡度（Potential Vorticity, PV）综合了以下三个要素：</p>
         <ol>
-          <li><strong>行星涡度（f）</strong>——由地球自转产生，即科里奥利参数，随纬度变化（f = 2Ω·sinφ）。</li>
+          <li><strong>行星涡度（f）</strong>——由地球自转产生，即科里奥利参数，随纬度变化（\(f = 2\Omega\sin\varphi\)）。</li>
           <li><strong>相对涡度（ζ）</strong>——流体微团自身的旋转（相对于地球的涡度），由流速的水平切变和曲率决定。</li>
           <li><strong>层厚 / 层结（h 或 ∂ρ/∂z）</strong>——水柱的垂直厚度或密度垂直梯度，体现涡管被拉伸或压缩的程度。</li>
         </ol>
-        <p>均匀层化流体的简化形式：<strong>PV = (f + ζ) / h</strong><br>
-        分层流体的 Ertel 形式（等密度面上）：<strong>PV = (f + ζ<sub>θ</sub>) · ∂ρ/∂z</strong></p></div>
+        <p>均匀层化流体的简化形式：<strong>\(PV = (f+\zeta)/h\)</strong><br>
+        分层流体的 Ertel 形式（等密度面上）：<strong>\(PV = (f+\zeta_\theta)\,\partial\rho/\partial z\)</strong></p></div>
     </div>
   </div><div class="qa-card">
     <button class="toggle" aria-label="toggle">▾</button>
@@ -1653,24 +1704,24 @@
     </div>
     <div class="a-body">
       <div class="a-en"><div class="lang-tag">EN</div><ul>
-          <li><strong>Ekman pumping (w<sub>E</sub>)</strong>: vertical velocity at the base of the wind-driven Ekman layer, w<sub>E</sub> = curl(τ) / (ρf). In the NH subtropical gyre, the (negative) clockwise wind curl drives <strong>downward</strong> Ekman pumping.</li>
+          <li><strong>Ekman pumping (w<sub>E</sub>)</strong>: vertical velocity at the base of the wind-driven Ekman layer, \(w_E = \mathrm{curl}(\tau)/(\rho f)\). In the NH subtropical gyre, the (negative) clockwise wind curl drives <strong>downward</strong> Ekman pumping.</li>
           <li><strong>Sverdrup balance</strong>: the interior geostrophic transport satisfies βV = curl(τ)/ρ — the vertically integrated meridional transport equals the wind stress curl divided by ρβ.</li>
         </ul>
         <p><strong>PV argument:</strong></p>
         <ul>
-          <li>In the ocean interior, potential vorticity is approximately conserved: D(f/h)/Dt ≈ 0 (neglecting relative vorticity and mixing).</li>
+          <li>In the ocean interior, potential vorticity is approximately conserved: \(D(f/h)/Dt \approx 0\) (neglecting relative vorticity and mixing).</li>
           <li>In the subtropical gyre, downward Ekman pumping pushes surface water into the interior — the water column is <strong>squashed</strong> (h decreases).</li>
-          <li>To conserve PV (f/h ≈ constant), f must <strong>decrease</strong> as h decreases.</li>
+          <li>To conserve PV (\(f/h \approx \text{constant}\)), f must <strong>decrease</strong> as h decreases.</li>
           <li>f decreases toward the equator, so parcels move <strong>equatorward</strong> — this is the Sverdrup interior flow.</li>
           <li>The gyre closes via a narrow, fast <strong>western boundary current</strong> (Kuroshio, Gulf Stream) that returns water poleward.</li>
         </ul></div>
       <div class="a-cn"><div class="lang-tag">中文</div><ul>
-          <li><strong>埃克曼抽吸（w<sub>E</sub>）</strong>：风生埃克曼输运的辐合/辐散在埃克曼层底产生的垂直速度，w<sub>E</sub> = curl(τ) / (ρf)。在北半球副热带环流中，风应力旋度为负（顺时针），产生<strong>向下</strong>的埃克曼抽吸。</li>
+          <li><strong>埃克曼抽吸（w<sub>E</sub>）</strong>：风生埃克曼输运的辐合/辐散在埃克曼层底产生的垂直速度，\(w_E = \mathrm{curl}(\tau)/(\rho f)\)。在北半球副热带环流中，风应力旋度为负（顺时针），产生<strong>向下</strong>的埃克曼抽吸。</li>
           <li><strong>斯维尔德鲁普平衡</strong>：内区地转输运满足 βV = curl(τ)/ρ，即经向整层输运等于风应力旋度除以 ρβ。</li>
         </ul>
         <p><strong>位涡解释：</strong></p>
         <ul>
-          <li>大洋内区位涡近似守恒：D(f/h)/Dt ≈ 0（忽略相对涡度和混合）。</li>
+          <li>大洋内区位涡近似守恒：\(D(f/h)/Dt \approx 0\)（忽略相对涡度和混合）。</li>
           <li>在副热带环流中，向下的埃克曼抽吸把表层水压入内区——水柱被<strong>压扁</strong>（h 减小）。</li>
           <li>为保持位涡 f/h 近似不变，f 必须随 h 减小而<strong>减小</strong>。</li>
           <li>f 向赤道方向减小，因此水团向<strong>赤道</strong>方向流动——这就是斯维尔德鲁普内区流。</li>
@@ -1710,40 +1761,40 @@
     <div class="a-body">
       <div class="a-en"><div class="lang-tag">EN</div><p><strong>① Surface gravity waves — dispersive</strong></p>
         <ul>
-          <li>Dispersion relation (deep water): ω² = gk</li>
-          <li>Phase speed c = ω/k = √(g/k), which <strong>depends on k</strong> — different wavelengths travel at different speeds.</li>
-          <li>Group speed c<sub>g</sub> = dω/dk = c/2 — energy propagates at half the phase speed.</li>
+          <li>Dispersion relation (deep water): \(\omega^2 = gk\)</li>
+          <li>Phase speed \(c = \omega/k = \sqrt{g/k}\), which <strong>depends on k</strong> — different wavelengths travel at different speeds.</li>
+          <li>Group speed \(c_g = \mathrm{d}\omega/\mathrm{d}k = c/2\) — energy propagates at half the phase speed.</li>
         </ul>
         <p><strong>② Inertia–gravity waves — dispersive</strong></p>
         <ul>
-          <li>Dispersion relation: ω² = f² + N²k²/m² (or ω² = f² + gHk² for shallow water with rotation)</li>
+          <li>Dispersion relation: \(\omega^2 = f^2 + N^2k^2/m^2\) (or \(\omega^2 = f^2 + gHk^2\) for shallow water with rotation)</li>
           <li>Phase speed depends on wavenumber and the angle of propagation relative to the vertical — clearly dispersive.</li>
         </ul>
         <p><strong>③ Rossby waves — dispersive</strong></p>
         <ul>
-          <li>Dispersion relation: ω = −βk / (k² + l² + f₀²/(gH))</li>
-          <li>Phase speed c = ω/k = −β / (k² + l² + f₀²/(gH)), which varies with wavenumber.</li>
+          <li>Dispersion relation: \(\omega = -\frac{\beta k}{k^2+l^2+f_0^2/(gH)}\)</li>
+          <li>Phase speed \(c = \omega/k = -\frac{\beta}{k^2+l^2+f_0^2/(gH)}\), which varies with wavenumber.</li>
           <li>Longer waves propagate faster (westward), shorter waves slower — classic dispersion.</li>
         </ul>
-        <p><strong>Exception:</strong> shallow-water gravity waves (ω = k√(gh)) are <em>non-dispersive</em> — all wavelengths travel at the same speed c = √(gh).</p></div>
+        <p><strong>Exception:</strong> shallow-water gravity waves (\(\omega = k\sqrt{gh}\)) are <em>non-dispersive</em> — all wavelengths travel at the same speed \(c = \sqrt{gh}\).</p></div>
       <div class="a-cn"><div class="lang-tag">中文</div><p><strong>① 表面重力波 — 频散（弥散）</strong></p>
         <ul>
-          <li>频散关系（深水）：ω² = gk</li>
-          <li>相速度 c = ω/k = √(g/k)，<strong>依赖于波数 k</strong>——不同波长以不同速度传播。</li>
-          <li>群速度 c<sub>g</sub> = dω/dk = c/2 —— 能量以相速度的一半传播。</li>
+          <li>频散关系（深水）：\(\omega^2 = gk\)</li>
+          <li>相速度 \(c = \omega/k = \sqrt{g/k}\)，<strong>依赖于波数 k</strong>——不同波长以不同速度传播。</li>
+          <li>群速度 \(c_g = \mathrm{d}\omega/\mathrm{d}k = c/2\) —— 能量以相速度的一半传播。</li>
         </ul>
         <p><strong>② 惯性重力波 — 频散（弥散）</strong></p>
         <ul>
-          <li>频散关系：ω² = f² + N²k²/m²（或浅水旋转情况下 ω² = f² + gHk²）</li>
+          <li>频散关系：\(\omega^2 = f^2 + N^2k^2/m^2\)（或浅水旋转情况下 \(\omega^2 = f^2 + gHk^2\)）</li>
           <li>相速度随波数和传播方向（与垂直夹角）变化——明显频散。</li>
         </ul>
         <p><strong>③ 罗斯贝波 — 频散（弥散）</strong></p>
         <ul>
-          <li>频散关系：ω = −βk / (k² + l² + f₀²/(gH))</li>
-          <li>相速度 c = ω/k = −β / (k² + l² + f₀²/(gH))，随波数变化。</li>
+          <li>频散关系：\(\omega = -\frac{\beta k}{k^2+l^2+f_0^2/(gH)}\)</li>
+          <li>相速度 \(c = \omega/k = -\frac{\beta}{k^2+l^2+f_0^2/(gH)}\)，随波数变化。</li>
           <li>长波传播（西传）更快，短波更慢——典型频散。</li>
         </ul>
-        <p><strong>例外：</strong>浅水波重力波（ω = k√(gh)）是<em>非频散</em>的——所有波长以相同速度 c = √(gh) 传播。</p></div>
+        <p><strong>例外：</strong>浅水波重力波（ω = k√(gh)）是<em>非频散</em>的——所有波长以相同速度 \(c = \sqrt{gh}\) 传播。</p></div>
     </div>
   </div><div class="qa-card">
     <button class="toggle" aria-label="toggle">▾</button>
@@ -1755,9 +1806,9 @@
     <div class="a-body">
       <div class="a-en"><div class="lang-tag">EN</div><p><strong>Cause of the equatorial waveguide:</strong></p>
         <ul>
-          <li>The Coriolis parameter f = 2Ω·sinφ is <strong>zero at the equator</strong> and increases with latitude on both sides.</li>
+          <li>The Coriolis parameter \(f = 2\Omega\sin\varphi\) is <strong>zero at the equator</strong> and increases with latitude on both sides.</li>
           <li>This creates a <strong>trapping mechanism</strong>: waves that try to propagate poleward encounter increasing f, which bends their energy back toward the equator (analogous to total internal reflection).</li>
-          <li>The effective waveguide width is set by the <strong>equatorial Rossby radius of deformation</strong>, R<sub>eq</sub> = √(gH) / β (typically ~200–300 km for the ocean thermocline).</li>
+          <li>The effective waveguide width is set by the <strong>equatorial Rossby radius of deformation</strong>, \(R_{eq} = \sqrt{gH}/\beta\) (typically ~200–300 km for the ocean thermocline).</li>
         </ul>
         <p><strong>Wave types in the equatorial waveguide:</strong></p>
         <ol>
@@ -1768,9 +1819,9 @@
         </ol></div>
       <div class="a-cn"><div class="lang-tag">中文</div><p><strong>赤道波导形成原因：</strong></p>
         <ul>
-          <li>科里奥利参数 f = 2Ω·sinφ 在<strong>赤道处为零</strong>，向两侧随纬度增大。</li>
+          <li>科里奥利参数 \(f = 2\Omega\sin\varphi\) 在<strong>赤道处为零</strong>，向两侧随纬度增大。</li>
           <li>这产生了<strong>捕获机制</strong>：试图向极地传播的波遇到不断增大的 f，其能量被折回赤道（类似于全内反射）。</li>
-          <li>波导宽度由<strong>赤道罗斯贝变形半径</strong> R<sub>eq</sub> = √(gH) / β 决定（海洋温跃层典型值约 200–300 km）。</li>
+          <li>波导宽度由<strong>赤道罗斯贝变形半径</strong> \(R_{eq} = \sqrt{gH}/\beta\) 决定（海洋温跃层典型值约 200–300 km）。</li>
         </ul>
         <p><strong>赤道波系中的波动类型：</strong></p>
         <ol>
@@ -1800,7 +1851,7 @@
           <li><strong>Coastal Kelvin waves</strong>
             <ul>
               <li><strong>Restoring mechanism:</strong> gravity + Coriolis, trapped against a vertical wall coast.</li>
-              <li><strong>Propagation:</strong> with the coast on the <strong>right</strong> in the NH; phase speed c = √(gH), non-dispersive alongshore.</li>
+              <li><strong>Propagation:</strong> with the coast on the <strong>right</strong> in the NH; phase speed \(c = \sqrt{gH}\), non-dispersive alongshore.</li>
               <li>Amplitude decays exponentially offshore (e-folding scale = Rossby radius).</li>
             </ul>
           </li>
@@ -1823,7 +1874,7 @@
           <li><strong>沿岸开尔文波</strong>
             <ul>
               <li><strong>恢复机制：</strong>重力 + 科氏力，被垂直岸壁捕获。</li>
-              <li><strong>传播方向：</strong>北半球沿岸<strong>右侧为陆</strong>传播；相速度 c = √(gH)，沿岸非频散。</li>
+              <li><strong>传播方向：</strong>北半球沿岸<strong>右侧为陆</strong>传播；相速度 \(c = \sqrt{gH}\)，沿岸非频散。</li>
               <li>振幅向外海指数衰减（e 折尺度 = 罗斯贝半径）。</li>
             </ul>
           </li>
@@ -1920,7 +1971,7 @@
         <ol>
           <li><strong>Stable stratification</strong> — density increases with depth (dρ/dz &lt; 0 in the z-up convention). This provides the buoyancy restoring force.
             <ul>
-              <li>Quantified by the <strong>Brunt–Väisälä frequency</strong>: N = √(−(g/ρ)·dρ/dz).</li>
+              <li>Quantified by the <strong>Brunt–Väisälä frequency</strong>: \(N = \sqrt{-(g/\rho)\,\mathrm{d}\rho/\mathrm{d}z}\).</li>
               <li>N must be real and positive — the fluid must be <strong>statically stable</strong>.</li>
             </ul>
           </li>
@@ -1932,7 +1983,7 @@
               <li>Geostrophic adjustment and mesoscale eddy processes.</li>
             </ul>
           </li>
-          <li><strong>Frequency condition</strong> — the wave frequency ω must satisfy f &lt; ω &lt; N (for inertia–gravity internal waves).
+          <li><strong>Frequency condition</strong> — the wave frequency ω must satisfy \(f \lt \omega \lt N\) (for inertia–gravity internal waves).
             <ul>
               <li>If ω &gt; N: stratification cannot provide enough restoring force; no wave propagation.</li>
               <li>If ω &lt; f: rotation dominates; the motion becomes quasi-geostrophic rather than wave-like.</li>
@@ -1944,7 +1995,7 @@
         <ol>
           <li><strong>稳定层结</strong>——密度随深度增大（z 向上时 dρ/dz &lt; 0），提供浮力恢复力。
             <ul>
-              <li>用<strong>布伦特-维萨拉频率</strong> N = √(−(g/ρ)·dρ/dz) 量化。</li>
+              <li>用<strong>布伦特-维萨拉频率</strong> \(N = \sqrt{-(g/\rho)\,\mathrm{d}\rho/\mathrm{d}z}\) 量化。</li>
               <li>N 必须为正实数——流体必须<strong>静力稳定</strong>。</li>
             </ul>
           </li>
@@ -1956,7 +2007,7 @@
               <li>地转调整与中尺度涡过程。</li>
             </ul>
           </li>
-          <li><strong>频率条件</strong>——波频率 ω 满足 f &lt; ω &lt; N（惯性重力内波）。
+          <li><strong>频率条件</strong>——波频率 ω 满足 \(f \lt \omega \lt N\)（惯性重力内波）。
             <ul>
               <li>若 ω &gt; N：层结提供的恢复力不足，无法传播。</li>
               <li>若 ω &lt; f：旋转占主导，运动呈准地转而非波动形式。</li>
@@ -1986,19 +2037,19 @@
                 <td style="padding:6px;border:1px solid var(--line);">Interior density interface (pycnocline)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Restoring force</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">Gravity (density contrast ρ<sub>water</sub>/ρ<sub>air</sub> ≈ 1000)</td>
-                <td style="padding:6px;border:1px solid var(--line);">Reduced gravity: g′ = g·Δρ/ρ, with Δρ/ρ ~ 10⁻³–10⁻²</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">Reduced gravity: \(g' = g\,\Delta\rho/\rho\), with \(\Delta\rho/\rho \sim 10^{-3}\)–\(10^{-2}\)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Typical amplitude</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">Centimetres to ~10 m</td>
                 <td style="padding:6px;border:1px solid var(--line);">Tens of metres, sometimes 100+ m</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Phase speed</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">√(gH) or √(g/k), metres per second</td>
-                <td style="padding:6px;border:1px solid var(--line);">c ≈ √(g′H), often 0.1–3 m/s — much slower</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">\(\sqrt{gH}\) or \(\sqrt{g/k}\), metres per second</td>
+                <td style="padding:6px;border:1px solid var(--line);">\(c \approx \sqrt{g'H}\), often 0.1–3 m/s — much slower</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Observability</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">Visible to the naked eye from shore or space</td>
                 <td style="padding:6px;border:1px solid var(--line);">Invisible at the surface; detected only by moorings, CTD, acoustic or satellite roughness signatures</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Frequency band</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">ω = √(gk), normally ω ≫ f</td>
-                <td style="padding:6px;border:1px solid var(--line);">Bounded: f &lt; ω &lt; N</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">\(\omega = \sqrt{gk}\), normally \(\omega \gg f\)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Bounded: \(f \lt \omega \lt N\)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Energy</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">Large; driven mainly by wind</td>
                 <td style="padding:6px;border:1px solid var(--line);">Smaller than surface waves, but comparable to or larger than the mean kinetic energy of the background flow; a key sink/source in the ocean energy budget</td></tr>
@@ -2021,19 +2072,19 @@
                 <td style="padding:6px;border:1px solid var(--line);">海洋内部的密度界面（密度跃层）</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>恢复力</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">重力（密度反差 ρ<sub>水</sub>/ρ<sub>气</sub> ≈ 1000）</td>
-                <td style="padding:6px;border:1px solid var(--line);">约化重力 g′ = g·Δρ/ρ，其中 Δρ/ρ ~ 10⁻³–10⁻²</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">约化重力 \(g' = g\,\Delta\rho/\rho\)，其中 \(\Delta\rho/\rho \sim 10^{-3}\)–\(10^{-2}\)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>典型振幅</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">几厘米至约 10 米</td>
                 <td style="padding:6px;border:1px solid var(--line);">数十米，有时可达 100 米以上</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>相速度</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">√(gH) 或 √(g/k)，量级为米每秒</td>
-                <td style="padding:6px;border:1px solid var(--line);">c ≈ √(g′H)，常为 0.1–3 m/s，明显更慢</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">\(\sqrt{gH}\) 或 \(\sqrt{g/k}\)，量级为米每秒</td>
+                <td style="padding:6px;border:1px solid var(--line);">\(c \approx \sqrt{g'H}\)，常为 0.1–3 m/s，明显更慢</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>可观测性</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">肉眼、岸边或卫星即可观测</td>
                 <td style="padding:6px;border:1px solid var(--line);">海面几乎不可见，只能靠锚系、CTD、声学或卫星粗糙度信号识别</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>频带</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">ω = √(gk)，通常 ω ≫ f</td>
-                <td style="padding:6px;border:1px solid var(--line);">受限：f &lt; ω &lt; N</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">\(\omega = \sqrt{gk}\)，通常 \(\omega \gg f\)</td>
+                <td style="padding:6px;border:1px solid var(--line);">受限：\(f \lt \omega \lt N\)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>能量</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">较大，主要由风驱动</td>
                 <td style="padding:6px;border:1px solid var(--line);">小于表面波，但与背景流平均动能相当甚至更大，是海洋能量收支中的关键源汇</td></tr>
@@ -2066,7 +2117,7 @@
         </ul>
         <p><strong>Coriolis effect on long-distance propagation — YES, but modest:</strong></p>
         <ul>
-          <li>Tsunamis are <strong>shallow-water waves</strong> (wavelength ~100–500 km &gt;&gt; ocean depth ~4 km), so c = √(gH) ≈ 700–900 km/h.</li>
+          <li>Tsunamis are <strong>shallow-water waves</strong> (wavelength ~100–500 km &gt;&gt; ocean depth ~4 km), so \(c = \sqrt{gH} \approx 700\text{–}900\,\mathrm{km/h}\).</li>
           <li>Their <strong>periods are 10 min to ~1 hour</strong> — much shorter than the inertial period at mid-latitudes (~12–24 h), so <strong>the Coriolis effect is weak</strong> over one wave cycle.</li>
           <li>However, over <strong>ocean-basin scales (hours to days)</strong>, the cumulative effect of the Coriolis force is not entirely negligible: it can gradually deflect the propagation direction and influence the structure of the wave field (e.g., by generating Coriolis-modified waves or by affecting how tsunamis refract around ocean basins).</li>
           <li><strong>Bottom line:</strong> for first-order tsunami travel-time forecasting, the Coriolis effect is usually ignored (shallow-water non-rotating theory is sufficient). For detailed basin-scale modeling and coastal amplification, rotation may be included.</li>
@@ -2085,7 +2136,7 @@
         </ul>
         <p><strong>长距离传输中科氏力的影响——有，但较弱：</strong></p>
         <ul>
-          <li>海啸是<strong>浅水波</strong>（波长 ~100–500 km &gt;&gt; 海深 ~4 km），所以 c = √(gH) ≈ 700–900 km/h。</li>
+          <li>海啸是<strong>浅水波</strong>（波长 ~100–500 km &gt;&gt; 海深 ~4 km），所以 \(c = \sqrt{gH} \approx 700\text{–}900\,\mathrm{km/h}\)。</li>
           <li>其<strong>周期为 10 分钟到约 1 小时</strong>——远短于中纬度惯性周期（~12–24 小时），因此在一个波周期内<strong>科氏效应很弱</strong>。</li>
           <li>然而，在<strong>大洋尺度（数小时到数天）</strong>的传播中，科氏力的累积效应并非完全可以忽略：它可以逐渐偏转传播方向，并影响波场结构（例如产生科氏修正波或影响海啸在洋盆中的折射方式）。</li>
           <li><strong>结论：</strong>在一级海啸走时预报中，通常忽略科氏力（非旋转浅水理论已足够）。在详细的洋盆尺度模拟和近岸放大研究中，旋转效应可能会被纳入。<p></p>
@@ -2166,9 +2217,9 @@
         <button class="quiz-toggle" onclick="toggleQuiz(this)">💡 Show answer · 显示答案</button>
         <div class="quiz-a">
           <div class="lang-tag">EN</div>
-          <p><strong>Poleward.</strong> PV ≈ f/h = constant. When the column is stretched (h increases), f must also increase to keep PV constant. Since f increases with latitude, the column moves toward the poles (where f is larger).</p>
+          <p><strong>Poleward.</strong> \(PV \approx f/h = \text{constant}\). When the column is stretched (h increases), f must also increase to keep PV constant. Since f increases with latitude, the column moves toward the poles (where f is larger).</p>
           <div class="lang-tag" style="background:var(--accent);">中文</div>
-          <p><strong>向极地移动。</strong>位涡 PV ≈ f/h = 常数。当水柱被拉长（h 增大）时，f 也必须增大以保持 PV 守恒。由于 f 随纬度增大而增大，水柱向极地移动（那里 f 更大）。</p>
+          <p><strong>向极地移动。</strong>位涡 \(PV \approx f/h = \text{常数}\)。当水柱被拉长（h 增大）时，f 也必须增大以保持 PV 守恒。由于 f 随纬度增大而增大，水柱向极地移动（那里 f 更大）。</p>
         </div>
       </div>
 
@@ -2356,8 +2407,8 @@
           <span class="ex-num">5</span>
           <div>
             <strong>Potential Vorticity · 位势涡度（位涡）</strong>
-            <p>Potential vorticity (PV) combines vorticity with the thickness (or stratification) of a fluid column. In its simplest form: <strong>PV = (f + ζ) / h</strong>. PV is a powerful diagnostic because it is approximately conserved following a fluid parcel in adiabatic, frictionless flow.
-            <span class="cn">位势涡度（PV）将涡度与流体柱厚度（或层结）结合起来。最简形式：<strong>PV = (f + ζ) / h</strong>。位涡是一个强大的诊断量，因为在绝热、无摩擦流动中，它随流体微团近似守恒。</span></p>
+            <p>Potential vorticity (PV) combines vorticity with the thickness (or stratification) of a fluid column. In its simplest form: <strong>\(PV = (f+\zeta)/h\)</strong>. PV is a powerful diagnostic because it is approximately conserved following a fluid parcel in adiabatic, frictionless flow.
+            <span class="cn">位势涡度（PV）将涡度与流体柱厚度（或层结）结合起来。最简形式：<strong>\(PV = (f+\zeta)/h\)</strong>。位涡是一个强大的诊断量，因为在绝热、无摩擦流动中，它随流体微团近似守恒。</span></p>
           </div>
         </div>
 
@@ -2374,8 +2425,8 @@
           <span class="ex-num">7</span>
           <div>
             <strong>Sverdrup Relationship + Davidson Current off California · 斯维尔德鲁普关系 + 加利福尼亚戴维森流</strong>
-            <p>The Sverdrup balance connects wind-stress curl to the meridional transport of the interior ocean: <strong>βV = curl(τ)/ρ</strong>. Along the California coast, the southward California Current and the poleward undercurrent (Davidson Current) are direct consequences of this balance and the coastal geometry.
-            <span class="cn">斯维尔德鲁普平衡将风应力旋度与大洋内区经向输运联系起来：<strong>βV = curl(τ)/ρ</strong>。在加利福尼亚沿岸，南向的加利福尼亚流与极向的潜流（戴维森流）正是这一平衡与海岸几何共同作用的直接结果。</span></p>
+            <p>The Sverdrup balance connects wind-stress curl to the meridional transport of the interior ocean: <strong>\(\beta V = \mathrm{curl}(\tau)/\rho\)</strong>. Along the California coast, the southward California Current and the poleward undercurrent (Davidson Current) are direct consequences of this balance and the coastal geometry.
+            <span class="cn">斯维尔德鲁普平衡将风应力旋度与大洋内区经向输运联系起来：<strong>\(\beta V = \mathrm{curl}(\tau)/\rho\)</strong>。在加利福尼亚沿岸，南向的加利福尼亚流与极向的潜流（戴维森流）正是这一平衡与海岸几何共同作用的直接结果。</span></p>
           </div>
         </div>
 
@@ -2512,7 +2563,7 @@
               <td><strong>毛细波</strong><br><small>Capillary waves</small></td>
               <td>海洋（海气界面）</td>
               <td>液体表面张力</td>
-              <td>ω² = (T/ρ)k³</td>
+              <td>\(\omega^2 = \frac{T}{\rho}k^3\)</td>
               <td>毫米-厘米级短波，相速度随波长减小而增大</td>
               <td>低</td>
               <td>极弱</td>
@@ -2521,7 +2572,7 @@
               <td><strong>风浪</strong><br><small>Wind-generated gravity waves</small></td>
               <td>海洋（海气界面）</td>
               <td>重力</td>
-              <td>深水：ω² = gk<br>浅水：ω = k√(gh)</td>
+              <td>深水：\(\omega^2 = gk\)<br>浅水：\(\omega = k\sqrt{gh}\)</td>
               <td>局地风场驱动，群速度慢于相速度</td>
               <td>中-高</td>
               <td>中等（斯托克斯漂移）</td>
@@ -2530,7 +2581,7 @@
               <td><strong>涌浪</strong><br><small>Swell</small></td>
               <td>海洋（海气界面）</td>
               <td>重力</td>
-              <td>深水：ω² = gk</td>
+              <td>深水：\(\omega^2 = gk\)</td>
               <td>脱离风区自由传播，长波衰减慢，可跨洋数千公里</td>
               <td>中-高</td>
               <td>较弱</td>
@@ -2539,7 +2590,7 @@
               <td><strong>海洋内重力波</strong><br><small>Internal gravity waves</small></td>
               <td>海洋内部</td>
               <td>约化重力（浮力）</td>
-              <td>ω = N·cosθ</td>
+              <td>\(\omega = N\cos\theta\)</td>
               <td>沿密度跃层传播，相速度与群速度垂直分量反向</td>
               <td>中-高</td>
               <td>较强（垂向混合）</td>
@@ -2548,7 +2599,7 @@
               <td><strong>潮汐波</strong><br><small>Tidal waves</small></td>
               <td>海洋（全球）</td>
               <td>天体引潮力 + 重力</td>
-              <td>ω = k√(gh)（浅水波，非频散）</td>
+              <td>\(\omega = k\sqrt{gh}\)（浅水波，非频散）</td>
               <td>超长周期长波，沿陆架与边界传播，全球共振</td>
               <td>高</td>
               <td>强（潮流）</td>
@@ -2557,7 +2608,7 @@
               <td><strong>海啸波</strong><br><small>Tsunami</small></td>
               <td>海洋（全水深）</td>
               <td>重力</td>
-              <td>ω = k√(gh)（非频散）</td>
+              <td>\(\omega = k\sqrt{gh}\)（非频散）</td>
               <td>超长波长，深海传播 700-900 km/h，能量衰减极微</td>
               <td>极高</td>
               <td>极强（近岸涌升）</td>
@@ -2566,7 +2617,7 @@
               <td><strong>海洋开尔文波</strong><br><small>Ocean Kelvin waves</small></td>
               <td>海洋（沿岸/赤道）</td>
               <td>重力 + 科里奥利力</td>
-              <td>ω = k√(gH)（沿岸捕获，非频散）</td>
+              <td>\(\omega = k\sqrt{gH}\)（沿岸捕获，非频散）</td>
               <td>沿岸/赤道捕获，能量沿边界集中</td>
               <td>中-高</td>
               <td>较强</td>
@@ -2575,7 +2626,7 @@
               <td><strong>海洋罗斯贝波</strong><br><small>Ocean Rossby waves</small></td>
               <td>海洋（大尺度）</td>
               <td>科氏力纬度梯度（β效应）</td>
-              <td>ω = −βk / (k² + l² + f₀²/(gH))</td>
+              <td>\(\omega = -\frac{\beta k}{k^2+l^2+f_0^2/(gH)}\)</td>
               <td>大尺度西向传播，相速度极慢（每天数公里）</td>
               <td>低-中</td>
               <td>弱</td>
@@ -2584,7 +2635,7 @@
               <td><strong>海洋惯性波</strong><br><small>Inertial oscillations</small></td>
               <td>海洋（上层）</td>
               <td>科里奥利力</td>
-              <td>ω ≈ f</td>
+              <td>\(\omega \approx f\)</td>
               <td>近圆周水平振荡，局地性强，风场脉冲激发</td>
               <td>低-中</td>
               <td>弱</td>
@@ -2594,7 +2645,7 @@
               <td><strong>大气声波</strong><br><small>Acoustic waves</small></td>
               <td>大气</td>
               <td>压力梯度力</td>
-              <td>ω² = cₛ²k²（非频散纵波）</td>
+              <td>\(\omega^2 = c_s^2k^2\)（非频散纵波）</td>
               <td>声速约 340 m/s，能量快速衰减</td>
               <td>低</td>
               <td>极弱</td>
@@ -2603,7 +2654,7 @@
               <td><strong>大气内重力波</strong><br><small>Atmospheric internal gravity waves</small></td>
               <td>大气</td>
               <td>重力 + 浮力</td>
-              <td>ω = N·cosθ</td>
+              <td>\(\omega = N\cos\theta\)</td>
               <td>可水平+垂直传播，能量可上传至平流层</td>
               <td>中</td>
               <td>中等</td>
@@ -2612,7 +2663,7 @@
               <td><strong>大气惯性重力波</strong><br><small>Inertia–gravity waves</small></td>
               <td>大气</td>
               <td>重力 + 科里奥利力</td>
-              <td>ω² = f² + N²k²/m²</td>
+              <td>\(\omega^2 = f^2 + N^2k^2/m^2\)</td>
               <td>旋转大气中传播，中纬度广泛存在</td>
               <td>中</td>
               <td>中等</td>
@@ -2621,7 +2672,7 @@
               <td><strong>大气罗斯贝波</strong><br><small>Atmospheric Rossby waves</small></td>
               <td>大气（中纬度）</td>
               <td>β 效应</td>
-              <td>ω = −βk / (k² + l² + f₀²/(gH))</td>
+              <td>\(\omega = -\frac{\beta k}{k^2+l^2+f_0^2/(gH)}\)</td>
               <td>大尺度缓慢东移，波长数千公里</td>
               <td>高</td>
               <td>强</td>
@@ -2630,7 +2681,7 @@
               <td><strong>大气赤道开尔文波</strong><br><small>Equatorial Kelvin waves</small></td>
               <td>大气（赤道）</td>
               <td>重力 + 科里奥利力</td>
-              <td>ω = k√(gH)（东传，非频散）</td>
+              <td>\(\omega = k\sqrt{gH}\)（东传，非频散）</td>
               <td>赤道捕获，东向传播，周期数天至数十天</td>
               <td>中-高</td>
               <td>较强</td>
@@ -2639,7 +2690,7 @@
               <td><strong>兰姆波</strong><br><small>Lamb waves</small></td>
               <td>大气（低层）</td>
               <td>重力 + 压力梯度力</td>
-              <td>ω² = gk + cₛ²k²（重力-声波耦合）</td>
+              <td>\(\omega^2 = gk + c_s^2k^2\)（重力-声波耦合）</td>
               <td>水平传播，衰减小，可远距离传输</td>
               <td>中</td>
               <td>中等</td>
@@ -2707,8 +2758,8 @@
               <p><strong>What you learn · 学习内容：</strong>Master the dispersion relation between angular frequency, wavenumber, and water depth — and from it distinguish phase speed from group speed. Explain particle orbits, velocity/acceleration, pressure variations, and wave energy. Deep, intermediate, and shallow water change the wave structure — this is the core link between theory and sea-state judgment.</p>
               <p class="cn"><strong>核心要点：</strong>掌握角频率、波数、水深之间的色散关系，并由此区分相速与群速；能解释粒子轨迹、速度/加速度、压力变化及波能。深水、过渡水深和浅水条件会改变波浪运动结构，是连接理论与海况判断的核心。</p>
               <div class="mini-eq">
-                <span class="hl">Deep water 深水：</span>ω² = gk &nbsp;&nbsp; c = √(g/k) &nbsp;&nbsp; c<sub>g</sub> = c/2<br>
-                <span class="hl">Shallow water 浅水：</span>ω = k√(gh) &nbsp;&nbsp; c = √(gh) &nbsp;&nbsp; c<sub>g</sub> = c (non-dispersive 非频散)
+                <span class="hl">Deep water 深水：</span>\(\omega^2 = gk\) &nbsp;&nbsp; \(c = \sqrt{g/k}\) &nbsp;&nbsp; \(c_g = c/2\)<br>
+                <span class="hl">Shallow water 浅水：</span>\(\omega = k\sqrt{gh}\) &nbsp;&nbsp; \(c = \sqrt{gh}\) &nbsp;&nbsp; \(c_g = c\) (non-dispersive 非频散)
               </div>
             </div>
           </div>
@@ -2922,8 +2973,8 @@
         <div class="explain-item">
           <div class="ei-label">Shallow Water · 浅水运动</div>
           <div class="ei-text">
-            <p style="margin:6px 0 0;font-size:0.86rem;">Motion in which the fluid depth is much smaller than the wavelength (H ≪ λ). This approximation is extremely common in large-scale ocean and atmosphere dynamics.
-            <span class="cn">流体深度远小于波长的运动（H ≪ λ）。这种近似在海洋和大气的大尺度运动中非常常用。</span></p>
+            <p style="margin:6px 0 0;font-size:0.86rem;">Motion in which the fluid depth is much smaller than the wavelength (\(H \ll \lambda\)). This approximation is extremely common in large-scale ocean and atmosphere dynamics.
+            <span class="cn">流体深度远小于波长的运动（\(H \ll \lambda\)）。这种近似在海洋和大气的大尺度运动中非常常用。</span></p>
           </div>
         </div>
         <div class="explain-item">
@@ -2936,8 +2987,8 @@
         <div class="explain-item">
           <div class="ei-label" style="background:#2e7d32;">Coriolis Parameter · 科氏参数 f</div>
           <div class="ei-text">
-            <p style="margin:6px 0 0;font-size:0.86rem;">f = 2Ω sinφ, where Ω is the Earth's angular velocity and φ is latitude. It represents the Coriolis effect produced by the Earth's rotation.
-            <span class="cn">f = 2Ω sinφ（Ω 为地球自转角速度，φ 为纬度），代表地球自转产生的科里奥利力。</span></p>
+            <p style="margin:6px 0 0;font-size:0.86rem;">\(f = 2\Omega\sin\varphi\), where Ω is the Earth's angular velocity and φ is latitude. It represents the Coriolis effect produced by the Earth's rotation.
+            <span class="cn">\(f = 2\Omega\sin\varphi\)（Ω 为地球自转角速度，φ 为纬度），代表地球自转产生的科里奥利力。</span></p>
           </div>
         </div>
       </div>
@@ -2965,7 +3016,7 @@
             <tr>
               <td style="padding:8px;border:1px solid var(--line);"><strong>f ≠ 常数</strong></td>
               <td style="padding:8px;border:1px solid var(--line);">β 平面 · β-plane</td>
-              <td style="padding:8px;border:1px solid var(--line);">考虑纬度变化，引入 β 效应（f ≈ f₀ + βy）。<span class="cn">Latitudinal change included through the β effect (f ≈ f₀ + βy).</span></td>
+              <td style="padding:8px;border:1px solid var(--line);">考虑纬度变化，引入 β 效应（\(f \approx f_0 + \beta y\)）。<span class="cn">Latitudinal change included through the β effect (\(f \approx f_0 + \beta y\)).</span></td>
             </tr>
           </tbody>
         </table>
@@ -2980,10 +3031,14 @@
             <strong>Equations of Motion · 运动方程</strong>
             <p><strong>含义：</strong>这是整个分析的理论起点——从质量守恒（连续方程）与动量守恒（运动方程）出发，结合浅水假设与小振幅假设，得到线性化的控制方程组。</p>
             <p><span class="cn">The theoretical starting point: mass conservation (continuity) and momentum conservation, combined with the shallow-water and small-amplitude assumptions, yield the linearised governing equations.</span></p>
-            <div class="mini-eq">
-              ∂u/∂t − f v = −g·∂η/∂x<br>
-              ∂v/∂t + f u = −g·∂η/∂y<br>
-              ∂η/∂t + H(∂u/∂x + ∂v/∂y) = 0
+            <div class="mini-eq math-display" data-fallback="∂u/∂t − f v = −g·∂η/∂x；∂v/∂t + f u = −g·∂η/∂y；∂η/∂t + H(∂u/∂x + ∂v/∂y) = 0">
+\[
+\begin{aligned}
+\frac{\partial u}{\partial t} - f v &= -g\frac{\partial \eta}{\partial x}\\
+\frac{\partial v}{\partial t} + f u &= -g\frac{\partial \eta}{\partial y}\\
+\frac{\partial \eta}{\partial t} + H\left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) &= 0
+\end{aligned}
+\]
             </div>
           </div>
         </div>
@@ -2994,9 +3049,9 @@
             <strong>f = 0 · 浅水重力波 Gravity Wave in Shallow Water</strong>
             <p><strong>条件：</strong>不考虑地球自转（f = 0），流体无限宽广（无边界），且深度均匀。</p>
             <p><strong>物理本质：</strong>最基础的波动。恢复力仅仅是<strong>重力</strong>——水面起伏引起压力梯度力变化。</p>
-            <p><strong>特点：</strong>非频散波，相速度只与深度有关，c = √(gH)，可向任意方向传播。在大气和海洋中，可视为海啸或潮汐波的简化模型。</p>
-            <div class="mini-eq">ω = k√(gH)　　c = √(gH)　　（非频散 non-dispersive）</div>
-            <p><span class="cn">No rotation, unbounded and uniformly deep fluid; gravity is the only restoring force; non-dispersive, c = √(gH); a simplified model for tsunamis and tides.</span></p>
+            <p><strong>特点：</strong>非频散波，相速度只与深度有关，\(c = \sqrt{gH}\)，可向任意方向传播。在大气和海洋中，可视为海啸或潮汐波的简化模型。</p>
+            <div class="mini-eq">\(\omega = k\sqrt{gH}\)　　\(c = \sqrt{gH}\)　　（非频散 non-dispersive）</div>
+            <p><span class="cn">No rotation, unbounded and uniformly deep fluid; gravity is the only restoring force; non-dispersive, \(c = \sqrt{gH}\); a simplified model for tsunamis and tides.</span></p>
           </div>
         </div>
 
@@ -3007,8 +3062,8 @@
             <p><strong>条件：</strong>考虑地球自转（f 为常数），流体仍无限宽广且等深。</p>
             <p><strong>物理本质：</strong>加入地球自转后，恢复力不仅有重力，还有<strong>科里奥利力</strong>，因此又称<strong>惯性重力波</strong>。</p>
             <p><strong>特点：</strong>科里奥利力使流体质点产生旋转运动，波为<strong>频散波</strong>（波速随波长变化）；频率必须大于 f。</p>
-            <div class="mini-eq">ω² = f² + gHk²　　（要求 ω &gt; f）</div>
-            <p><span class="cn">Rotation included with constant f in an unbounded, uniformly deep fluid; gravity plus Coriolis as restoring forces; dispersive, with ω² = f² + gHk².</span></p>
+            <div class="mini-eq">\(\omega^2 = f^2 + gHk^2\)　　（要求 \(\omega \gt f\)）</div>
+            <p><span class="cn">Rotation included with constant f in an unbounded, uniformly deep fluid; gravity plus Coriolis as restoring forces; dispersive, with \(\omega^2 = f^2 + gHk^2\).</span></p>
           </div>
         </div>
 
@@ -3018,9 +3073,9 @@
             <strong>f = C · 开尔文波 Kelvin Wave</strong>
             <p><strong>条件：</strong>考虑地球自转（f 为常数），但流体<strong>有水平边界</strong>（如海岸线、赤道或大洋侧壁）。</p>
             <p><strong>物理本质：</strong>边界约束使流体在垂直于边界方向的速度为零；为满足该条件，科里奥利力在边界处被压力梯度力完美平衡（地转平衡）。</p>
-            <p><strong>特点：</strong>边界波，只能沿边界传播，振幅在垂直边界方向指数衰减；传播速度与非旋转浅水重力波相同（c = √(gH)），且<strong>非频散</strong>。</p>
-            <div class="mini-eq">ω = k√(gH)　　c = √(gH)　　（沿岸/赤道捕获 trapped）</div>
-            <p><span class="cn">Constant f with a horizontal boundary; Coriolis balanced by pressure gradient at the wall; propagates only along the boundary with exponential offshore decay; non-dispersive, c = √(gH).</span></p>
+            <p><strong>特点：</strong>边界波，只能沿边界传播，振幅在垂直边界方向指数衰减；传播速度与非旋转浅水重力波相同（\(c = \sqrt{gH}\)），且<strong>非频散</strong>。</p>
+            <div class="mini-eq">\(\omega = k\sqrt{gH}\)　　\(c = \sqrt{gH}\)　　（沿岸/赤道捕获 trapped）</div>
+            <p><span class="cn">Constant f with a horizontal boundary; Coriolis balanced by pressure gradient at the wall; propagates only along the boundary with exponential offshore decay; non-dispersive, \(c = \sqrt{gH}\).</span></p>
           </div>
         </div>
 
@@ -3028,10 +3083,10 @@
           <span class="ex-num" style="background:#7b1fa2;">4</span>
           <div>
             <strong>f ≠ 常数 · 罗斯贝波 Rossby Wave</strong>
-            <p><strong>条件：</strong>考虑地球自转，且<strong>科里奥利参数 f 随纬度变化</strong>，即引入 β 效应（f ≈ f₀ + βy）。</p>
+            <p><strong>条件：</strong>考虑地球自转，且<strong>科里奥利参数 f 随纬度变化</strong>，即引入 β 效应（\(f \approx f_0 + \beta y\)）。</p>
             <p><strong>物理本质：</strong>大尺度大气与海洋动力学中最重要的波。恢复力是<strong>位涡守恒</strong>：流体质点南北移动时 f 发生变化，为保持位涡守恒，流体层厚度必须改变，从而产生波动。</p>
             <p><strong>特点：</strong>又称行星波。传播方向高度<strong>不对称</strong>——总是相对于基本气流<strong>向西</strong>传播；频率远小于 f，且是强频散波。它是大气长波槽脊移动、天气系统变化的核心机制。</p>
-            <div class="mini-eq">ω = −βk / (k² + l² + f₀²/(gH))　　（西向传播 westward）</div>
+            <div class="mini-eq">\(\omega = -\dfrac{\beta k}{k^2+l^2+f_0^2/(gH)}\)　　（西向传播 westward）</div>
             <p><span class="cn">Constant f replaced by latitude-dependent f (β effect); potential-vorticity conservation is the restoring mechanism; westward-propagating, strongly dispersive — the planetary wave.</span></p>
           </div>
         </div>
@@ -3053,28 +3108,28 @@
             <tr>
               <td style="padding:8px;border:1px solid var(--line);"><strong>浅水重力波</strong><br><small>Shallow-water gravity</small></td>
               <td style="padding:8px;border:1px solid var(--line);">重力 Gravity</td>
-              <td style="padding:8px;border:1px solid var(--line);">ω = k√(gH)</td>
+              <td style="padding:8px;border:1px solid var(--line);">\(\omega = k\sqrt{gH}\)</td>
               <td style="padding:8px;border:1px solid var(--line);">否 No</td>
               <td style="padding:8px;border:1px solid var(--line);">任意方向 Any direction</td>
             </tr>
             <tr>
               <td style="padding:8px;border:1px solid var(--line);"><strong>邦加莱波</strong><br><small>Poincaré / inertia–gravity</small></td>
               <td style="padding:8px;border:1px solid var(--line);">重力 + 科氏力</td>
-              <td style="padding:8px;border:1px solid var(--line);">ω² = f² + gHk²</td>
-              <td style="padding:8px;border:1px solid var(--line);">是 Yes（ω &gt; f）</td>
+              <td style="padding:8px;border:1px solid var(--line);">\(\omega^2 = f^2 + gHk^2\)</td>
+              <td style="padding:8px;border:1px solid var(--line);">是 Yes（\(\omega \gt f\)）</td>
               <td style="padding:8px;border:1px solid var(--line);">任意方向，旋转偏转</td>
             </tr>
             <tr>
               <td style="padding:8px;border:1px solid var(--line);"><strong>开尔文波</strong><br><small>Kelvin</small></td>
               <td style="padding:8px;border:1px solid var(--line);">重力 + 科氏力（边界平衡）</td>
-              <td style="padding:8px;border:1px solid var(--line);">ω = k√(gH)</td>
+              <td style="padding:8px;border:1px solid var(--line);">\(\omega = k\sqrt{gH}\)</td>
               <td style="padding:8px;border:1px solid var(--line);">否 No</td>
               <td style="padding:8px;border:1px solid var(--line);">仅沿边界，振幅指数衰减</td>
             </tr>
             <tr>
               <td style="padding:8px;border:1px solid var(--line);"><strong>罗斯贝波</strong><br><small>Rossby</small></td>
               <td style="padding:8px;border:1px solid var(--line);">位涡守恒 PV conservation</td>
-              <td style="padding:8px;border:1px solid var(--line);">ω = −βk/(k²+l²+f₀²/(gH))</td>
+              <td style="padding:8px;border:1px solid var(--line);">\(\omega = -\frac{\beta k}{k^2+l^2+f_0^2/(gH)}\)</td>
               <td style="padding:8px;border:1px solid var(--line);">是 Yes（强频散）</td>
               <td style="padding:8px;border:1px solid var(--line);">西向 Westward</td>
             </tr>
@@ -3103,7 +3158,7 @@
       <span class="tb-icon">📖</span>
       <h3>《物理海洋学》 Physical Oceanography</h3>
       <p class="tb-sub">Course textbook · 课程指定教材</p>
-      <a class="tb-link" href="https://pan.zju.edu.cn/share/6984d8c68b4eac504045f029c4" target="_blank" rel="noopener">
+      <a class="tb-link" href="https://pan.zju.edu.cn/share/ca157d43645d3076ea94d60cbf" target="_blank" rel="noopener">
         🔗 Download · 下载教材
       </a>
       <p class="tb-hint">
@@ -3158,8 +3213,8 @@
 
             <p style="margin:12px 0;">
               <strong>③ Water columns respond by "moving house" · 第三层，水柱靠"搬家"来响应</strong><br>
-              Rotating fluids obey <strong>potential vorticity conservation</strong>: the ratio of the Coriolis parameter to water-column thickness stays roughly constant, i.e. <strong>(f + ζ) / h ≈ constant</strong>. When the column thickness changes, the water cannot compensate by spinning faster in place — the diagram explicitly says <em>"they don't spin up in situ"</em>. The only way out is to <strong>change latitude</strong>: squashed columns move toward the equator (where f is smaller), and stretched columns move toward the poles (where f is larger). This is exactly the pair of conclusions at the bottom of the diagram.
-              <span class="cn">旋转流体遵循<strong>位涡守恒</strong>：科氏参数除以水柱厚度的比值大致不变，即 <strong>(f + ζ) / h ≈ 常数</strong>。水柱厚度被改变了，又无法靠原地加速旋转来弥补（图上明说"它们不会原地打转"），唯一出路是<strong>改变纬度</strong>——被压扁的水柱向赤道走，被拉长的水柱向极地走，这正是图底部那两行结论。</span>
+              Rotating fluids obey <strong>potential vorticity conservation</strong>: the ratio of the Coriolis parameter to water-column thickness stays roughly constant, i.e. <strong>\((f+\zeta)/h \approx \text{constant}\)</strong>. When the column thickness changes, the water cannot compensate by spinning faster in place — the diagram explicitly says <em>"they don't spin up in situ"</em>. The only way out is to <strong>change latitude</strong>: squashed columns move toward the equator (where f is smaller), and stretched columns move toward the poles (where f is larger). This is exactly the pair of conclusions at the bottom of the diagram.
+              <span class="cn">旋转流体遵循<strong>位涡守恒</strong>：科氏参数除以水柱厚度的比值大致不变，即 <strong>\((f+\zeta)/h \approx \text{常数}\)</strong>。水柱厚度被改变了，又无法靠原地加速旋转来弥补（图上明说"它们不会原地打转"），唯一出路是<strong>改变纬度</strong>——被压扁的水柱向赤道走，被拉长的水柱向极地走，这正是图底部那两行结论。</span>
             </p>
 
             <div class="formula" style="margin:14px 0;font-size:1rem;">
@@ -3197,8 +3252,8 @@
         <em>"在 30 天内使厚 100 m、截面积 1 m² 的水柱温度改变 1 °C，需要多大的热通量？"</em>
       </p>
 
-      <div class="formula">
-        Q = <span class="eq">ρ · c<sub>p</sub> · ΔT · V</span> / Δt&nbsp;&nbsp;(V = depth × area)
+      <div class="formula math-display" data-fallback="Q = ρ·c_p·ΔT·V / Δt　(V = depth × area)">
+        \[ Q = \frac{\rho\,c_p\,\Delta T\,V}{\Delta t} \qquad (V = \text{depth} \times \text{area}) \]
       </div>
 
       <div class="calc-grid">
@@ -3249,7 +3304,7 @@
 
     <div class="eof-card">
       <div class="eof-frame-wrap">
-        <iframe class="eof-frame" src="eof.html" title="EOF 动画演示" loading="lazy"></iframe>
+        <iframe class="eof-frame" src="eof.html" title="EOF 动画演示"></iframe>
       </div>
       <p class="eof-hint">
         💡 动画内交互：点击画面或按空格键暂停 / 继续；右下角「↺ 重播」按钮可重新开始。
@@ -3257,7 +3312,7 @@
       </p>
       <p class="eof-explain">
         <strong>动画结构 · Scene list:</strong>
-        ① 开场 → ② 数据：随时间演化的空间场 → ③ 目标：拆成几个模式 → ④ 分解公式 X(t,x) ≈ Σ PCₖ(t)·EOFₖ(x) →
+        ① 开场 → ② 数据：随时间演化的空间场 → ③ 目标：拆成几个模式 → ④ 分解公式 \(X(t,x) \approx \sum_k \mathrm{PC}_k(t)\,\mathrm{EOF}_k(x)\) →
         ⑤ 详解 EOF₁ 与 PC₁ → ⑥ 协方差矩阵特征向量算法 → ⑦ 回顾（NAO / PCA 关联）。
         <em>Walks through data → goal → decomposition formula → mode-1 visualization → covariance-eigenvector computation → real-world meaning (NAO, PCA).</em>
       </p>
@@ -3362,13 +3417,17 @@
       <p style="margin:0 0 8px;color:var(--muted);font-size:0.9rem;">
         In a rotating frame, per unit mass · 旋转坐标系下（单位质量）：
       </p>
-      <div class="mini-eq" style="text-align:center;">
-        ∂<strong>u</strong>/∂t + (<strong>u</strong>·∇)<strong>u</strong> + 2<strong>Ω</strong> × <strong>u</strong> = −(1/ρ)∇p + <strong>g</strong> + <strong>F</strong>
+      <div class="mini-eq math-display" style="text-align:center;" data-fallback="∂u/∂t + (u·∇)u + 2Ω × u = −(1/ρ)∇p + g + F">
+        \[ \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot\nabla)\mathbf{u} + 2\mathbf{\Omega}\times\mathbf{u} = -\frac{1}{\rho}\nabla p + \mathbf{g} + \mathbf{F} \]
       </div>
       <p style="margin:12px 0 0;font-size:0.9rem;color:var(--muted);">Horizontal components · 水平分量：</p>
-      <div class="mini-eq" style="text-align:left;">
-        ∂u/∂t + u·∇u − f v = −(1/ρ)·∂p/∂x + (1/ρ)·∂τ<sub>x</sub>/∂z<br>
-        ∂v/∂t + u·∇v + f u = −(1/ρ)·∂p/∂y + (1/ρ)·∂τ<sub>y</sub>/∂z
+      <div class="mini-eq math-display" style="text-align:left;" data-fallback="∂u/∂t + u·∇u − f v = −(1/ρ)·∂p/∂x + (1/ρ)·∂τ_x/∂z；∂v/∂t + u·∇v + f u = −(1/ρ)·∂p/∂y + (1/ρ)·∂τ_y/∂z">
+\[
+\begin{aligned}
+\frac{\partial u}{\partial t} + u\cdot\nabla u - f v &= -\frac{1}{\rho}\frac{\partial p}{\partial x} + \frac{1}{\rho}\frac{\partial \tau_x}{\partial z}\\
+\frac{\partial v}{\partial t} + u\cdot\nabla v + f u &= -\frac{1}{\rho}\frac{\partial p}{\partial y} + \frac{1}{\rho}\frac{\partial \tau_y}{\partial z}
+\end{aligned}
+\]
       </div>
       <p class="eof-explain">
         <strong>五项 · Five terms：</strong>
@@ -3376,8 +3435,8 @@
         <em>Which terms are kept and which are dropped defines each simplified flow below.</em>
       </p>
       <p class="eof-hint">
-        <strong>罗斯贝数 · Rossby number：</strong>Ro = U / (fL) 度量平流项与科里奥利项之比。Ro ≪ 1 ⇒ 平流可忽略 ⇒ 地转 / 埃克曼近似成立；Ro ≫ 1 ⇒ 平流主导 ⇒ 非地转（惯性流）。
-        <em>Ro = U/(fL) measures advection against Coriolis. Ro ≪ 1 ⇒ advection negligible ⇒ geostrophic / Ekman; Ro ≫ 1 ⇒ advection dominates ⇒ ageostrophic (inertial).</em>
+        <strong>罗斯贝数 · Rossby number：</strong>\(\mathrm{Ro} = U/(fL)\) 度量平流项与科里奥利项之比。\(\mathrm{Ro} \ll 1\) ⇒ 平流可忽略 ⇒ 地转 / 埃克曼近似成立；\(\mathrm{Ro} \gg 1\) ⇒ 平流主导 ⇒ 非地转（惯性流）。
+        <em>\(\mathrm{Ro} = U/(fL)\) measures advection against Coriolis. \(\mathrm{Ro} \ll 1\) ⇒ advection negligible ⇒ geostrophic / Ekman; \(\mathrm{Ro} \gg 1\) ⇒ advection dominates ⇒ ageostrophic (inertial).</em>
       </p>
 
       <div class="ex-steps">
@@ -3385,11 +3444,13 @@
           <span class="ex-num" style="background:#13769b;">G</span>
           <div>
             <strong>Geostrophic flow · 地转流</strong>
-            <p><strong>Conditions · 条件：</strong>Ro ≪ 1（大尺度、缓变），定常 ∂/∂t = 0，无摩擦 F = 0，远离边界。
+            <p><strong>Conditions · 条件：</strong>\(\mathrm{Ro} \ll 1\)（大尺度、缓变），定常 ∂/∂t = 0，无摩擦 F = 0，远离边界。
             <span class="cn">Large scale, steady, frictionless, away from boundaries.</span></p>
             <p><strong>Retained · 保留：</strong>科里奥利 + 压强梯度。<span class="cn">Coriolis + pressure gradient.</span></p>
-            <div class="mini-eq">−f v<sub>g</sub> = −(1/ρ)·∂p/∂x　　+ f u<sub>g</sub> = −(1/ρ)·∂p/∂y</div>
-            <p><strong>Result · 结果：</strong>u<sub>g</sub> = −(1/ρf)·∂p/∂y，v<sub>g</sub> = (1/ρf)·∂p/∂x。沿等压线流动，北半球高压在右（见上方湾流算例）。
+            <div class="mini-eq math-display" data-fallback="−f v_g = −(1/ρ)·∂p/∂x　　+ f u_g = −(1/ρ)·∂p/∂y">
+\[ \begin{aligned} -f v_g &= -\frac{1}{\rho}\frac{\partial p}{\partial x}\\ +f u_g &= -\frac{1}{\rho}\frac{\partial p}{\partial y} \end{aligned} \]
+            </div>
+            <p><strong>Result · 结果：</strong>\(u_g = -\frac{1}{\rho f}\frac{\partial p}{\partial y}\)，\(v_g = \frac{1}{\rho f}\frac{\partial p}{\partial x}\)。沿等压线流动，北半球高压在右（见上方湾流算例）。
             <span class="cn">Flow along isobars, with high pressure on the right in the NH.</span></p>
           </div>
         </div>
@@ -3397,11 +3458,13 @@
           <span class="ex-num" style="background:#c0522a;">I</span>
           <div>
             <strong>Inertial flow · 惯性流</strong>
-            <p><strong>Conditions · 条件：</strong>无压强梯度 ∇p ≈ 0，无摩擦，不受边界影响（孤立水质点）。
+            <p><strong>Conditions · 条件：</strong>无压强梯度 \(\nabla p \approx 0\)，无摩擦，不受边界影响（孤立水质点）。
             <span class="cn">No pressure gradient, frictionless, isolated from boundaries.</span></p>
             <p><strong>Retained · 保留：</strong>局地加速度 + 科里奥利。<span class="cn">Local acceleration + Coriolis.</span></p>
-            <div class="mini-eq">∂u/∂t = f v　　∂v/∂t = −f u</div>
-            <p><strong>Result · 结果：</strong>等速圆周运动（惯性振荡），周期 T = 2π/f，半径 R = V/f；北半球顺时针旋转。
+            <div class="mini-eq math-display" data-fallback="∂u/∂t = f v　　∂v/∂t = −f u">
+\[ \frac{\partial u}{\partial t} = f v \qquad \frac{\partial v}{\partial t} = -f u \]
+            </div>
+            <p><strong>Result · 结果：</strong>等速圆周运动（惯性振荡），周期 \(T = 2\pi/f\)，半径 \(R = V/f\)；北半球顺时针旋转。
             <span class="cn">Uniform circular motion (inertial oscillation): T = 2π/f, R = V/f; clockwise in the NH.</span></p>
           </div>
         </div>
@@ -3412,9 +3475,11 @@
             <p><strong>Conditions · 条件：</strong>定常，f 平面，层内压强梯度可忽略，但海面存在风应力。
             <span class="cn">Steady, f-plane, PGF negligible inside the layer, but wind stress at the surface.</span></p>
             <p><strong>Retained · 保留：</strong>科里奥利 + 垂向应力散度。<span class="cn">Coriolis + vertical stress divergence.</span></p>
-            <div class="mini-eq">−f v = (1/ρ)·∂τ<sub>x</sub>/∂z　　+ f u = (1/ρ)·∂τ<sub>y</sub>/∂z</div>
-            <p><strong>Result · 结果：</strong>埃克曼螺线；北半球表层流偏于风向右侧 45°，净输运偏右 90°：M = τ/(ρf)；抽吸 w<sub>E</sub> = curl(τ)/(ρf)。
-            <span class="cn">Ekman spiral; NH surface current 45° right of the wind, net transport 90° right: M = τ/(ρf); pumping w<sub>E</sub> = curl(τ)/(ρf).</span></p>
+            <div class="mini-eq math-display" data-fallback="−f v = (1/ρ)·∂τ_x/∂z　　+ f u = (1/ρ)·∂τ_y/∂z">
+\[ -f v = \frac{1}{\rho}\frac{\partial \tau_x}{\partial z} \qquad +f u = \frac{1}{\rho}\frac{\partial \tau_y}{\partial z} \]
+            </div>
+            <p><strong>Result · 结果：</strong>埃克曼螺线；北半球表层流偏于风向右侧 45°，净输运偏右 90°：\(M = \tau/(\rho f)\)；抽吸 \(w_E = \mathrm{curl}(\tau)/(\rho f)\)。
+            <span class="cn">Ekman spiral; NH surface current 45° right of the wind, net transport 90° right: \(M = \tau/(\rho f)\); pumping \(w_E = \mathrm{curl}(\tau)/(\rho f)\).</span></p>
           </div>
         </div>
       </div>
@@ -3434,13 +3499,13 @@
               <td style="padding:8px;border:1px solid var(--line);"><strong>地转流 Geostrophic</strong></td>
               <td style="padding:8px;border:1px solid var(--line);">科里奥利 + 压强梯度</td>
               <td style="padding:8px;border:1px solid var(--line);">加速度、摩擦</td>
-              <td style="padding:8px;border:1px solid var(--line);">Ro ≪ 1，定常，无摩擦</td>
+              <td style="padding:8px;border:1px solid var(--line);">\(\mathrm{Ro} \ll 1\)，定常，无摩擦</td>
             </tr>
             <tr>
               <td style="padding:8px;border:1px solid var(--line);"><strong>惯性流 Inertial</strong></td>
               <td style="padding:8px;border:1px solid var(--line);">局地加速度 + 科里奥利</td>
               <td style="padding:8px;border:1px solid var(--line);">压强梯度、摩擦</td>
-              <td style="padding:8px;border:1px solid var(--line);">∇p ≈ 0</td>
+              <td style="padding:8px;border:1px solid var(--line);">\(\nabla p \approx 0\)</td>
             </tr>
             <tr>
               <td style="padding:8px;border:1px solid var(--line);"><strong>埃克曼流 Ekman</strong></td>
@@ -3677,8 +3742,18 @@
 </div>
 
 <footer>
-  © 2026 Physical Oceanography Hub · Built for classroom use ·
-  <a href="#top">Back to top ↑</a>
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      <strong class="fd-title">⚠️ AI 生成内容免责声明 · AI-Generated Content Disclaimer</strong>
+      <p>本页面的大部分内容（包括讲解文字、图解说明、公式推导、示例与问答）由 <strong>AI 辅助生成</strong>，仅用于课堂学习与教学演示，可能存在错误、遗漏或过时信息，不构成学术结论或专业建议。引用具体数据、公式与文献时，请以课程教材、原始论文与教师讲解为准。</p>
+      <p class="fd-model"><strong>使用模型 · Models used：</strong>主要内容经 <strong>Trae Auto</strong> 生成与整理；部分段落使用 <strong>DeepSeek-V4</strong> 辅助。页面由多次对话累计生成，个别段落的确切模型来源已无法逐段追溯。</p>
+      <p lang="en">Most of the content on this page — explanations, diagrams, derivations, examples and Q&amp;A — was produced with <strong>AI assistance</strong> (mainly <strong>Trae Auto</strong>, with occasional help from <strong>DeepSeek-V4</strong>) and is intended for classroom learning and demonstration only. It may contain errors or omissions. Verify data, equations and references against the course textbook, primary literature and your instructor's notes. Per-paragraph model attribution is not traceable.</p>
+    </div>
+    <div class="footer-meta">
+      © 2026 Physical Oceanography Hub · Built for classroom use ·
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -3850,9 +3925,9 @@ const qaData = [
     q: "What are the key components of the Mixed Layer heat budget?",
     qcn: "混合层热收支的关键组成部分有哪些？",
     a: `<p>The mixed-layer heat budget balances all fluxes that change the upper-ocean heat content:</p>
-        <p style="text-align:center;font-family:'Cambria Math',serif;background:var(--foam);padding:10px;border-radius:8px;">
-          ∂(ρ·c<sub>p</sub>·h·T)/∂t = Q<sub>s</sub> − Q<sub>b</sub> − Q<sub>e</sub> − Q<sub>h</sub> − Q<sub>pen</sub> + Q<sub>adv</sub> + Q<sub>ent</sub>
-        </p>
+        <div class="math-display" style="background:var(--foam);padding:10px;border-radius:8px;">
+          \\[\\frac{\\partial(\\rho c_p h T)}{\\partial t} = Q_s - Q_b - Q_e - Q_h - Q_{pen} + Q_{adv} + Q_{ent}\\]
+        </div>
         <ul>
           <li><strong>Q<sub>s</sub></strong> — shortwave solar radiation (penetrates to the diurnal layer).</li>
           <li><strong>Q<sub>b</sub></strong> — longwave back radiation.</li>
@@ -3863,9 +3938,9 @@ const qaData = [
           <li><strong>Q<sub>ent</sub></strong> — entrainment/mixing at the base of the mixed layer.</li>
         </ul>`,
     acn: `<p>混合层热收支平衡所有改变上层海洋热含量的通量：</p>
-        <p style="text-align:center;font-family:'Cambria Math',serif;background:var(--foam);padding:10px;border-radius:8px;">
-          ∂(ρ·c<sub>p</sub>·h·T)/∂t = Q<sub>s</sub> − Q<sub>b</sub> − Q<sub>e</sub> − Q<sub>h</sub> − Q<sub>pen</sub> + Q<sub>adv</sub> + Q<sub>ent</sub>
-        </p>
+        <div class="math-display" style="background:var(--foam);padding:10px;border-radius:8px;">
+          \\[\\frac{\\partial(\\rho c_p h T)}{\\partial t} = Q_s - Q_b - Q_e - Q_h - Q_{pen} + Q_{adv} + Q_{ent}\\]
+        </div>
         <ul>
           <li><strong>Q<sub>s</sub></strong> —— 短波太阳辐射（穿透至日变层）。</li>
           <li><strong>Q<sub>b</sub></strong> —— 长波回辐射。</li>
@@ -4005,21 +4080,21 @@ const qaData = [
   {
     q: "Work out the period of inertial oscillations at the north pole, 30°N, equator, and south pole.",
     qcn: "计算北极、北纬 30°、赤道和南极处惯性振荡的周期。",
-    a: `<p>Period of inertial oscillations: <strong>T = 2π / f</strong>, where <strong>f = 2Ω·sinφ</strong> is the Coriolis parameter.<br>
-        Earth's angular velocity Ω ≈ 7.292 × 10⁻⁵ rad/s</p>
+    a: `<p>Period of inertial oscillations: <strong>\\(T = 2\\pi / f\\)</strong>, where <strong>\\(f = 2\\Omega\\sin\\varphi\\)</strong> is the Coriolis parameter.<br>
+        Earth's angular velocity \\(\\Omega \\approx 7.292\\times10^{-5}\\ \\mathrm{rad/s}\\)</p>
         <ul>
-          <li><strong>North Pole (90°N)</strong>: f = 2Ω ≈ 1.458×10⁻⁴ s⁻¹, period T ≈ <strong>12 hours</strong> (half a sidereal day, counterclockwise)</li>
-          <li><strong>30°N</strong>: f = 2Ω·sin30° = Ω ≈ 7.292×10⁻⁵ s⁻¹, period T ≈ <strong>24 hours</strong> (one sidereal day)</li>
+          <li><strong>North Pole (90°N)</strong>: \\(f = 2\\Omega \\approx 1.458\\times10^{-4}\\ \\mathrm{s^{-1}}\\), period T ≈ <strong>12 hours</strong> (half a sidereal day, counterclockwise)</li>
+          <li><strong>30°N</strong>: \\(f = 2\\Omega\\sin 30^\\circ = \\Omega \\approx 7.292\\times10^{-5}\\ \\mathrm{s^{-1}}\\), period T ≈ <strong>24 hours</strong> (one sidereal day)</li>
           <li><strong>Equator (0°)</strong>: f = 0, period T → <strong>infinity</strong> (no inertial oscillations at the equator)</li>
-          <li><strong>South Pole (90°S)</strong>: f = −2Ω, |f| = 2Ω, period T ≈ <strong>12 hours</strong> (clockwise — opposite sense to NH)</li>
+          <li><strong>South Pole (90°S)</strong>: \\(f = -2\\Omega,\\ |f| = 2\\Omega\\), period T ≈ <strong>12 hours</strong> (clockwise — opposite sense to NH)</li>
         </ul>`,
-    acn: `<p>惯性振荡周期公式：<strong>T = 2π / f</strong>，其中 <strong>f = 2Ω·sinφ</strong> 为科里奥利参数。<br>
-        地球自转角速度 Ω ≈ 7.292 × 10⁻⁵ rad/s</p>
+    acn: `<p>惯性振荡周期公式：<strong>\\(T = 2\\pi / f\\)</strong>，其中 <strong>\\(f = 2\\Omega\\sin\\varphi\\)</strong> 为科里奥利参数。<br>
+        地球自转角速度 \\(\\Omega \\approx 7.292\\times10^{-5}\\ \\mathrm{rad/s}\\)</p>
         <ul>
-          <li><strong>北极（90°N）</strong>：f = 2Ω ≈ 1.458×10⁻⁴ s⁻¹，周期 T ≈ <strong>12 小时</strong>（约半个恒星日，逆时针旋转）</li>
-          <li><strong>北纬 30°</strong>：f = 2Ω·sin30° = Ω ≈ 7.292×10⁻⁵ s⁻¹，周期 T ≈ <strong>24 小时</strong>（约一个恒星日）</li>
+          <li><strong>北极（90°N）</strong>：\\(f = 2\\Omega \\approx 1.458\\times10^{-4}\\ \\mathrm{s^{-1}}\\)，周期 T ≈ <strong>12 小时</strong>（约半个恒星日，逆时针旋转）</li>
+          <li><strong>北纬 30°</strong>：\\(f = 2\\Omega\\sin 30^\\circ = \\Omega \\approx 7.292\\times10^{-5}\\ \\mathrm{s^{-1}}\\)，周期 T ≈ <strong>24 小时</strong>（约一个恒星日）</li>
           <li><strong>赤道（0°）</strong>：f = 0，周期 T → <strong>无穷大</strong>（赤道处无惯性振荡）</li>
-          <li><strong>南极（90°S）</strong>：f = −2Ω，|f| = 2Ω，周期 T ≈ <strong>12 小时</strong>（顺时针旋转，与北半球方向相反）</li>
+          <li><strong>南极（90°S）</strong>：\\(f = -2\\Omega,\\ |f| = 2\\Omega\\)，周期 T ≈ <strong>12 小时</strong>（顺时针旋转，与北半球方向相反）</li>
         </ul>`
   },
   {
@@ -4057,43 +4132,43 @@ const qaData = [
     qcn: "列出位势涡度（位涡）的三个贡献因素。",
     a: `<p>Potential vorticity (PV) combines three ingredients:</p>
         <ol>
-          <li><strong>Planetary vorticity (f)</strong> — vorticity from Earth's rotation, i.e. the Coriolis parameter, which varies with latitude (f = 2Ω·sinφ).</li>
+          <li><strong>Planetary vorticity (f)</strong> — vorticity from Earth's rotation, i.e. the Coriolis parameter, which varies with latitude (\\(f = 2\\Omega\\sin\\varphi\\)).</li>
           <li><strong>Relative vorticity (ζ)</strong> — the spin of a fluid parcel relative to the Earth, arising from horizontal shear and curvature of the flow.</li>
           <li><strong>Layer thickness / stratification (h or ∂ρ/∂z)</strong> — the vertical extent of the water column or the vertical density gradient, which captures the stretching or squashing of vortex tubes.</li>
         </ol>
-        <p>Simple form for a homogeneous layer: <strong>PV = (f + ζ) / h</strong><br>
-        Ertel form in stratified fluids (on isopycnals): <strong>PV = (f + ζ<sub>θ</sub>) · ∂ρ/∂z</strong></p>`,
+        <p>Simple form for a homogeneous layer: <strong>\\(PV = (f+\\zeta)/h\\)</strong><br>
+        Ertel form in stratified fluids (on isopycnals): <strong>\\(PV = (f+\\zeta_\\theta)\\,\\partial\\rho/\\partial z\\)</strong></p>`,
     acn: `<p>位势涡度（Potential Vorticity, PV）综合了以下三个要素：</p>
         <ol>
-          <li><strong>行星涡度（f）</strong>——由地球自转产生，即科里奥利参数，随纬度变化（f = 2Ω·sinφ）。</li>
+          <li><strong>行星涡度（f）</strong>——由地球自转产生，即科里奥利参数，随纬度变化（\\(f = 2\\Omega\\sin\\varphi\\)）。</li>
           <li><strong>相对涡度（ζ）</strong>——流体微团自身的旋转（相对于地球的涡度），由流速的水平切变和曲率决定。</li>
           <li><strong>层厚 / 层结（h 或 ∂ρ/∂z）</strong>——水柱的垂直厚度或密度垂直梯度，体现涡管被拉伸或压缩的程度。</li>
         </ol>
-        <p>均匀层化流体的简化形式：<strong>PV = (f + ζ) / h</strong><br>
-        分层流体的 Ertel 形式（等密度面上）：<strong>PV = (f + ζ<sub>θ</sub>) · ∂ρ/∂z</strong></p>`
+        <p>均匀层化流体的简化形式：<strong>\\(PV = (f+\\zeta)/h\\)</strong><br>
+        分层流体的 Ertel 形式（等密度面上）：<strong>\\(PV = (f+\\zeta_\\theta)\\,\\partial\\rho/\\partial z\\)</strong></p>`
   },
   {
     q: "How does Ekman pumping connect to the Sverdrup interior flow? Explain using potential vorticity arguments.",
     qcn: "埃克曼抽吸如何与斯维尔德鲁普内区流联系起来？用位涡的观点解释。",
     a: `<ul>
-          <li><strong>Ekman pumping (w<sub>E</sub>)</strong>: vertical velocity at the base of the wind-driven Ekman layer, w<sub>E</sub> = curl(τ) / (ρf). In the NH subtropical gyre, the (negative) clockwise wind curl drives <strong>downward</strong> Ekman pumping.</li>
-          <li><strong>Sverdrup balance</strong>: the interior geostrophic transport satisfies βV = curl(τ)/ρ — the vertically integrated meridional transport equals the wind stress curl divided by ρβ.</li>
+          <li><strong>Ekman pumping (w<sub>E</sub>)</strong>: vertical velocity at the base of the wind-driven Ekman layer, \\(w_E = \\mathrm{curl}(\\tau)/(\\rho f)\\). In the NH subtropical gyre, the (negative) clockwise wind curl drives <strong>downward</strong> Ekman pumping.</li>
+          <li><strong>Sverdrup balance</strong>: the interior geostrophic transport satisfies \\(\\beta V = \\mathrm{curl}(\\tau)/\\rho\\) — the vertically integrated meridional transport equals the wind stress curl divided by ρβ.</li>
         </ul>
         <p><strong>PV argument:</strong></p>
         <ul>
-          <li>In the ocean interior, potential vorticity is approximately conserved: D(f/h)/Dt ≈ 0 (neglecting relative vorticity and mixing).</li>
+          <li>In the ocean interior, potential vorticity is approximately conserved: \\(D(f/h)/Dt \\approx 0\\) (neglecting relative vorticity and mixing).</li>
           <li>In the subtropical gyre, downward Ekman pumping pushes surface water into the interior — the water column is <strong>squashed</strong> (h decreases).</li>
-          <li>To conserve PV (f/h ≈ constant), f must <strong>decrease</strong> as h decreases.</li>
+          <li>To conserve PV (\\(f/h \\approx \\text{constant}\\)), f must <strong>decrease</strong> as h decreases.</li>
           <li>f decreases toward the equator, so parcels move <strong>equatorward</strong> — this is the Sverdrup interior flow.</li>
           <li>The gyre closes via a narrow, fast <strong>western boundary current</strong> (Kuroshio, Gulf Stream) that returns water poleward.</li>
         </ul>`,
     acn: `<ul>
-          <li><strong>埃克曼抽吸（w<sub>E</sub>）</strong>：风生埃克曼输运的辐合/辐散在埃克曼层底产生的垂直速度，w<sub>E</sub> = curl(τ) / (ρf)。在北半球副热带环流中，风应力旋度为负（顺时针），产生<strong>向下</strong>的埃克曼抽吸。</li>
-          <li><strong>斯维尔德鲁普平衡</strong>：内区地转输运满足 βV = curl(τ)/ρ，即经向整层输运等于风应力旋度除以 ρβ。</li>
+          <li><strong>埃克曼抽吸（w<sub>E</sub>）</strong>：风生埃克曼输运的辐合/辐散在埃克曼层底产生的垂直速度，\\(w_E = \\mathrm{curl}(\\tau)/(\\rho f)\\)。在北半球副热带环流中，风应力旋度为负（顺时针），产生<strong>向下</strong>的埃克曼抽吸。</li>
+          <li><strong>斯维尔德鲁普平衡</strong>：内区地转输运满足 \\(\\beta V = \\mathrm{curl}(\\tau)/\\rho\\)，即经向整层输运等于风应力旋度除以 ρβ。</li>
         </ul>
         <p><strong>位涡解释：</strong></p>
         <ul>
-          <li>大洋内区位涡近似守恒：D(f/h)/Dt ≈ 0（忽略相对涡度和混合）。</li>
+          <li>大洋内区位涡近似守恒：\\(D(f/h)/Dt \\approx 0\\)（忽略相对涡度和混合）。</li>
           <li>在副热带环流中，向下的埃克曼抽吸把表层水压入内区——水柱被<strong>压扁</strong>（h 减小）。</li>
           <li>为保持位涡 f/h 近似不变，f 必须随 h 减小而<strong>减小</strong>。</li>
           <li>f 向赤道方向减小，因此水团向<strong>赤道</strong>方向流动——这就是斯维尔德鲁普内区流。</li>
@@ -4124,49 +4199,49 @@ const qaData = [
     qcn: "重力波、惯性重力波和罗斯贝波是否弥散？为什么？",
     a: `<p><strong>① Surface gravity waves — dispersive</strong></p>
         <ul>
-          <li>Dispersion relation (deep water): ω² = gk</li>
-          <li>Phase speed c = ω/k = √(g/k), which <strong>depends on k</strong> — different wavelengths travel at different speeds.</li>
-          <li>Group speed c<sub>g</sub> = dω/dk = c/2 — energy propagates at half the phase speed.</li>
+          <li>Dispersion relation (deep water): \\(\\omega^2 = gk\\)</li>
+          <li>Phase speed \\(c = \\omega/k = \\sqrt{g/k}\\), which <strong>depends on k</strong> — different wavelengths travel at different speeds.</li>
+          <li>Group speed \\(c_g = \\mathrm{d}\\omega/\\mathrm{d}k = c/2\\) — energy propagates at half the phase speed.</li>
         </ul>
         <p><strong>② Inertia–gravity waves — dispersive</strong></p>
         <ul>
-          <li>Dispersion relation: ω² = f² + N²k²/m² (or ω² = f² + gHk² for shallow water with rotation)</li>
+          <li>Dispersion relation: \\(\\omega^2 = f^2 + N^2k^2/m^2\\) (or \\(\\omega^2 = f^2 + gHk^2\\) for shallow water with rotation)</li>
           <li>Phase speed depends on wavenumber and the angle of propagation relative to the vertical — clearly dispersive.</li>
         </ul>
         <p><strong>③ Rossby waves — dispersive</strong></p>
         <ul>
-          <li>Dispersion relation: ω = −βk / (k² + l² + f₀²/(gH))</li>
-          <li>Phase speed c = ω/k = −β / (k² + l² + f₀²/(gH)), which varies with wavenumber.</li>
+          <li>Dispersion relation: \\(\\omega = -\\frac{\\beta k}{k^2+l^2+f_0^2/(gH)}\\)</li>
+          <li>Phase speed \\(c = \\omega/k = -\\frac{\\beta}{k^2+l^2+f_0^2/(gH)}\\), which varies with wavenumber.</li>
           <li>Longer waves propagate faster (westward), shorter waves slower — classic dispersion.</li>
         </ul>
-        <p><strong>Exception:</strong> shallow-water gravity waves (ω = k√(gh)) are <em>non-dispersive</em> — all wavelengths travel at the same speed c = √(gh).</p>`,
+        <p><strong>Exception:</strong> shallow-water gravity waves (\\(\\omega = k\\sqrt{gh}\\)) are <em>non-dispersive</em> — all wavelengths travel at the same speed \\(c = \\sqrt{gh}\\).</p>`,
     acn: `<p><strong>① 表面重力波 — 频散（弥散）</strong></p>
         <ul>
-          <li>频散关系（深水）：ω² = gk</li>
-          <li>相速度 c = ω/k = √(g/k)，<strong>依赖于波数 k</strong>——不同波长以不同速度传播。</li>
-          <li>群速度 c<sub>g</sub> = dω/dk = c/2 —— 能量以相速度的一半传播。</li>
+          <li>频散关系（深水）：\\(\\omega^2 = gk\\)</li>
+          <li>相速度 \\(c = \\omega/k = \\sqrt{g/k}\\)，<strong>依赖于波数 k</strong>——不同波长以不同速度传播。</li>
+          <li>群速度 \\(c_g = \\mathrm{d}\\omega/\\mathrm{d}k = c/2\\) —— 能量以相速度的一半传播。</li>
         </ul>
         <p><strong>② 惯性重力波 — 频散（弥散）</strong></p>
         <ul>
-          <li>频散关系：ω² = f² + N²k²/m²（或浅水旋转情况下 ω² = f² + gHk²）</li>
+          <li>频散关系：\\(\\omega^2 = f^2 + N^2k^2/m^2\\)（或浅水旋转情况下 \\(\\omega^2 = f^2 + gHk^2\\)）</li>
           <li>相速度随波数和传播方向（与垂直夹角）变化——明显频散。</li>
         </ul>
         <p><strong>③ 罗斯贝波 — 频散（弥散）</strong></p>
         <ul>
-          <li>频散关系：ω = −βk / (k² + l² + f₀²/(gH))</li>
-          <li>相速度 c = ω/k = −β / (k² + l² + f₀²/(gH))，随波数变化。</li>
+          <li>频散关系：\\(\\omega = -\\frac{\\beta k}{k^2+l^2+f_0^2/(gH)}\\)</li>
+          <li>相速度 \\(c = \\omega/k = -\\frac{\\beta}{k^2+l^2+f_0^2/(gH)}\\)，随波数变化。</li>
           <li>长波传播（西传）更快，短波更慢——典型频散。</li>
         </ul>
-        <p><strong>例外：</strong>浅水波重力波（ω = k√(gh)）是<em>非频散</em>的——所有波长以相同速度 c = √(gh) 传播。</p>`
+        <p><strong>例外：</strong>浅水波重力波（\\(\\omega = k\\sqrt{gh}\\)）是<em>非频散</em>的——所有波长以相同速度 \\(c = \\sqrt{gh}\\) 传播。</p>`
   },
   {
     q: "What causes equatorial waveguides, and which wave types can exist there?",
     qcn: "赤道波系形成波导的原因是什么？可以产生哪几种波动？",
     a: `<p><strong>Cause of the equatorial waveguide:</strong></p>
         <ul>
-          <li>The Coriolis parameter f = 2Ω·sinφ is <strong>zero at the equator</strong> and increases with latitude on both sides.</li>
+          <li>The Coriolis parameter \\(f = 2\\Omega\\sin\\varphi\\) is <strong>zero at the equator</strong> and increases with latitude on both sides.</li>
           <li>This creates a <strong>trapping mechanism</strong>: waves that try to propagate poleward encounter increasing f, which bends their energy back toward the equator (analogous to total internal reflection).</li>
-          <li>The effective waveguide width is set by the <strong>equatorial Rossby radius of deformation</strong>, R<sub>eq</sub> = √(gH) / β (typically ~200–300 km for the ocean thermocline).</li>
+          <li>The effective waveguide width is set by the <strong>equatorial Rossby radius of deformation</strong>, \\(R_{eq} = \\sqrt{gH}/\\beta\\) (typically ~200–300 km for the ocean thermocline).</li>
         </ul>
         <p><strong>Wave types in the equatorial waveguide:</strong></p>
         <ol>
@@ -4177,9 +4252,9 @@ const qaData = [
         </ol>`,
     acn: `<p><strong>赤道波导形成原因：</strong></p>
         <ul>
-          <li>科里奥利参数 f = 2Ω·sinφ 在<strong>赤道处为零</strong>，向两侧随纬度增大。</li>
+          <li>科里奥利参数 \\(f = 2\\Omega\\sin\\varphi\\) 在<strong>赤道处为零</strong>，向两侧随纬度增大。</li>
           <li>这产生了<strong>捕获机制</strong>：试图向极地传播的波遇到不断增大的 f，其能量被折回赤道（类似于全内反射）。</li>
-          <li>波导宽度由<strong>赤道罗斯贝变形半径</strong> R<sub>eq</sub> = √(gH) / β 决定（海洋温跃层典型值约 200–300 km）。</li>
+          <li>波导宽度由<strong>赤道罗斯贝变形半径</strong> \\(R_{eq} = \\sqrt{gH}/\\beta\\) 决定（海洋温跃层典型值约 200–300 km）。</li>
         </ul>
         <p><strong>赤道波系中的波动类型：</strong></p>
         <ol>
@@ -4314,7 +4389,7 @@ const qaData = [
         <ol>
           <li><strong>Stable stratification</strong> — density increases with depth (dρ/dz &lt; 0 in the z-up convention). This provides the buoyancy restoring force.
             <ul>
-              <li>Quantified by the <strong>Brunt–Väisälä frequency</strong>: N = √(−(g/ρ)·dρ/dz).</li>
+              <li>Quantified by the <strong>Brunt–Väisälä frequency</strong>: \\(N = \\sqrt{-(g/\\rho)\\,\\mathrm{d}\\rho/\\mathrm{d}z}\\).</li>
               <li>N must be real and positive — the fluid must be <strong>statically stable</strong>.</li>
             </ul>
           </li>
@@ -4326,7 +4401,7 @@ const qaData = [
               <li>Geostrophic adjustment and mesoscale eddy processes.</li>
             </ul>
           </li>
-          <li><strong>Frequency condition</strong> — the wave frequency ω must satisfy f &lt; ω &lt; N (for inertia–gravity internal waves).
+          <li><strong>Frequency condition</strong> — the wave frequency ω must satisfy \\(f \\lt \\omega \\lt N\\) (for inertia–gravity internal waves).
             <ul>
               <li>If ω &gt; N: stratification cannot provide enough restoring force; no wave propagation.</li>
               <li>If ω &lt; f: rotation dominates; the motion becomes quasi-geostrophic rather than wave-like.</li>
@@ -4338,7 +4413,7 @@ const qaData = [
         <ol>
           <li><strong>稳定层结</strong>——密度随深度增大（z 向上时 dρ/dz &lt; 0），提供浮力恢复力。
             <ul>
-              <li>用<strong>布伦特-维萨拉频率</strong> N = √(−(g/ρ)·dρ/dz) 量化。</li>
+              <li>用<strong>布伦特-维萨拉频率</strong> \\(N = \\sqrt{-(g/\\rho)\\,\\mathrm{d}\\rho/\\mathrm{d}z}\\) 量化。</li>
               <li>N 必须为正实数——流体必须<strong>静力稳定</strong>。</li>
             </ul>
           </li>
@@ -4350,7 +4425,7 @@ const qaData = [
               <li>地转调整与中尺度涡过程。</li>
             </ul>
           </li>
-          <li><strong>频率条件</strong>——波频率 ω 满足 f &lt; ω &lt; N（惯性重力内波）。
+          <li><strong>频率条件</strong>——波频率 ω 满足 \\(f \\lt \\omega \\lt N\\)（惯性重力内波）。
             <ul>
               <li>若 ω &gt; N：层结提供的恢复力不足，无法传播。</li>
               <li>若 ω &lt; f：旋转占主导，运动呈准地转而非波动形式。</li>
@@ -4374,20 +4449,20 @@ const qaData = [
                 <td style="padding:6px;border:1px solid var(--line);">Sea surface (water–air)</td>
                 <td style="padding:6px;border:1px solid var(--line);">Interior density interface (pycnocline)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Restoring force</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">Gravity (density contrast ρ<sub>water</sub>/ρ<sub>air</sub> ≈ 1000)</td>
-                <td style="padding:6px;border:1px solid var(--line);">Reduced gravity: g′ = g·Δρ/ρ, with Δρ/ρ ~ 10⁻³–10⁻²</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">Gravity (density contrast \\(\\rho_{\\text{water}}/\\rho_{\\text{air}} \\approx 1000\\))</td>
+                <td style="padding:6px;border:1px solid var(--line);">Reduced gravity: \\(g' = g\\,\\Delta\\rho/\\rho\\), with \\(\\Delta\\rho/\\rho \\sim 10^{-3}\\)–\\(10^{-2}\\)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Typical amplitude</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">Centimetres to ~10 m</td>
                 <td style="padding:6px;border:1px solid var(--line);">Tens of metres, sometimes 100+ m</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Phase speed</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">√(gH) or √(g/k), metres per second</td>
-                <td style="padding:6px;border:1px solid var(--line);">c ≈ √(g′H), often 0.1–3 m/s — much slower</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">\\(\\sqrt{gH}\\) or \\(\\sqrt{g/k}\\), metres per second</td>
+                <td style="padding:6px;border:1px solid var(--line);">\\(c \\approx \\sqrt{g'H}\\), often 0.1–3 m/s — much slower</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Observability</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">Visible to the naked eye from shore or space</td>
                 <td style="padding:6px;border:1px solid var(--line);">Invisible at the surface; detected only by moorings, CTD, acoustic or satellite roughness signatures</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Frequency band</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">ω = √(gk), normally ω ≫ f</td>
-                <td style="padding:6px;border:1px solid var(--line);">Bounded: f &lt; ω &lt; N</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">\\(\\omega = \\sqrt{gk}\\), normally \\(\\omega \\gg f\\)</td>
+                <td style="padding:6px;border:1px solid var(--line);">Bounded: \\(f \\lt \\omega \\lt N\\)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>Energy</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">Large; driven mainly by wind</td>
                 <td style="padding:6px;border:1px solid var(--line);">Smaller than surface waves, but comparable to or larger than the mean kinetic energy of the background flow; a key sink/source in the ocean energy budget</td></tr>
@@ -4409,20 +4484,20 @@ const qaData = [
                 <td style="padding:6px;border:1px solid var(--line);">海气界面（水–气）</td>
                 <td style="padding:6px;border:1px solid var(--line);">海洋内部的密度界面（密度跃层）</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>恢复力</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">重力（密度反差 ρ<sub>水</sub>/ρ<sub>气</sub> ≈ 1000）</td>
-                <td style="padding:6px;border:1px solid var(--line);">约化重力 g′ = g·Δρ/ρ，其中 Δρ/ρ ~ 10⁻³–10⁻²</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">重力（密度反差 \\(\\rho_{\\text{水}}/\\rho_{\\text{气}} \\approx 1000\\)）</td>
+                <td style="padding:6px;border:1px solid var(--line);">约化重力 \\(g' = g\\,\\Delta\\rho/\\rho\\)，其中 \\(\\Delta\\rho/\\rho \\sim 10^{-3}\\)–\\(10^{-2}\\)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>典型振幅</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">几厘米至约 10 米</td>
                 <td style="padding:6px;border:1px solid var(--line);">数十米，有时可达 100 米以上</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>相速度</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">√(gH) 或 √(g/k)，量级为米每秒</td>
-                <td style="padding:6px;border:1px solid var(--line);">c ≈ √(g′H)，常为 0.1–3 m/s，明显更慢</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">\\(\\sqrt{gH}\\) 或 \\(\\sqrt{g/k}\\)，量级为米每秒</td>
+                <td style="padding:6px;border:1px solid var(--line);">\\(c \\approx \\sqrt{g'H}\\)，常为 0.1–3 m/s，明显更慢</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>可观测性</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">肉眼、岸边或卫星即可观测</td>
                 <td style="padding:6px;border:1px solid var(--line);">海面几乎不可见，只能靠锚系、CTD、声学或卫星粗糙度信号识别</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>频带</strong></td>
-                <td style="padding:6px;border:1px solid var(--line);">ω = √(gk)，通常 ω ≫ f</td>
-                <td style="padding:6px;border:1px solid var(--line);">受限：f &lt; ω &lt; N</td></tr>
+                <td style="padding:6px;border:1px solid var(--line);">\\(\\omega = \\sqrt{gk}\\)，通常 \\(\\omega \\gg f\\)</td>
+                <td style="padding:6px;border:1px solid var(--line);">受限：\\(f \\lt \\omega \\lt N\\)</td></tr>
             <tr><td style="padding:6px;border:1px solid var(--line);"><strong>能量</strong></td>
                 <td style="padding:6px;border:1px solid var(--line);">较大，主要由风驱动</td>
                 <td style="padding:6px;border:1px solid var(--line);">小于表面波，但与背景流平均动能相当甚至更大，是海洋能量收支中的关键源汇</td></tr>
@@ -4450,7 +4525,7 @@ const qaData = [
         </ul>
         <p><strong>Coriolis effect on long-distance propagation — YES, but modest:</strong></p>
         <ul>
-          <li>Tsunamis are <strong>shallow-water waves</strong> (wavelength ~100–500 km &gt;&gt; ocean depth ~4 km), so c = √(gH) ≈ 700–900 km/h.</li>
+          <li>Tsunamis are <strong>shallow-water waves</strong> (wavelength ~100–500 km &gt;&gt; ocean depth ~4 km), so \\(c = \\sqrt{gH} \\approx 700\\text{–}900\\,\\mathrm{km/h}\\).</li>
           <li>Their <strong>periods are 10 min to ~1 hour</strong> — much shorter than the inertial period at mid-latitudes (~12–24 h), so <strong>the Coriolis effect is weak</strong> over one wave cycle.</li>
           <li>However, over <strong>ocean-basin scales (hours to days)</strong>, the cumulative effect of the Coriolis force is not entirely negligible: it can gradually deflect the propagation direction and influence the structure of the wave field (e.g., by generating Coriolis-modified waves or by affecting how tsunamis refract around ocean basins).</li>
           <li><strong>Bottom line:</strong> for first-order tsunami travel-time forecasting, the Coriolis effect is usually ignored (shallow-water non-rotating theory is sufficient). For detailed basin-scale modeling and coastal amplification, rotation may be included.</li>
@@ -4469,7 +4544,7 @@ const qaData = [
         </ul>
         <p><strong>长距离传输中科氏力的影响——有，但较弱：</strong></p>
         <ul>
-          <li>海啸是<strong>浅水波</strong>（波长 ~100–500 km &gt;&gt; 海深 ~4 km），所以 c = √(gH) ≈ 700–900 km/h。</li>
+          <li>海啸是<strong>浅水波</strong>（波长 ~100–500 km &gt;&gt; 海深 ~4 km），所以 \\(c = \\sqrt{gH} \\approx 700\\text{–}900\\,\\mathrm{km/h}\\)。</li>
           <li>其<strong>周期为 10 分钟到约 1 小时</strong>——远短于中纬度惯性周期（~12–24 小时），因此在一个波周期内<strong>科氏效应很弱</strong>。</li>
           <li>然而，在<strong>大洋尺度（数小时到数天）</strong>的传播中，科氏力的累积效应并非完全可以忽略：它可以逐渐偏转传播方向，并影响波场结构（例如产生科氏修正波或影响海啸在洋盆中的折射方式）。</li>
           <li><strong>结论：</strong>在一级海啸走时预报中，通常忽略科氏力（非旋转浅水理论已足够）。在详细的洋盆尺度模拟和近岸放大研究中，旋转效应可能会被纳入。</p>
@@ -4520,39 +4595,6 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 /* ===================== Calculator ===================== */
 function num(id) { return parseFloat(document.getElementById(id).value); }
 function fmt(n, d = 2) { return Number.isFinite(n) ? n.toLocaleString('en-US', { maximumFractionDigits: d, minimumFractionDigits: d }) : '—'; }
-
-document.getElementById('calcBtn').addEventListener('click', () => {
-  const dT = num('dT'), depth = num('depth'), area = num('area'),
-        dt = num('dt'), rho = num('rho'), cp = num('cp');
-  if (![dT, depth, area, dt, rho, cp].every(Number.isFinite) || area <= 0 || dt <= 0) {
-    alert('Please enter valid positive numbers for all fields. · 请输入有效的正数。');
-    return;
-  }
-  const V = depth * area;                       // m^3
-  const dt_s = dt * 86400;                       // seconds
-  const Q_total = rho * cp * dT * V;             // J (total heat)
-  const Q_rate = Q_total / dt_s;                 // W
-  const flux = Q_rate / area;                    // W/m^2
-
-  document.getElementById('fluxOut').textContent = `${fmt(flux)} W/m²`;
-  document.getElementById('totalOut').textContent =
-    `Total heat required · 所需总热量: ${fmt(Q_total, 0)} J  ·  Heating rate · 加热功率: ${fmt(Q_rate, 1)} W`;
-  document.getElementById('stepsOut').innerHTML = `
-    <strong>Steps · 计算步骤:</strong><br>
-    Volume V = depth × area · 体积 = 水深 × 面积 = ${fmt(depth, 0)} × ${fmt(area, 0)} = <code>${fmt(V, 0)} m³</code><br>
-    Time Δt = ${fmt(dt, 0)} days × 86400 · 时间 = ${fmt(dt, 0)} 天 × 86400 = <code>${fmt(dt_s, 0)} s</code><br>
-    Q<sub>total</sub> = ρ · c<sub>p</sub> · ΔT · V = ${fmt(rho, 0)} × ${fmt(cp, 0)} × ${fmt(dT)} × ${fmt(V, 0)} = <code>${fmt(Q_total, 0)} J</code><br>
-    Q̇ = Q<sub>total</sub> / Δt = <code>${fmt(Q_rate, 1)} W</code><br>
-    Flux = Q̇ / area · 通量 = 功率 / 面积 = <code>${fmt(flux)} W/m²</code>
-  `;
-  document.getElementById('result').classList.add('show');
-});
-
-document.getElementById('resetBtn').addEventListener('click', () => {
-  const defs = { dT: 1, depth: 100, area: 1, dt: 30, rho: 1025, cp: 3850 };
-  Object.entries(defs).forEach(([k, v]) => document.getElementById(k).value = v);
-  document.getElementById('result').classList.remove('show');
-});
 
 /* ===================== Scroll to Topic (module guide) ===================== */
 function scrollToTopic(id) {
@@ -4634,4 +4676,40 @@ document.getElementById('resetBtn2').addEventListener('click', () => {
 
 
 
+<!-- Math rendering: pi-markdown-preview recipe (MathJax 3, tex-chtml) -->
+<script>
+window.MathJax = {
+  loader: { load: ['ui/safe', '[tex]/ams', '[tex]/noerrors', '[tex]/noundefined'] },
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: { '[+]': ['ams', 'noerrors', 'noundefined'] },
+    tags: 'none'
+  },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+  startup: { typeset: false }
+};
+
+// Readable fallback when the MathJax CDN is unavailable
+window.__mathjaxFailed = function () {
+  document.querySelectorAll('.math-display[data-fallback]').forEach(function (el) {
+    el.classList.add('math-fallback');
+    el.textContent = el.getAttribute('data-fallback');
+  });
+};
+(function () {
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  s.async = true;
+  s.onload = function () {
+    if (!window.MathJax || !MathJax.startup) { window.__mathjaxFailed(); return; }
+    MathJax.startup.promise
+      .then(function () { return MathJax.typesetPromise(); })
+      .then(function () { document.documentElement.classList.add('math-ready'); })
+      .catch(function () { window.__mathjaxFailed(); });
+  };
+  s.onerror = function () { window.__mathjaxFailed(); };
+  document.head.appendChild(s);
+})();
+</script>
 </body></html>
